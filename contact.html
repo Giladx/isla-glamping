@@ -365,9 +365,11 @@
               <input type="hidden" name="_subject" id="formSubject" value="New reservation enquiry from Isla Aguada Glamping Co." />
               <input type="hidden" name="_cc" value="gilad@011.ninja" />
               <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="_template" value="box" />
+              <input type="hidden" name="_url" id="formUrl" value="" />
               <input type="hidden" name="_replyto" id="replyToField" value="" />
               <input type="text" name="_honey" id="honeyField" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" />
+              <textarea name="message" id="emailMessage" aria-hidden="true" tabindex="-1" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"></textarea>
 
               <!-- Name row -->
               <div class="form-row">
@@ -682,6 +684,31 @@
       document.body.style.overflow = 'hidden';
     }
 
+    function buildEmailMessage(details) {
+      return [
+        'ISLA AGUADA GLAMPING CO.',
+        'Where the Jungle Meets the Sea',
+        '',
+        'RESERVATION ENQUIRY',
+        '--------------------------------------------------',
+        `Reservation Code: ${details.reservationCode}`,
+        `Guest Name: ${details.fullName}`,
+        `Email: ${details.email}`,
+        `Phone: ${details.phone}`,
+        `Arrival: ${details.arrivalFormatted}`,
+        `Departure: ${details.departureFormatted}`,
+        `Guests: ${details.guests}`,
+        `Tent Preference: ${details.tentType}`,
+        `How Heard About Us: ${details.hearAbout}`,
+        '',
+        'SPECIAL REQUESTS',
+        '--------------------------------------------------',
+        details.interests || 'None provided',
+        '',
+        'This enquiry was submitted through the official Contact & Reserve page.',
+      ].join('\n');
+    }
+
     document.getElementById('closeThankYou').addEventListener('click', function() {
       document.getElementById('thankYouOverlay').classList.remove('active');
       document.body.style.overflow = '';
@@ -700,6 +727,7 @@
       e.preventDefault();
       hideError();
       const form = e.currentTarget;
+      document.getElementById('formUrl').value = window.location.href;
 
       // Gather values
       const firstName    = document.getElementById('firstName').value.trim();
@@ -731,6 +759,18 @@
       const fmt = (d) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
       const arrivalFormatted   = fmt(arrivalDate);
       const departureFormatted = fmt(departureDate);
+      document.getElementById('emailMessage').value = buildEmailMessage({
+        reservationCode,
+        fullName,
+        email,
+        phone,
+        arrivalFormatted,
+        departureFormatted,
+        guests,
+        tentType,
+        interests,
+        hearAbout
+      });
 
       // Disable button + show spinner
       const btn = document.getElementById('submitBtn');
