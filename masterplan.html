@@ -154,6 +154,7 @@
   </style>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="css/mayan-glyphs.css" />
 </head>
 <body>
 
@@ -161,8 +162,8 @@
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-row-1">
       <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
-        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co. Logo" /><span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -170,7 +171,6 @@
     </div>
     <div class="nav-row-2">
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="index.html">Home</a></li>
         <li><a href="vision.html">The Vision</a></li>
         <li><a href="accommodations.html">Accommodations</a></li>
         <li><a href="amenities.html">Amenities</a></li>
@@ -215,6 +215,27 @@
           </p>
         </header>
       </div>
+    </section>
+
+    <!-- OPENING 2027 BANNER -->
+    <section aria-label="Opening 2027" style="
+      background-color: #1a1208;
+      padding: 60px 24px;
+      text-align: center;
+    ">
+      <img
+        src="images/opening-2027.jpg"
+        alt="Opening 2027"
+        style="
+          max-width: 520px;
+          width: 90%;
+          height: auto;
+          display: block;
+          margin: 0 auto;
+          border-radius: 8px;
+          box-shadow: 0 8px 48px rgba(0,0,0,0.8), 0 0 60px rgba(201,168,76,0.15);
+        "
+      />
     </section>
 
     <!-- PENINSULA DIAGRAM -->
@@ -379,7 +400,9 @@
         </div>
 
         <!-- Gold banner -->
-        <div style="margin-top:2px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.35); padding:44px 48px; text-align:center;">
+        <div style="margin-top:2px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.35); padding:44px 48px; text-align:center; position:relative; overflow:hidden;">
+          <span class="mayan-glyph mayan-glyph--gold mayan-glyph--md mayan-glyph--carved" data-glyph="scroll_eye" style="position:absolute; top:50%; left:24px; transform:translateY(-50%); opacity:0.40;"></span>
+          <span class="mayan-glyph mayan-glyph--gold mayan-glyph--md mayan-glyph--carved" data-glyph="sun_face" style="position:absolute; top:50%; right:24px; transform:translateY(-50%); opacity:0.40;"></span>
           <span style="font-family:var(--font-heading); font-size:0.62rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:12px;">The Peninsula Advantage</span>
           <p style="font-family:var(--font-body); font-style:italic; font-size:1.05rem; color:rgba(250,240,220,0.88); max-width:740px; margin:0 auto; line-height:1.9;">
             &ldquo;At dawn, the sky ignites in the south-east — soft coral and amber spilling across 
@@ -399,12 +422,25 @@
       <div style="max-width: var(--max-width); margin: 0 auto;">
         <span class="section-tag" style="text-align: center; display: block; margin-bottom: 10px;">Aerial Site Plan</span>
         <h2>The Resort from Above</h2>
-        <div class="gold-divider" style="margin-bottom: 0;"><div class="diamond"></div></div>
+        <div class="mayan-divider" style="margin-bottom:0;">
+          <span class="mayan-glyph mayan-glyph--gold mayan-glyph--sm mayan-glyph--carved" data-glyph="pyramid_stone"></span>
+          <span class="mayan-glyph mayan-glyph--gold mayan-glyph--md mayan-glyph--carved" data-glyph="sun_face"></span>
+          <span class="mayan-glyph mayan-glyph--gold mayan-glyph--sm mayan-glyph--carved" data-glyph="pyramid_stone"></span>
+        </div>
       </div>
 
       <div class="plan-image-wrap">
         <img src="images/aerial-site-plan.jpg" alt="Aerial site plan showing beach zone and jungle glamping zone divided by Federal Highway 180 at Isla Aguada, Campeche, Mexico" loading="lazy" />
         <p class="plan-image-caption">Aerial Site Plan — Isla Aguada Glamping Co. — Campeche, Gulf of Mexico</p>
+      </div>
+
+      <!-- MAYAN STONE GLYPH ROW -->
+      <div class="mayan-stone-row" style="background:rgba(201,168,76,0.06); border-top:1px solid rgba(201,168,76,0.3); border-bottom:1px solid rgba(201,168,76,0.3); margin-top:40px;">
+        <span class="mayan-glyph mayan-glyph--gold mayan-glyph--sm mayan-glyph--carved" data-glyph="pyramid_stone"></span>
+        <span class="mayan-glyph mayan-glyph--gold mayan-glyph--md mayan-glyph--carved" data-glyph="sun_face"></span>
+        <span class="mayan-glyph mayan-glyph--gold mayan-glyph--sm mayan-glyph--carved" data-glyph="scroll_eye"></span>
+        <span class="mayan-glyph mayan-glyph--gold mayan-glyph--md mayan-glyph--carved" data-glyph="face_cartouche"></span>
+        <span class="mayan-glyph mayan-glyph--gold mayan-glyph--sm mayan-glyph--carved" data-glyph="serpent_head"></span>
       </div>
 
       <!-- ZONE CARDS -->
@@ -415,9 +451,17 @@
           <span class="dimensions">Open Ocean &middot; Wild Beach Frontage</span>
           <p>
             The north shore of Palmar Peninsula fronts directly onto the Gulf of Mexico — 
-            pristine wild beaches curated exclusively for Isla Aguada guests. 
-            Mas'Tul Bar &amp; Restaurant, private cabanas, wind sports, swimming, and the full 
-            spectacle of the open Gulf. Zero sargassum. Zero hurricanes in recorded history.
+            pristine wild beaches curated exclusively for Isla Aguada guests.
+          </p>
+          <p>
+            Mas'Tul Bar &amp; Restaurant sits directly on the beachfront — open from 9 AM to 2 AM 
+            with panoramic Gulf views, private cabanas, wind sports, and swimming. 
+            Zero sargassum. Zero hurricanes in recorded history.
+          </p>
+          <p>
+            At dawn, the sky ignites across the open Gulf to the north-west — 
+            a wet sunset, the horizon on fire, the ocean catching every last colour before dark.
+            This is the resort's sunset shore.
           </p>
         </div>
         <div class="zone-card glamping">
@@ -425,21 +469,43 @@
           <h3>Jungle Corridor</h3>
           <span class="dimensions">2km Deep &middot; Glamping Zone</span>
           <p>
-            The jungle corridor of Palmar Peninsula runs 2km deep — housing 
-            40 luxury safari tents and 10 Ultra VIP tents on elevated mahogany walkways, 
-            with the Grand Reception, guest services huts, and shower pavilions.
+            The jungle corridor of Palmar Peninsula runs 2km deep — a dense, 
+            pristine rainforest corridor stretching from Federal Highway 180 
+            all the way south to the shores of Laguna de Términos.
+          </p>
+          <p>
+            Hidden within this living jungle: 40 Luxury Safari Tents and 10 Ultra VIP 
+            Tents elevated on dark mahogany walkways, the Grand Reception thatched pavilion, 
+            guest services huts, private shower pavilions, outdoor spa stations, 
+            and the resort's full wellness centre.
+          </p>
+          <p>
+            Every tent is concealed within the canopy — invisible from above, 
+            connected by a winding network of raised walkways. The jungle is not 
+            the backdrop. It is the resort itself.
           </p>
         </div>
-        <div class="zone-card" style="border-top:3px solid #0d4a2a; background:rgba(13,74,42,0.12);">
+        <div class="zone-card" style="grid-column: 1 / -1; border-top:3px solid #0d4a2a; background:rgba(13,74,42,0.12); text-align:center;">
           <span class="zone-icon">🛶</span>
           <h3>South Shore — Laguna de Términos</h3>
           <span class="dimensions" style="color:#4a9a6a;">Laguna Access &middot; UNESCO Biosphere</span>
-          <p>
-            The south shore of Palmar Peninsula meets the edge of Laguna de Términos — 
-            Mexico's largest coastal lagoon and a UNESCO Biosphere Reserve. 
-            Kayak tours, boat excursions, birdwatching, manatees, dolphins, and crocodiles — 
-            all accessible directly from the resort's laguna landing.
-          </p>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; margin-top:24px; text-align:left;">
+            <p style="color:rgba(250,240,220,0.78); line-height:1.8; font-size:0.88rem;">
+              The south shore of Palmar Peninsula meets the edge of Laguna de Términos —
+              Mexico's largest coastal lagoon and a UNESCO Biosphere Reserve. 
+              At dawn, flamingos roost in the shallow water as the sky turns coral-pink above the laguna.
+            </p>
+            <p style="color:rgba(250,240,220,0.78); line-height:1.8; font-size:0.88rem;">
+              Kayak tours, guided boat excursions, birdwatching hides, and wildlife-watching 
+              for manatees, dolphins, crocodiles, and migratory birds — 
+              all accessible directly from the resort's private laguna landing.
+            </p>
+            <p style="color:rgba(250,240,220,0.78); line-height:1.8; font-size:0.88rem;">
+              This is the sunrise shore. The laguna faces south-east — 
+              soft coral and amber spilling across still water as the sun lifts silently 
+              above sleeping flamingos each morning.
+            </p>
+          </div>
         </div>
       </div>
 
@@ -669,13 +735,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co." />
         <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          
           <li><a href="vision.html">The Vision</a></li>
           <li><a href="accommodations.html">Accommodations</a></li>
           <li><a href="amenities.html">Amenities</a></li>
@@ -719,6 +785,7 @@
       });
     });
   </script>
+  <script src="js/mayan-glyphs.js"></script>
 
 </body>
 </html>

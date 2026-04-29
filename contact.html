@@ -7,12 +7,10 @@
   <meta name="description" content="Reserve your stay at Isla Aguada Glamping Co. — luxury glamping on the Gulf Coast of Campeche, Mexico. Opening January 2028. Contact us to begin your reservation." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="css/mayan-glyphs.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-  <style>
+    <style>
     /* ── CONTACT PAGE STYLES ── */
 
     .contact-hero-tag {
@@ -290,8 +288,8 @@
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-row-1">
       <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
-        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co. Logo" /><span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -299,7 +297,6 @@
     </div>
     <div class="nav-row-2">
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="index.html">Home</a></li>
         <li><a href="vision.html">The Vision</a></li>
         <li><a href="accommodations.html">Accommodations</a></li>
         <li><a href="amenities.html">Amenities</a></li>
@@ -364,7 +361,16 @@
               <span id="formErrorText">Something went wrong. Please try again or email us directly.</span>
             </div>
 
-            <form id="reservationForm" novalidate>
+            <form id="reservationForm" novalidate action="https://formsubmit.co/islaglampingcompany@gmail.com" method="POST" enctype="multipart/form-data" target="submissionFrame">
+              <input type="hidden" name="_subject" id="formSubject" value="New reservation enquiry from Isla Aguada Glamping Co." />
+              <input type="hidden" name="_cc" value="gilad@011.ninja" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="box" />
+              <input type="hidden" name="_url" id="formUrl" value="" />
+              <input type="hidden" name="_autoresponse" id="autoResponseField" value="" />
+              <input type="hidden" name="_replyto" id="replyToField" value="" />
+              <input type="text" name="_honey" id="honeyField" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" />
+              <textarea name="message" id="emailMessage" aria-hidden="true" tabindex="-1" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"></textarea>
 
               <!-- Name row -->
               <div class="form-row">
@@ -553,6 +559,8 @@
 
   </main>
 
+  <iframe name="submissionFrame" id="submissionFrame" title="Reservation submission frame" style="position:absolute; left:-9999px; width:1px; height:1px; border:0;"></iframe>
+
   <!-- ===== THANK YOU OVERLAY ===== -->
   <div class="thankyou-overlay" id="thankYouOverlay" role="dialog" aria-modal="true" aria-labelledby="tyTitle">
     <div class="thankyou-card">
@@ -564,7 +572,7 @@
         Isla Aguada Glamping Co.
       </p>
       <p>
-        A confirmation has been sent to <strong id="tyEmail" style="color:var(--aged-gold);"></strong>
+        A copy of your enquiry was sent to <strong id="tyEmail" style="color:var(--aged-gold);"></strong>
       </p>
 
       <div class="reservation-code-box">
@@ -591,13 +599,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co." />
         <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          
           <li><a href="vision.html">The Vision</a></li>
           <li><a href="accommodations.html">Accommodations</a></li>
           <li><a href="amenities.html">Amenities</a></li>
@@ -629,24 +637,6 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script>
-    // ─────────────────────────────────────────────────────────────────
-    // CONFIGURATION — Replace these values after setting up accounts
-    // ─────────────────────────────────────────────────────────────────
-    const CONFIG = {
-      // 1. Formspree: https://formspree.io → Your form ID
-      FORMSPREE_ID: 'YOUR_FORMSPREE_ID',
-
-      // 2. EmailJS: https://emailjs.com
-      EMAILJS_PUBLIC_KEY: 'YOUR_EMAILJS_PUBLIC_KEY',
-      EMAILJS_SERVICE_ID: 'YOUR_SERVICE_ID',
-      EMAILJS_TEMPLATE_ID: 'YOUR_TEMPLATE_ID',
-    };
-    // ─────────────────────────────────────────────────────────────────
-
-    // Initialise EmailJS
-    if (CONFIG.EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
-      emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
-    }
 
     // ── Generate a unique reservation code ──
     function generateReservationCode() {
@@ -697,6 +687,59 @@
       document.body.style.overflow = 'hidden';
     }
 
+    function buildEmailMessage(details) {
+      return [
+        'ISLA AGUADA GLAMPING CO.',
+        'Where the Jungle Meets the Sea',
+        '',
+        'RESERVATION ENQUIRY',
+        '--------------------------------------------------',
+        `Reservation Code: ${details.reservationCode}`,
+        `Guest Name: ${details.fullName}`,
+        `Email: ${details.email}`,
+        `Phone: ${details.phone}`,
+        `Arrival: ${details.arrivalFormatted}`,
+        `Departure: ${details.departureFormatted}`,
+        `Guests: ${details.guests}`,
+        `Tent Preference: ${details.tentType}`,
+        `How Heard About Us: ${details.hearAbout}`,
+        '',
+        'SPECIAL REQUESTS',
+        '--------------------------------------------------',
+        details.interests || 'None provided',
+        '',
+        'This enquiry was submitted through the official Contact & Reserve page.',
+      ].join('\n');
+    }
+
+    function buildAutoresponse(details) {
+      return [
+        'ISLA AGUADA GLAMPING CO.',
+        'Where the Jungle Meets the Sea',
+        '',
+        `Thank you, ${details.firstName}.`,
+        '',
+        'Your reservation enquiry has been received.',
+        'A member of our team will contact you personally within 24 hours to discuss your stay at Isla Aguada Glamping Co.',
+        '',
+        `Your Reservation Code: ${details.reservationCode}`,
+        '',
+        `Arrival: ${details.arrivalFormatted}`,
+        `Departure: ${details.departureFormatted}`,
+        `Guests: ${details.guests}`,
+        `Tent Preference: ${details.tentType}`,
+        `How Heard About Us: ${details.hearAbout}`,
+        '',
+        'Special Requests',
+        '--------------------------------------------------',
+        details.interests || 'None provided',
+        '',
+        `Please keep this reservation code for reference: ${details.reservationCode}`,
+        '',
+        '"Where the Jungle Meets the Sea — January 2028"',
+      ].join('\n');
+    }
+
     document.getElementById('closeThankYou').addEventListener('click', function() {
       document.getElementById('thankYouOverlay').classList.remove('active');
       document.body.style.overflow = '';
@@ -711,9 +754,30 @@
     });
 
     // ── Main form submit handler ──
-    document.getElementById('reservationForm').addEventListener('submit', async function(e) {
+    const submissionFrame = document.getElementById('submissionFrame');
+    let awaitingSubmission = false;
+    let pendingSubmissionTimer = null;
+
+    submissionFrame.addEventListener('load', function() {
+      if (!awaitingSubmission) return;
+      awaitingSubmission = false;
+      if (pendingSubmissionTimer) {
+        clearTimeout(pendingSubmissionTimer);
+        pendingSubmissionTimer = null;
+      }
+      showThankYou(pendingSubmissionState.fullName, pendingSubmissionState.email, pendingSubmissionState.reservationCode);
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:10px;"></i>Submit Reservation Enquiry';
+    });
+
+    let pendingSubmissionState = null;
+
+    document.getElementById('reservationForm').addEventListener('submit', function(e) {
       e.preventDefault();
       hideError();
+      const form = e.currentTarget;
+      document.getElementById('formUrl').value = window.location.href;
 
       // Gather values
       const firstName    = document.getElementById('firstName').value.trim();
@@ -739,81 +803,64 @@
 
       const fullName = `${firstName} ${lastName}`;
       const reservationCode = generateReservationCode();
+      const subject = `Reservation enquiry from ${fullName}`;
 
       // Format dates nicely
       const fmt = (d) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
       const arrivalFormatted   = fmt(arrivalDate);
       const departureFormatted = fmt(departureDate);
+      pendingSubmissionState = {
+        firstName,
+        fullName,
+        email,
+        reservationCode,
+        arrivalFormatted,
+        departureFormatted,
+        guests,
+        tentType,
+        interests,
+        hearAbout
+      };
+      document.getElementById('formSubject').value = subject;
+      document.getElementById('replyToField').value = email;
+      document.getElementById('emailMessage').value = buildEmailMessage({
+        reservationCode,
+        fullName,
+        email,
+        phone,
+        arrivalFormatted,
+        departureFormatted,
+        guests,
+        tentType,
+        interests,
+        hearAbout
+      });
+      document.getElementById('autoResponseField').value = buildAutoresponse({
+        firstName,
+        reservationCode,
+        arrivalFormatted,
+        departureFormatted,
+        guests,
+        tentType,
+        interests,
+        hearAbout
+      });
 
       // Disable button + show spinner
       const btn = document.getElementById('submitBtn');
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner"></span>Sending…';
 
-      try {
-
-        // ── STEP 1: Submit to Formspree (→ your Gmail) ──
-        if (CONFIG.FORMSPREE_ID !== 'YOUR_FORMSPREE_ID') {
-          const formData = {
-            name:             fullName,
-            email:            email,
-            phone:            phone,
-            arrival:          arrivalFormatted,
-            departure:        departureFormatted,
-            guests:           guests,
-            tent_type:        tentType,
-            interests:        interests || 'None specified',
-            hear_about:       hearAbout,
-            reservation_code: reservationCode,
-            _subject:         `🌿 New Reservation Enquiry — ${fullName} — Code: ${reservationCode}`,
-            _replyto:         email,
-          };
-
-          const fsResponse = await fetch(`https://formspree.io/f/${CONFIG.FORMSPREE_ID}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(formData),
-          });
-
-          if (!fsResponse.ok) {
-            const fsData = await fsResponse.json();
-            throw new Error(fsData.error || 'Formspree submission failed.');
-          }
-        }
-
-        // ── STEP 2: Send guest confirmation via EmailJS ──
-        if (CONFIG.EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
-          await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, {
-            guest_name:       fullName,
-            guest_first_name: firstName,
-            guest_email:      email,
-            guest_phone:      phone,
-            arrival_date:     arrivalFormatted,
-            departure_date:   departureFormatted,
-            guests:           guests,
-            tent_type:        tentType,
-            interests:        interests || 'None specified',
-            reservation_code: reservationCode,
-            to_email:         email,
-          });
-        }
-
-        // ── STEP 3: Show Thank You ──
-        showThankYou(fullName, email, reservationCode);
-
-      } catch (err) {
-        console.error('Form submission error:', err);
-
-        // If services not yet configured, still show Thank You (demo mode)
-        if (CONFIG.FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
-          showThankYou(fullName, email, reservationCode);
-        } else {
-          showError(`There was an issue submitting your enquiry: ${err.message}. Please email us directly at islaglampingcompany@gmail.com`);
-        }
-      } finally {
+      awaitingSubmission = true;
+      pendingSubmissionTimer = setTimeout(() => {
+        if (!awaitingSubmission || !pendingSubmissionState) return;
+        awaitingSubmission = false;
+        showThankYou(pendingSubmissionState.fullName, pendingSubmissionState.email, pendingSubmissionState.reservationCode);
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:10px;"></i>Submit Reservation Enquiry';
-      }
+      }, 2500);
+
+      form.submit();
     });
 
     // ── Mobile nav ──
@@ -830,6 +877,7 @@
       });
     });
   </script>
+  <script src="js/mayan-glyphs.js"></script>
 
 </body>
 </html>
