@@ -361,16 +361,7 @@
               <span id="formErrorText">Something went wrong. Please try again or email us directly.</span>
             </div>
 
-            <form id="reservationForm" novalidate action="https://formsubmit.co/islaglampingcompany@gmail.com" method="POST" enctype="multipart/form-data" target="submissionFrame">
-              <input type="hidden" name="_subject" id="formSubject" value="New reservation enquiry from Isla Aguada Glamping Co." />
-              <input type="hidden" name="_cc" value="gilad@011.ninja" />
-              <input type="hidden" name="_captcha" value="false" />
-              <input type="hidden" name="_template" value="box" />
-              <input type="hidden" name="_url" id="formUrl" value="" />
-              <input type="hidden" name="_autoresponse" id="autoResponseField" value="" />
-              <input type="hidden" name="_replyto" id="replyToField" value="" />
-              <input type="text" name="_honey" id="honeyField" autocomplete="off" tabindex="-1" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;" />
-              <textarea name="message" id="emailMessage" aria-hidden="true" tabindex="-1" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden;"></textarea>
+            <form id="reservationForm" novalidate>
 
               <!-- Name row -->
               <div class="form-row">
@@ -559,8 +550,6 @@
 
   </main>
 
-  <iframe name="submissionFrame" id="submissionFrame" title="Reservation submission frame" style="position:absolute; left:-9999px; width:1px; height:1px; border:0;"></iframe>
-
   <!-- ===== THANK YOU OVERLAY ===== -->
   <div class="thankyou-overlay" id="thankYouOverlay" role="dialog" aria-modal="true" aria-labelledby="tyTitle">
     <div class="thankyou-card">
@@ -638,20 +627,7 @@
   <!-- ===== SCRIPTS ===== -->
   <script>
 
-    // ── Generate a unique reservation code ──
-    function generateReservationCode() {
-      const prefix = 'IAG';
-      const year   = '28';
-      const chars  = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-      let code = '';
-      for (let i = 0; i < 6; i++) {
-        code += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return `${prefix}-${year}-${code}`;
-    }
-
     // ── Date validation: min Jan 1 2028 ──
-    const today = new Date().toISOString().split('T')[0];
     const minDate = '2028-01-01';
     document.getElementById('arrivalDate').min = minDate;
     document.getElementById('departureDate').min = '2028-01-02';
@@ -687,59 +663,6 @@
       document.body.style.overflow = 'hidden';
     }
 
-    function buildEmailMessage(details) {
-      return [
-        'ISLA AGUADA GLAMPING CO.',
-        'Where the Jungle Meets the Sea',
-        '',
-        'RESERVATION ENQUIRY',
-        '--------------------------------------------------',
-        `Reservation Code: ${details.reservationCode}`,
-        `Guest Name: ${details.fullName}`,
-        `Email: ${details.email}`,
-        `Phone: ${details.phone}`,
-        `Arrival: ${details.arrivalFormatted}`,
-        `Departure: ${details.departureFormatted}`,
-        `Guests: ${details.guests}`,
-        `Tent Preference: ${details.tentType}`,
-        `How Heard About Us: ${details.hearAbout}`,
-        '',
-        'SPECIAL REQUESTS',
-        '--------------------------------------------------',
-        details.interests || 'None provided',
-        '',
-        'This enquiry was submitted through the official Contact & Reserve page.',
-      ].join('\n');
-    }
-
-    function buildAutoresponse(details) {
-      return [
-        'ISLA AGUADA GLAMPING CO.',
-        'Where the Jungle Meets the Sea',
-        '',
-        `Thank you, ${details.firstName}.`,
-        '',
-        'Your reservation enquiry has been received.',
-        'A member of our team will contact you personally within 24 hours to discuss your stay at Isla Aguada Glamping Co.',
-        '',
-        `Your Reservation Code: ${details.reservationCode}`,
-        '',
-        `Arrival: ${details.arrivalFormatted}`,
-        `Departure: ${details.departureFormatted}`,
-        `Guests: ${details.guests}`,
-        `Tent Preference: ${details.tentType}`,
-        `How Heard About Us: ${details.hearAbout}`,
-        '',
-        'Special Requests',
-        '--------------------------------------------------',
-        details.interests || 'None provided',
-        '',
-        `Please keep this reservation code for reference: ${details.reservationCode}`,
-        '',
-        '"Where the Jungle Meets the Sea — January 2028"',
-      ].join('\n');
-    }
-
     document.getElementById('closeThankYou').addEventListener('click', function() {
       document.getElementById('thankYouOverlay').classList.remove('active');
       document.body.style.overflow = '';
@@ -754,30 +677,9 @@
     });
 
     // ── Main form submit handler ──
-    const submissionFrame = document.getElementById('submissionFrame');
-    let awaitingSubmission = false;
-    let pendingSubmissionTimer = null;
-
-    submissionFrame.addEventListener('load', function() {
-      if (!awaitingSubmission) return;
-      awaitingSubmission = false;
-      if (pendingSubmissionTimer) {
-        clearTimeout(pendingSubmissionTimer);
-        pendingSubmissionTimer = null;
-      }
-      showThankYou(pendingSubmissionState.fullName, pendingSubmissionState.email, pendingSubmissionState.reservationCode);
-      const btn = document.getElementById('submitBtn');
-      btn.disabled = false;
-      btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:10px;"></i>Submit Reservation Enquiry';
-    });
-
-    let pendingSubmissionState = null;
-
-    document.getElementById('reservationForm').addEventListener('submit', function(e) {
+    document.getElementById('reservationForm').addEventListener('submit', async function(e) {
       e.preventDefault();
       hideError();
-      const form = e.currentTarget;
-      document.getElementById('formUrl').value = window.location.href;
 
       // Gather values
       const firstName    = document.getElementById('firstName').value.trim();
@@ -802,65 +704,53 @@
       if (!guests) { showError('Please select the number of guests.'); return; }
 
       const fullName = `${firstName} ${lastName}`;
-      const reservationCode = generateReservationCode();
-      const subject = `Reservation enquiry from ${fullName}`;
 
       // Format dates nicely
       const fmt = (d) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
       const arrivalFormatted   = fmt(arrivalDate);
       const departureFormatted = fmt(departureDate);
-      pendingSubmissionState = {
-        firstName,
-        fullName,
-        email,
-        reservationCode,
-        arrivalFormatted,
-        departureFormatted,
-        guests,
-        tentType,
-        interests,
-        hearAbout
-      };
-      document.getElementById('formSubject').value = subject;
-      document.getElementById('replyToField').value = email;
-      document.getElementById('emailMessage').value = buildEmailMessage({
-        reservationCode,
-        fullName,
-        email,
-        phone,
-        arrivalFormatted,
-        departureFormatted,
-        guests,
-        tentType,
-        interests,
-        hearAbout
-      });
-      document.getElementById('autoResponseField').value = buildAutoresponse({
-        firstName,
-        reservationCode,
-        arrivalFormatted,
-        departureFormatted,
-        guests,
-        tentType,
-        interests,
-        hearAbout
-      });
 
       // Disable button + show spinner
       const btn = document.getElementById('submitBtn');
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner"></span>Sending…';
 
-      awaitingSubmission = true;
-      pendingSubmissionTimer = setTimeout(() => {
-        if (!awaitingSubmission || !pendingSubmissionState) return;
-        awaitingSubmission = false;
-        showThankYou(pendingSubmissionState.fullName, pendingSubmissionState.email, pendingSubmissionState.reservationCode);
+      try {
+        const response = await fetch('/api/reservation', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            phone,
+            arrivalDate,
+            departureDate,
+            guests,
+            tentType,
+            interests,
+            hearAbout,
+            pageUrl: window.location.href
+          })
+        });
+
+        const result = await response.json().catch(() => null);
+        if (!response.ok || !result || !result.ok) {
+          throw new Error((result && result.error) || `Reservation API returned ${response.status}`);
+        }
+
+        showThankYou(fullName, email, result.reservationCode);
+        document.getElementById('reservationForm').reset();
+      } catch (err) {
+        console.error('Form submission error:', err);
+        showError('There was an issue sending your enquiry right now. Please email us directly at islaglampingcompany@gmail.com');
+      } finally {
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:10px;"></i>Submit Reservation Enquiry';
-      }, 2500);
-
-      form.submit();
+      }
     });
 
     // ── Mobile nav ──
