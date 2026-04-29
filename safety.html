@@ -7,6 +7,206 @@
   <meta name="description" content="Isla Aguada, Campeche is one of Mexico's safest destinations — lowest crime rate in Mexico, zero hurricanes in recorded history, and first state to achieve Green status post-Covid. Your holiday is truly guaranteed." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="css/mayan-glyphs.css" />
+  <!-- Leaflet CSS for native hurricane map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <style>
+    /* ── Native Hurricane Animation ── */
+    #hurricaneMap {
+      width: 100%;
+      height: 460px;
+      min-height: 460px;
+      max-height: 460px;
+      border-radius: 2px;
+      overflow: hidden;
+      display: block;
+      flex-shrink: 0;
+    }
+    .leaflet-control-attribution { display: none !important; }
+
+    /* Isla Aguada pulsing marker */
+    .isla-marker {
+      width: 22px; height: 22px;
+      background: #10B981;
+      border: 3px solid #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 16px rgba(16,185,129,0.9), 0 0 32px rgba(16,185,129,0.5);
+      animation: islaMarkerPulse 2s ease-in-out infinite;
+    }
+    @keyframes islaMarkerPulse {
+      0%,100% { transform:scale(1); box-shadow:0 0 16px rgba(16,185,129,0.9),0 0 32px rgba(16,185,129,0.5); }
+      50%      { transform:scale(1.35); box-shadow:0 0 24px rgba(16,185,129,1),0 0 50px rgba(16,185,129,0.7); }
+    }
+    .isla-label {
+      background: rgba(16,185,129,0.92);
+      color: #fff;
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 4px;
+      white-space: nowrap;
+      position: absolute;
+      bottom: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* Legend */
+    .hmap-legend {
+      background: rgba(44,24,16,0.97);
+      border: 1px solid rgba(201,168,76,0.45);
+      padding: 12px 14px;
+      border-radius: 6px;
+      min-width: 160px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+    }
+    .hmap-legend h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #c9a84c;
+      margin-bottom: 10px;
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      padding-bottom: 6px;
+    }
+    .hmap-legend-row {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 7px; font-size: 0.75rem;
+      color: rgba(250,240,220,0.85);
+      font-family: 'Libre Baskerville', serif;
+    }
+    .hmap-legend-row:last-child { margin-bottom: 0; }
+    .hmap-dot {
+      width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    /* Animation overlay layer */
+    .hmap-anim-layer {
+      position: absolute; inset: 0;
+      pointer-events: none;
+      z-index: 500;
+      overflow: hidden;
+    }
+
+    /* Sargassum patches */
+    .sarg-patch {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(ellipse,
+        rgba(245,158,11,0.82) 0%,
+        rgba(217,119,6,0.6) 40%,
+        rgba(180,83,9,0.35) 70%,
+        transparent 100%
+      );
+      opacity: 0;
+      filter: blur(3px);
+      pointer-events: none;
+    }
+
+    /* Hurricane icons */
+    .hurr-icon {
+      position: absolute;
+      width: 52px; height: 52px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .hurr-eye {
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle,
+        rgba(255,255,255,0.95) 0%,
+        rgba(239,68,68,0.85) 22%,
+        rgba(220,38,38,0.6) 50%,
+        transparent 70%
+      );
+      box-shadow: 0 0 22px rgba(239,68,68,0.9);
+      animation: hurrSpin 1s linear infinite;
+    }
+    .hurr-spiral {
+      position: absolute;
+      top: -10%; left: -10%;
+      width: 120%; height: 120%;
+      border-radius: 50%;
+      border: 3px solid rgba(239,68,68,0.85);
+      border-top-color: rgba(248,113,113,0.95);
+      border-right-color: transparent;
+      border-bottom-color: rgba(220,38,38,0.6);
+      border-left-color: transparent;
+      animation: hurrSpin 0.65s linear infinite reverse;
+    }
+    @keyframes hurrSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Controls strip — styled to match resort palette */
+    .hmap-controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 14px 16px;
+      background: rgba(26,58,42,0.95);
+      border-top: 1px solid rgba(201,168,76,0.3);
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
+      align-items: center;
+    }
+    .hmap-btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid rgba(201,168,76,0.6);
+      background: rgba(201,168,76,0.12);
+      color: rgba(250,240,220,0.9);
+      padding: 8px 18px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .hmap-btn:hover {
+      background: rgba(201,168,76,0.28);
+      color: #c9a84c;
+    }
+    .hmap-btn.active {
+      background: rgba(201,168,76,0.35);
+      color: #c9a84c;
+      border-color: #c9a84c;
+    }
+    .hmap-btn-both {
+      background: rgba(26,58,42,0.7);
+      border-color: rgba(201,168,76,0.4);
+    }
+    /* Storm ticker */
+    .hmap-year-display {
+      margin-left: auto;
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: #fff;
+      text-transform: uppercase;
+      background: rgba(239,68,68,0.22);
+      border: 1px solid rgba(239,68,68,0.55);
+      padding: 6px 14px;
+      border-radius: 2px;
+      text-shadow: 0 0 12px rgba(239,68,68,0.9), 0 1px 3px rgba(0,0,0,0.8);
+      min-width: 1px;
+      display: none; /* hidden until animation starts */
+    }
+    .hmap-year-display.visible {
+      display: block;
+    }
+  </style>
 </head>
 <body>
 
@@ -14,8 +214,8 @@
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-row-1">
       <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
-        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co. Logo" /><span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -23,7 +223,6 @@
     </div>
     <div class="nav-row-2">
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="index.html">Home</a></li>
         <li><a href="vision.html">The Vision</a></li>
         <li><a href="accommodations.html">Accommodations</a></li>
         <li><a href="amenities.html">Amenities</a></li>
@@ -139,45 +338,43 @@
             </div>
           </div>
 
+          <!-- ═══ NATIVE HURRICANE ANIMATION — NO IFRAME ═══ -->
           <div style="display: flex; flex-direction: column;">
-            <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--aged-gold); display: block; margin-bottom: 16px; text-align: center;">50+ Years of Hurricane Tracks — Interactive Animation</span>
 
-            <!-- iframe wrapper with decorative brand border — stretches to match left column height -->
+            <!-- Section title — prominent -->
+            <div style="text-align: center; margin-bottom: 20px;">
+              <span style="font-family: var(--font-heading); font-size: 0.58rem; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(201,168,76,0.65); display: block; margin-bottom: 6px;">Interactive Visualisation</span>
+              <h3 style="font-family: var(--font-heading); font-size: clamp(0.95rem, 1.6vw, 1.2rem); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--aged-gold); margin: 0; line-height: 1.3; text-shadow: 0 2px 12px rgba(201,168,76,0.4);">50+ Years of Hurricane Tracks</h3>
+              <p style="font-family: var(--font-body); font-size: 0.78rem; color: rgba(250,240,220,0.6); margin: 5px 0 0; letter-spacing: 0.04em;">Gulf of Mexico &amp; Caribbean — 1974 to 2024</p>
+            </div>
+
+            <!-- Map wrapper with gold brand border — fixed height to contain map -->
             <div style="
-              position: relative;
-              flex: 1;
-              display: flex;
-              flex-direction: column;
+              flex-shrink: 0;
               border: 3px solid var(--aged-gold);
               box-shadow: 0 0 0 1px var(--dark-mahogany), 0 8px 40px rgba(0,0,0,0.55);
-              overflow: hidden;
-              background: #000;
               border-radius: 2px;
-              min-height: 520px;
+              overflow: hidden;
+              position: relative;
             ">
+              <!-- Leaflet map -->
+              <div id="hurricaneMap"></div>
+              <!-- Animation overlay — hurricanes and sargassum are painted here -->
+              <div class="hmap-anim-layer" id="hmapLayer"></div>
 
-              <!-- Top mask: covers MayaRoyale logo + nav bar + Connect Wallet (approx 70px tall) -->
-              <div style="
-                position: absolute;
-                top: 0; left: 0; right: 0;
-                height: 72px;
-                background: var(--dark-mahogany);
-                z-index: 10;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-bottom: 1px solid rgba(201,168,76,0.3);
-              ">
-                <span style="font-family: var(--font-heading); font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--aged-gold);">50+ Years of Hurricane Track Data — Gulf &amp; Caribbean</span>
+              <!-- Controls bar -->
+              <div class="hmap-controls">
+                <button class="hmap-btn" id="hmapBtnSarg">
+                  <i class="fas fa-play"></i> Sargassum
+                </button>
+                <button class="hmap-btn" id="hmapBtnHurr">
+                  <i class="fas fa-play"></i> Hurricanes
+                </button>
+                <button class="hmap-btn hmap-btn-both" id="hmapBtnBoth">
+                  <i class="fas fa-layer-group"></i> Show Both
+                </button>
+                <span class="hmap-year-display" id="hmapYearDisplay"></span>
               </div>
-
-              <iframe
-                src="https://www.mayaroyale.com/sargassum-hurricane-animation.html"
-                title="50 Years of Hurricane Tracks — Gulf of Mexico and Caribbean"
-                style="width: 100%; flex: 1; border: none; display: block; min-height: 520px;"
-                loading="lazy"
-                allowfullscreen>
-              </iframe>
             </div>
 
             <p style="font-family: var(--font-body); font-style: italic; font-size: 0.8rem; color: rgba(250,240,220,0.5); text-align: center; margin-top: 14px;">
@@ -307,7 +504,10 @@
     </section>
 
     <!-- PULL QUOTE -->
-    <section class="pull-quote" style="background-color: var(--dark-mahogany);">
+    <section class="pull-quote" style="background-color: var(--dark-mahogany); position:relative; overflow:hidden;">
+      <span class="mayan-glyph mayan-glyph--gold mayan-glyph--lg mayan-glyph--carved" data-glyph="pyramid_stone" style="position:absolute; top:50%; left:2%; transform:translateY(-50%); opacity:0.25;"></span>
+      <span class="mayan-glyph mayan-glyph--gold mayan-glyph--lg mayan-glyph--carved" data-glyph="mask_glyph" style="position:absolute; top:50%; right:2%; transform:translateY(-50%); opacity:0.25;"></span>
+      <span class="mayan-glyph mayan-glyph--gold" data-glyph="step_frieze" style="position:absolute; top:0; left:0; width:100%; height:20px; opacity:0.3;"></span>
       <blockquote>
         Campeche is Mexico's best-kept secret — and Isla Aguada its crown jewel. Safe, pristine, untouched by hurricanes, free of Sargassum, and alive with the magic of a Pueblo Mágico. This is where the truly discerning traveller comes.
       </blockquote>
@@ -652,13 +852,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co." />
         <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          
           <li><a href="vision.html">The Vision</a></li>
           <li><a href="accommodations.html">Accommodations</a></li>
           <li><a href="amenities.html">Amenities</a></li>
@@ -688,7 +888,318 @@
     </div>
   </footer>
 
+  <!-- Leaflet JS — for native hurricane animation -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
   <script>
+    /* ════════════════════════════════════════════════════
+       NATIVE HURRICANE & SARGASSUM ANIMATION
+       Rebuilt from source — no iframe, full interactivity
+       ════════════════════════════════════════════════════ */
+    (function() {
+
+      /* ── 1. Initialise Leaflet map ── */
+      const map = L.map('hurricaneMap', {
+        zoomControl: false,
+        scrollWheelZoom: false,
+        dragging: false,
+        touchZoom: false,
+        doubleClickZoom: false,
+        boxZoom: false,
+        keyboard: false
+      }).setView([22.0, -85.0], 5);
+
+      /* Satellite tile layer (ESRI) */
+      L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        { attribution: 'Tiles © Esri', maxZoom: 18 }
+      ).addTo(map);
+
+      /* ── 2. Isla Aguada marker ── */
+      const islaCoords = [18.9271, -91.4656];   /* 18°55′38″N  91°27′56″W */
+
+      const islaIcon = L.divIcon({
+        className: '',
+        html: '<div class="isla-marker"><span class="isla-label">Isla Aguada — Protected</span></div>',
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+      });
+
+      L.marker(islaCoords, { icon: islaIcon })
+        .addTo(map)
+        .bindPopup('<b style="font-family:Cinzel,serif;color:#1a3a2a;">Isla Aguada</b><br>Campeche, Gulf of Mexico<br><i style="color:#10B981;">Zero hurricanes in 50+ years</i>');
+
+      /* ── 3. Legend control ── */
+      const legend = L.control({ position: 'topright' });
+      legend.onAdd = function() {
+        const d = L.DomUtil.create('div', 'hmap-legend');
+        d.innerHTML = `
+          <h4>Legend</h4>
+          <div class="hmap-legend-row"><div class="hmap-dot" style="background:#F59E0B;"></div>Sargassum Belt</div>
+          <div class="hmap-legend-row"><div class="hmap-dot" style="background:#EF4444;"></div>Hurricane Path</div>
+          <div class="hmap-legend-row"><div class="hmap-dot" style="background:#10B981;"></div>Isla Aguada (Protected)</div>
+        `;
+        return d;
+      };
+      legend.addTo(map);
+
+      /* ── 4. Animation state ── */
+      let sargActive = false;
+      let hurrActive = false;
+      let sargTimers = [];
+      let hurrTimers = [];
+
+      const layer     = document.getElementById('hmapLayer');
+      const btnSarg   = document.getElementById('hmapBtnSarg');
+      const btnHurr   = document.getElementById('hmapBtnHurr');
+      const btnBoth   = document.getElementById('hmapBtnBoth');
+      const yearDisp  = document.getElementById('hmapYearDisplay');
+
+      /* ── 5. Hurricane data ── */
+      const hurricaneData = [
+        { name:'Carmen',    year:1974, cat:4 },
+        { name:'Anita',     year:1977, cat:5 },
+        { name:'Allen',     year:1980, cat:5 },
+        { name:'Gilbert',   year:1988, cat:5 },
+        { name:'Opal',      year:1995, cat:4 },
+        { name:'Roxanne',   year:1995, cat:3 },
+        { name:'Mitch',     year:1998, cat:5 },
+        { name:'Keith',     year:2000, cat:4 },
+        { name:'Isidore',   year:2002, cat:3 },
+        { name:'Ivan',      year:2004, cat:5 },
+        { name:'Emily',     year:2005, cat:5 },
+        { name:'Wilma',     year:2005, cat:5 },
+        { name:'Dean',      year:2007, cat:5 },
+        { name:'Karl',      year:2010, cat:3 },
+        { name:'Ernesto',   year:2012, cat:2 },
+        { name:'Ingrid',    year:2013, cat:1 },
+        { name:'Patricia',  year:2015, cat:5 },
+        { name:'Earl',      year:2016, cat:1 },
+        { name:'Harvey',    year:2017, cat:4 },
+        { name:'Irma',      year:2017, cat:5 },
+        { name:'Michael',   year:2018, cat:5 },
+        { name:'Hanna',     year:2020, cat:1 },
+        { name:'Delta',     year:2020, cat:4 },
+        { name:'Zeta',      year:2020, cat:3 },
+        { name:'Grace',     year:2021, cat:3 },
+        { name:'Ida',       year:2021, cat:4 },
+        { name:'Ian',       year:2022, cat:5 },
+        { name:'Otis',      year:2023, cat:5 },
+        { name:'Beryl',     year:2024, cat:5 },
+        { name:'Helene',    year:2024, cat:4 },
+        { name:'Milton',    year:2024, cat:5 }
+      ];
+
+      let hurrDataIdx = 0;
+
+      /* ── 6. Hurricane paths (% positions on map div) ── */
+      const hurricanePaths = [
+        /* toward Cancún / Cozumel */
+        { sx:'85%', sy:'52%', ex:'60%', ey:'50%', delay:0 },
+        /* toward Jamaica / Yucatan */
+        { sx:'85%', sy:'55%', ex:'62%', ey:'52%', delay:1500 },
+        /* toward Cuba */
+        { sx:'85%', sy:'48%', ex:'66%', ey:'44%', delay:3000 },
+        /* toward Florida */
+        { sx:'85%', sy:'42%', ex:'68%', ey:'32%', delay:4500 },
+        /* into Gulf → Louisiana */
+        { sx:'85%', sy:'38%', ex:'52%', ey:'28%', delay:6000 },
+        /* toward Texas */
+        { sx:'80%', sy:'50%', ex:'42%', ey:'35%', delay:7500 },
+        /* toward NE Mexico (above Isla Aguada) */
+        { sx:'75%', sy:'48%', ex:'38%', ey:'42%', delay:9000 },
+        /* toward Belize / Honduras */
+        { sx:'82%', sy:'58%', ex:'54%', ey:'62%', delay:10500 },
+        /* toward Dominican Republic */
+        { sx:'88%', sy:'50%', ex:'72%', ey:'46%', delay:12000 },
+        /* recurving to Bermuda */
+        { sx:'85%', sy:'44%', ex:'78%', ey:'30%', delay:13500 }
+      ];
+
+      /* ── 7. Sargassum paths (West Africa → Riviera Maya, Gulf circulation away from Isla Aguada) ── */
+      const sargassumPaths = [
+        /* Phase 1 — West Africa east edge */
+        { sx:'95%', sy:'55%', ex:'78%', ey:'52%', sz:90,  delay:0    },
+        { sx:'95%', sy:'57%', ex:'76%', ey:'54%', sz:95,  delay:250  },
+        { sx:'95%', sy:'53%', ex:'80%', ey:'50%', sz:85,  delay:500  },
+        { sx:'95%', sy:'59%', ex:'77%', ey:'56%', sz:88,  delay:750  },
+        /* Phase 2 — crossing Atlantic */
+        { sx:'78%', sy:'52%', ex:'68%', ey:'49%', sz:100, delay:1000 },
+        { sx:'76%', sy:'54%', ex:'66%', ey:'51%', sz:105, delay:1250 },
+        { sx:'80%', sy:'50%', ex:'70%', ey:'47%', sz:95,  delay:1500 },
+        { sx:'77%', sy:'56%', ex:'67%', ey:'53%', sz:92,  delay:1750 },
+        /* Phase 3 — approaching Caribbean */
+        { sx:'68%', sy:'49%', ex:'61%', ey:'46%', sz:110, delay:2000 },
+        { sx:'66%', sy:'51%', ex:'59%', ey:'48%', sz:115, delay:2250 },
+        { sx:'70%', sy:'47%', ex:'63%', ey:'44%', sz:108, delay:2500 },
+        { sx:'67%', sy:'53%', ex:'60%', ey:'50%', sz:105, delay:2750 },
+        /* Phase 4 — hitting Cancún coast */
+        { sx:'61%', sy:'45%', ex:'43%', ey:'43%', sz:135, delay:3000 },
+        { sx:'63%', sy:'44%', ex:'43%', ey:'42%', sz:140, delay:3250 },
+        { sx:'62%', sy:'46%', ex:'43%', ey:'44%', sz:138, delay:3500 },
+        /* Phase 5 — hitting Playa del Carmen */
+        { sx:'61%', sy:'49%', ex:'43%', ey:'49%', sz:145, delay:5000 },
+        { sx:'62%', sy:'48%', ex:'43%', ey:'48%', sz:150, delay:5250 },
+        { sx:'63%', sy:'50%', ex:'43%', ey:'50%', sz:148, delay:5500 },
+        /* Phase 6 — hitting Tulum */
+        { sx:'61%', sy:'52%', ex:'43%', ey:'54%', sz:145, delay:8000 },
+        { sx:'62%', sy:'53%', ex:'43%', ey:'55%', sz:148, delay:8250 },
+        /* Phase 7 — some enters Gulf, Gulf circulation pushes NORTH (away from Isla Aguada) */
+        { sx:'58%', sy:'43%', ex:'48%', ey:'39%', sz:105, delay:11250 },
+        { sx:'48%', sy:'39%', ex:'42%', ey:'31%', sz:100, delay:12000 },
+        { sx:'42%', sy:'31%', ex:'36%', ey:'23%', sz:100, delay:12750 },
+        { sx:'40%', sy:'33%', ex:'34%', ey:'25%', sz:95,  delay:13000 }
+      ];
+
+      /* ── 8. Create & animate a sargassum patch ── */
+      function spawnSarg(path) {
+        const el = document.createElement('div');
+        el.className = 'sarg-patch';
+        el.style.left   = path.sx;
+        el.style.top    = path.sy;
+        el.style.width  = path.sz + 'px';
+        el.style.height = (path.sz * 0.6) + 'px';
+        layer.appendChild(el);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            el.style.transition = 'left 4s ease-in-out, top 4s ease-in-out, opacity 4s ease-in-out';
+            el.style.left    = path.ex;
+            el.style.top     = path.ey;
+            el.style.opacity = '0.88';
+          });
+        });
+        setTimeout(() => { el.style.opacity = '0'; }, 3500);
+        setTimeout(() => { el.remove(); },             4600);
+      }
+
+      /* ── 9. Create & animate a hurricane icon ── */
+      function spawnHurr(path) {
+        const el = document.createElement('div');
+        el.className = 'hurr-icon';
+        el.style.left = path.sx;
+        el.style.top  = path.sy;
+        el.innerHTML  = '<div class="hurr-eye"></div><div class="hurr-spiral"></div>';
+        layer.appendChild(el);
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            el.style.transition = 'left 5s linear, top 5s linear, opacity 0.4s ease';
+            el.style.left    = path.ex;
+            el.style.top     = path.ey;
+            el.style.opacity = '1';
+          });
+        });
+        setTimeout(() => { el.style.opacity = '0'; }, 4600);
+        setTimeout(() => { el.remove(); },             5200);
+      }
+
+      /* ── 10. Start / stop functions ── */
+      function clearTimers(arr) {
+        arr.forEach(t => clearTimeout(t));
+        arr.length = 0;
+      }
+      function clearElements(cls) {
+        document.querySelectorAll('.' + cls).forEach(e => e.remove());
+      }
+
+      function startSarg() {
+        sargassumPaths.forEach(path => {
+          const t = setTimeout(function loop() {
+            if (!sargActive) return;
+            spawnSarg(path);
+            const t2 = setTimeout(loop, 5000);
+            sargTimers.push(t2);
+          }, path.delay);
+          sargTimers.push(t);
+        });
+      }
+
+      function stopSarg() {
+        clearTimers(sargTimers);
+        clearElements('sarg-patch');
+      }
+
+      function startHurr() {
+        hurricanePaths.forEach((path, i) => {
+          const t = setTimeout(function loop() {
+            if (!hurrActive) return;
+            spawnHurr(path);
+            /* show which historical storm this represents */
+            const storm = hurricaneData[hurrDataIdx % hurricaneData.length];
+            hurrDataIdx++;
+            yearDisp.textContent = '🌀 ' + storm.name + ' ' + storm.year + ' · Cat ' + storm.cat + ' — Missed Isla Aguada';
+            yearDisp.classList.add('visible');
+            const t2 = setTimeout(loop, 6000);
+            hurrTimers.push(t2);
+          }, path.delay);
+          hurrTimers.push(t);
+        });
+      }
+
+      function stopHurr() {
+        clearTimers(hurrTimers);
+        clearElements('hurr-icon');
+        yearDisp.textContent = '';
+        yearDisp.classList.remove('visible');
+        hurrDataIdx = 0;
+      }
+
+      /* ── 11. Button handlers ── */
+      btnSarg.addEventListener('click', function() {
+        sargActive = !sargActive;
+        if (sargActive) {
+          this.innerHTML = '<i class="fas fa-pause"></i> Sargassum';
+          this.classList.add('active');
+          startSarg();
+        } else {
+          this.innerHTML = '<i class="fas fa-play"></i> Sargassum';
+          this.classList.remove('active');
+          stopSarg();
+        }
+      });
+
+      btnHurr.addEventListener('click', function() {
+        hurrActive = !hurrActive;
+        if (hurrActive) {
+          this.innerHTML = '<i class="fas fa-pause"></i> Hurricanes';
+          this.classList.add('active');
+          startHurr();
+        } else {
+          this.innerHTML = '<i class="fas fa-play"></i> Hurricanes';
+          this.classList.remove('active');
+          stopHurr();
+        }
+      });
+
+      btnBoth.addEventListener('click', function() {
+        const anyActive = sargActive || hurrActive;
+        if (!anyActive) {
+          /* start both */
+          sargActive = true; hurrActive = true;
+          btnSarg.innerHTML = '<i class="fas fa-pause"></i> Sargassum';
+          btnSarg.classList.add('active');
+          btnHurr.innerHTML = '<i class="fas fa-pause"></i> Hurricanes';
+          btnHurr.classList.add('active');
+          this.innerHTML = '<i class="fas fa-stop"></i> Stop Both';
+          startSarg(); startHurr();
+        } else {
+          /* stop both */
+          sargActive = false; hurrActive = false;
+          btnSarg.innerHTML = '<i class="fas fa-play"></i> Sargassum';
+          btnSarg.classList.remove('active');
+          btnHurr.innerHTML = '<i class="fas fa-play"></i> Hurricanes';
+          btnHurr.classList.remove('active');
+          this.innerHTML = '<i class="fas fa-layer-group"></i> Show Both';
+          stopSarg(); stopHurr();
+        }
+      });
+
+    })(); /* end IIFE */
+  </script>
+
+  <script>
+    /* ── Mobile nav toggle ── */
     const toggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     toggle.addEventListener('click', () => {
@@ -702,6 +1213,7 @@
       });
     });
   </script>
+  <script src="js/mayan-glyphs.js"></script>
 
 </body>
 </html>

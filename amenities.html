@@ -7,6 +7,8 @@
   <meta name="description" content="World-class amenities at Isla Aguada Glamping Co. — Grand Reception with full bar, private shower pavilions, guest services huts, and 100+ capacity social lounge in Campeche, Mexico." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="css/mayan-glyphs.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 </head>
 <body>
 
@@ -14,8 +16,8 @@
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-row-1">
       <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
-        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co. Logo" /><span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -23,7 +25,6 @@
     </div>
     <div class="nav-row-2">
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="index.html">Home</a></li>
         <li><a href="vision.html">The Vision</a></li>
         <li><a href="accommodations.html">Accommodations</a></li>
         <li><a href="amenities.html" class="active">Amenities</a></li>
@@ -155,7 +156,7 @@
           </div>
 
           <div style="background-color: var(--jungle-green); padding: 44px 40px;">
-            <span style="font-size: 2rem; display: block; margin-bottom: 16px;">🫖</span>
+            <span style="font-size: 2rem; display: block; margin-bottom: 16px; color: var(--aged-gold);"><i class="fas fa-concierge-bell"></i></span>
             <h3 style="font-family: var(--font-heading); font-size: 0.78rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 14px;">Private Butler Service</h3>
             <p style="font-size: 0.92rem; color: rgba(250,240,220,0.85); line-height: 1.8;">
               A dedicated butler prepares your pavilion before each session — drawing the bath, 
@@ -334,6 +335,8 @@
               <li>Wild beach &amp; Gulf activities</li>
               <li>Old City Campeche — 30 min shuttle</li>
               <li>Calakmul archaeological tours</li>
+              <li>Maya village &amp; cultural tours</li>
+              <li>Archaeological site tours — Edzná, Balamkú &amp; more</li>
               <li>Laguna tours</li>
               <li>Wind sports on the beach</li>
               <li>Birdwatching &amp; wildlife</li>
@@ -392,19 +395,153 @@
             <p style="font-size: 0.88rem; color: rgba(250,240,220,0.65); font-style: italic;">Morning and sunset tours available. All equipment provided.</p>
           </div>
 
-          <div style="background-color: var(--jungle-green); padding: 48px 44px;">
+          <div style="background-color: var(--jungle-green); padding: 48px 44px; grid-column: 1 / -1;">
+            <div style="max-width: 820px;">
             <span style="font-size: 2.2rem; display: block; margin-bottom: 18px;">🪂</span>
             <h3 style="font-family: var(--font-heading); font-size: 0.82rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 14px;">Wind Sports on the Beach</h3>
             <p style="font-size: 0.95rem; color: rgba(250,240,220,0.88); line-height: 1.85; margin-bottom: 16px;">
               The Gulf Coast winds make our beach perfect for kitesurfing, windsurfing, and stand-up paddleboarding. We offer <strong style="color: var(--aged-gold);">wind sports only</strong> — a deliberate and proud policy. No motor boats, no jet skis, no noise. The wildlife of the Gulf — dolphins, sea turtles, and coastal birds — thrive here precisely because we protect them.
             </p>
             <p style="font-size: 0.88rem; color: rgba(250,240,220,0.65); font-style: italic;">Kitesurfing · Windsurfing · SUP · No motor sports. Ever.</p>
+            </div>
           </div>
 
-          <div class="pueblo-magico-callout" style="background-color: var(--aged-gold); padding: 48px 44px; grid-column: 1 / -1;">
-            <div class="pueblo-magico-callout__inner" style="max-width: 820px; margin: 0 auto; display: flex; align-items: flex-start; gap: 32px;">
-              <span class="pueblo-magico-callout__icon" style="font-size: 2.8rem; flex-shrink: 0; margin-top: 4px;">⭐</span>
-              <div class="pueblo-magico-callout__copy">
+          <!-- ══ MAYA TOURS — FULL-WIDTH FEATURE BLOCK ══ -->
+          <div style="grid-column: 1 / -1; background: #1a0e06; border-top: 3px solid #c9a84c; border-bottom: 3px solid #c9a84c; position: relative; overflow: hidden;">
+
+            <!-- Mayan-style decorative header band -->
+            <div style="background: linear-gradient(135deg, #3d1a08 0%, #5c2d0e 40%, #3d1a08 100%); padding: 22px 32px; border-bottom: 2px solid rgba(201,168,76,0.4); display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap;">
+              <!-- Zigzag border left -->
+              <span class="mayan-glyph mayan-glyph--gold mayan-glyph--carved" data-glyph="step_frieze" style="width:80px; height:18px; opacity:0.55;"></span>
+              <!-- Pyramid glyph left -->
+              <span class="mayan-glyph mayan-glyph--gold mayan-glyph--sm mayan-glyph--carved" data-glyph="pyramid_stone"></span>
+              <div style="flex:1; min-width:20px; height:1px; background: linear-gradient(to right, transparent, rgba(201,168,76,0.6));"></div>
+              <span style="font-family: var(--font-heading); font-size: 0.6rem; letter-spacing: 0.42em; text-transform: uppercase; color: var(--aged-gold); white-space: nowrap;">Maya Cultural Expeditions</span>
+              <div style="flex:1; min-width:20px; height:1px; background: linear-gradient(to left, transparent, rgba(201,168,76,0.6));"></div>
+              <!-- Pyramid glyph right -->
+              <span class="mayan-glyph mayan-glyph--gold mayan-glyph--sm mayan-glyph--carved" data-glyph="pyramid_stone" style="transform:scaleX(-1);"></span>
+              <!-- Step border right -->
+              <span class="mayan-glyph mayan-glyph--gold mayan-glyph--carved" data-glyph="step_frieze" style="width:80px; height:18px; opacity:0.55;"></span>
+            </div>
+
+            <!-- Two-panel grid with strong centre divider -->
+            <div style="display: grid; grid-template-columns: 1fr 3px 1fr;">
+
+              <!-- LEFT PANEL — Living Villages -->
+              <div style="padding: 52px 52px 48px; background: linear-gradient(160deg, #1f0e05 0%, #2a1208 100%); position:relative; overflow:hidden;">
+
+                <!-- Background watermark glyph -->
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--faint" data-glyph="maize" style="position:absolute; bottom:-20px; right:-10px; width:160px; height:160px; opacity:0.06;"></span>
+                <!-- Top-right corner spiral -->
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--faint" data-glyph="spiral" style="position:absolute; top:12px; right:16px; width:36px; height:36px; opacity:0.22;"></span>
+
+                <!-- Icon + glyph-style accent -->
+                <div style="display:flex; align-items:center; gap:14px; margin-bottom:24px;">
+                  <span style="font-size: 2.6rem; line-height:1;">🏘️</span>
+                  <div style="width:1px; height:44px; background: rgba(201,168,76,0.35);"></div>
+                  <div>
+                    <span style="font-family: var(--font-heading); font-size: 0.52rem; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(201,168,76,0.6); display:block; margin-bottom:4px;">Living Culture</span>
+                    <span style="font-family: var(--font-heading); font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(250,240,220,0.35);">Campeche Interior</span>
+                  </div>
+                </div>
+
+                <h3 style="font-family: var(--font-heading); font-size: 1rem; letter-spacing: 0.16em; text-transform: uppercase; color: #e8c878; margin-bottom: 6px; line-height: 1.3;">Living Maya<br/>Village Tours</h3>
+                <div style="width: 48px; height: 2px; background: #c9a84c; margin: 16px 0 24px;"></div>
+
+                <p style="font-size: 0.95rem; color: rgba(250,240,220,0.85); line-height: 1.9; margin-bottom: 18px;">
+                  Step beyond the resort and into the living world of the Maya — communities that have called this peninsula home for over two thousand years. Our expert cultural guides lead intimate small-group visits to authentic Maya villages in the Campeche interior, where daily life, ancient customs, traditional food, artisanal crafts, and the deep relationship between people and land are still very much alive.
+                </p>
+                <p style="font-size: 0.95rem; color: rgba(250,240,220,0.85); line-height: 1.9; margin-bottom: 28px;">
+                  You will visit family <em style="color:#e8c878;">milpas</em> — the sacred corn fields at the heart of Maya cosmology — witness traditional cooking techniques passed down across generations, and be welcomed into a way of life the wider world has barely touched. These are not performances. They are real communities, real people, and real stories.
+                </p>
+
+                <!-- Tags -->
+                <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                  <span style="font-family:var(--font-heading); font-size:0.52rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(201,168,76,0.9); background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); padding:6px 14px;">Small Groups Only</span>
+                  <span style="font-family:var(--font-heading); font-size:0.52rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(201,168,76,0.9); background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); padding:6px 14px;">Cultural Guide</span>
+                  <span style="font-family:var(--font-heading); font-size:0.52rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(201,168,76,0.9); background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); padding:6px 14px;">Half or Full-Day</span>
+                </div>
+              </div>
+
+              <!-- CENTRE DIVIDER — Mayan-style carved line -->
+              <div style="background: linear-gradient(to bottom, transparent 0%, rgba(201,168,76,0.5) 15%, rgba(201,168,76,0.8) 50%, rgba(201,168,76,0.5) 85%, transparent 100%); position:relative;">
+                <div style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:#1a0e06; padding:12px 0; display:flex; flex-direction:column; align-items:center; gap:8px;">
+                  <span style="color:rgba(201,168,76,0.7); font-size:0.7rem;">◆</span>
+                  <span style="color:rgba(201,168,76,0.4); font-size:0.55rem;">◆</span>
+                  <span style="color:rgba(201,168,76,0.25); font-size:0.4rem;">◆</span>
+                </div>
+              </div>
+
+              <!-- RIGHT PANEL — Archaeological Sites -->
+              <div style="padding: 52px 52px 48px; background: linear-gradient(160deg, #0e1a0a 0%, #122010 100%); position:relative; overflow:hidden;">
+
+                <!-- Background watermark glyph -->
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--faint" data-glyph="sun_wheel" style="position:absolute; bottom:-20px; right:-10px; width:160px; height:160px; opacity:0.06;"></span>
+                <!-- Top-left corner quatrefoil -->
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--faint" data-glyph="quatrefoil" style="position:absolute; top:12px; left:16px; width:32px; height:32px; opacity:0.22;"></span>
+
+                <!-- Icon + glyph-style accent -->
+                <div style="display:flex; align-items:center; gap:14px; margin-bottom:24px;">
+                  <span style="font-size: 2.6rem; line-height:1;">🗿</span>
+                  <div style="width:1px; height:44px; background: rgba(201,168,76,0.35);"></div>
+                  <div>
+                    <span style="font-family: var(--font-heading); font-size: 0.52rem; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(201,168,76,0.6); display:block; margin-bottom:4px;">Ancient Kingdoms</span>
+                    <span style="font-family: var(--font-heading); font-size: 0.52rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(250,240,220,0.35);">UNESCO Heritage Sites</span>
+                  </div>
+                </div>
+
+                <h3 style="font-family: var(--font-heading); font-size: 1rem; letter-spacing: 0.16em; text-transform: uppercase; color: #e8c878; margin-bottom: 6px; line-height: 1.3;">Maya Archaeological<br/>Site Tours</h3>
+                <div style="width: 48px; height: 2px; background: #c9a84c; margin: 16px 0 24px;"></div>
+
+                <p style="font-size: 0.95rem; color: rgba(250,240,220,0.85); line-height: 1.9; margin-bottom: 18px;">
+                  The Campeche region is one of the most archaeology-rich corridors in the entire Maya world — and Isla Aguada sits at its doorstep. Beyond the world-famous ruins of Calakmul, our guides lead expeditions to lesser-known but extraordinary sites: <strong style="color: #e8c878;">Edzná</strong>, with its rare five-storey pyramid; <strong style="color: #e8c878;">Balamkú</strong>, sheltering a breathtaking stucco frieze largely unseen by the outside world; and sites still being actively excavated by INAH archaeologists.
+                </p>
+                <p style="font-size: 0.95rem; color: rgba(250,240,220,0.85); line-height: 1.9; margin-bottom: 28px;">
+                  Walk temple staircases. Stand in plazas where kings once held court. Read the carved stelae that record dynasties, battles, and celestial events. With an expert archaeologist at your side, these stones stop being ruins — and start being stories.
+                </p>
+
+                <!-- Tags -->
+                <div style="display:flex; flex-wrap:wrap; gap:8px;">
+                  <span style="font-family:var(--font-heading); font-size:0.52rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(201,168,76,0.9); background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); padding:6px 14px;">Expert Archaeologist</span>
+                  <span style="font-family:var(--font-heading); font-size:0.52rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(201,168,76,0.9); background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); padding:6px 14px;">Transfers Included</span>
+                  <span style="font-family:var(--font-heading); font-size:0.52rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(201,168,76,0.9); background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.3); padding:6px 14px;">Half &amp; Full-Day</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Mayan-style decorative footer band -->
+            <div style="background: linear-gradient(135deg, #3d1a08 0%, #5c2d0e 40%, #3d1a08 100%); padding: 18px 32px; border-top: 2px solid rgba(201,168,76,0.4);">
+              <!-- Serpent wave border top -->
+              <div style="margin-bottom:12px; overflow:hidden; height:16px;">
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--medium" data-glyph="serpent_border" style="width:100%; height:16px; display:block;"></span>
+              </div>
+              <!-- Glyph row -->
+              <div style="display:flex; align-items:center; justify-content:center; gap:24px; flex-wrap:wrap; margin-bottom:12px;">
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--bright" data-glyph="solar_eye"   style="width:22px; height:22px;"></span>
+                <span style="font-family: var(--font-heading); font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(201,168,76,0.55);">Calakmul</span>
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--bright" data-glyph="cross_diamond" style="width:18px; height:18px;"></span>
+                <span style="font-family: var(--font-heading); font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(201,168,76,0.55);">Edzná</span>
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--bright" data-glyph="spiral"      style="width:18px; height:18px;"></span>
+                <span style="font-family: var(--font-heading); font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(201,168,76,0.55);">Balamkú</span>
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--bright" data-glyph="maize"       style="width:18px; height:18px;"></span>
+                <span style="font-family: var(--font-heading); font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(201,168,76,0.55);">Living Villages</span>
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--bright" data-glyph="pyramid"     style="width:20px; height:20px;"></span>
+                <span style="font-family: var(--font-heading); font-size: 0.52rem; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(201,168,76,0.55);">INAH Sites</span>
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--bright" data-glyph="quatrefoil"  style="width:18px; height:18px;"></span>
+              </div>
+              <!-- Bead row border -->
+              <div style="overflow:hidden; height:16px;">
+                <span class="mayan-glyph mayan-glyph--gold mayan-glyph--subtle" data-glyph="bead_row" style="width:100%; height:16px; display:block;"></span>
+              </div>
+            </div>
+
+          </div>
+
+          <div style="background-color: var(--aged-gold); padding: 48px 44px; grid-column: 1 / -1;">
+            <div style="max-width: 820px; margin: 0 auto; display: flex; align-items: flex-start; gap: 32px;">
+              <span style="font-size: 2.8rem; flex-shrink: 0; margin-top: 4px;">⭐</span>
+              <div>
                 <span style="font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--dark-mahogany); display: block; margin-bottom: 10px;">Designation of Honour</span>
                 <h3 style="font-family: var(--font-heading); font-size: 1rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--dark-mahogany); margin-bottom: 16px;">Isla Aguada — Pueblo Mágico</h3>
                 <p style="font-size: 0.98rem; color: var(--dark-mahogany); line-height: 1.85; margin-bottom: 14px;">
@@ -450,13 +587,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co." />
         <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          
           <li><a href="vision.html">The Vision</a></li>
           <li><a href="accommodations.html">Accommodations</a></li>
           <li><a href="amenities.html">Amenities</a></li>
@@ -500,6 +637,7 @@
       });
     });
   </script>
+  <script src="js/mayan-glyphs.js"></script>
 
 </body>
 </html>

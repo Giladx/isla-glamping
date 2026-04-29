@@ -4,65 +4,99 @@
 
 A professional, multi-page luxury resort website for **Isla Aguada Glamping Co.**, a world-class glamping destination on the Gulf Coast of Campeche, Mexico.
 
+**Live URL:** https://nwffobct.gensparkspace.com/
+
 ---
 
 ## Project Overview
 
-**Resort:** Isla Aguada Glamping Co.  
-**Location:** Campeche, Gulf of Mexico, Mexico  
-**Coordinates:** 18°56′16.5″N 91°18′24.7″W  
-**Concept:** ~50 private luxury safari tents set within a pristine jungle corridor on Mexico's Gulf Coast, inspired by El Dorado / Lost City 1930s expedition aesthetics.
+| Field | Detail |
+|-------|--------|
+| Resort | Isla Aguada Glamping Co. |
+| Location | Palmar Peninsula, Isla Aguada, Campeche, Mexico |
+| Coordinates | 18°56′16.5″N · 91°18′24.7″W |
+| Concept | 50 private luxury safari tents — 40 Standard Luxury + 10 Ultra VIP |
+| Aesthetic | 1930s El Dorado / Lost City expedition romance |
+| Opening | January 2028 |
+| Email | islaglampingcompany@gmail.com |
+
+---
+
+## Pages & Entry Points
+
+| Page | URL | Description |
+|------|-----|-------------|
+| Home | `index.html` | Full-viewport jungle hero, icon pillars, features grid, preview gallery, CTA |
+| The Vision | `vision.html` | Expedition concept, statistics, El Dorado aesthetic, location, philosophy |
+| Accommodations | `accommodations.html` | Safari tent details, interior features, material specifications |
+| Amenities | `amenities.html` | Guest services, shower pavilions, outdoor spa, Grand Reception, expeditions |
+| Wellness & Longevity | `wellness.html` | Nutrition, Detox, Stem Cell, Regenerative Medicine, Spa, Mind & Movement |
+| Dining & Beach | `dining.html` | Mas'Tul Bar & Restaurant, entertainment schedule, full menu, beach features |
+| Master Plan | `masterplan.html` | Aerial site plan, zone breakdown, coordinates, Federal Highway 180 |
+| Safety | `safety.html` | Zero hurricanes, crime safety, sargassum, 50-year interactive animation |
+| Nature & Conservation | `nature.html` | Sea Turtle Sanctuary, Turtle Hospital, Laguna de Términos Biosphere Reserve |
+| Sustainability | `sustainability.html` | Solar power, water conservation, carbon commitments, off-grid operations |
+| Arrival | `arrival.html` | Transfer options, airport info, journey details |
+| Contact & Reserve | `contact.html` | Reservation enquiry form, contact info, sidebar details |
 
 ---
 
 ## Completed Features
 
-### Pages
-- **`index.html`** — Home page: Full-viewport hero with jungle background and centered logo, tagline "Where the Jungle Meets the Sea", eco/sustainability/glamping/Pueblo Mágico icon pillars, features grid, preview gallery, pull quote, CTA strip
-- **`vision.html`** — The Vision: Expedition concept story, statistics, El Dorado aesthetic, location analysis, philosophy pillars, resort component list
-- **`accommodations.html`** — Accommodations: Tent exterior (day), tent exterior (sunset), full-width tent interior treatment, feature specifications, material details
-- **`amenities.html`** — Amenities: Guest services hut, private shower pavilion, outdoor spa experience (6 tiles), service features strip, Grand Reception full treatment with specifications, complete amenity listing, expeditions & activities
-- **`wellness.html`** — Wellness & Longevity: Six pillar intro (Nutrition, Detox, Stem Cell, Functional Medicine, Spa, Mind & Movement), full Nutrition Therapy section (5 components with tags), Detox Programmes (3/7/14/21-day protocols + 6 modalities), Stem Cell & Regenerative Medicine (6 treatments: stem cells, NAD⁺, peptides, IV nutrients, hormone optimisation, ozone), Nutrition Activities (6 classes/workshops), 8 Specialised Nutrition Approaches, full Wellness Package inclusions grid
-- **`dining.html`** — Dining & Beach: Mas'Tul Bar & Restaurant, Thu–Sat full spectacle / Sun–Wed chill schedule, farm-to-fork Produce Paradise, random entertainment (sax, wandering singer, Mayan parade), full menu, beach features
-- **`masterplan.html`** — Master Plan: Aerial site plan image, dual-zone breakdown, measurements, coordinates, Federal Highway 180 context
-- **`safety.html`** — Safety: Zero hurricanes, lowest crime rate, COVID Green status, sargassum guarantee, interactive 50-year hurricane animation, comparison table
-- **`nature.html`** — Nature & Conservation: Sea Turtle Sanctuary, onsite Turtle Hospital (federal partnership), zero coastal erosion, flora & fauna, Laguna de Términos Biosphere Reserve, Conservation Pledge
-- **`sustainability.html`** — Sustainability: Solar power farm, full energy independence, water conservation, waste management, carbon commitments
-- **`arrival.html`** — Arrival: Transfer options, journey details, Campeche airport info
-
-### Design & Technical
-- Fully responsive layout (mobile, tablet, desktop)
-- Fixed navigation bar with mobile hamburger menu
-- `css/style.css` — Single shared stylesheet (~700 lines)
-- **Color palette:**
-  - Deep Jungle Green: `#1a3a2a`
-  - Aged Gold: `#c9a84c`
-  - Parchment Cream: `#faf0dc`
-  - Dark Mahogany: `#2c1810`
-- **Typography:**
-  - Headings: Cinzel (Google Fonts)
-  - Body: Libre Baskerville (Google Fonts)
-- 1930s safari/jungle expedition aesthetic
-- No glass overlays or frosted effects
+### Core Design
+- 1930s safari/jungle expedition aesthetic (El Dorado / Lost City romance)
+- Color palette: Jungle Green `#1a3a2a` · Aged Gold `#c9a84c` · Parchment `#faf0dc` · Dark Mahogany `#2c1810`
+- Typography: **Cinzel** (headings) · **Libre Baskerville** (body) — Google Fonts
+- Gold ornamental dividers and diamond separators throughout
+- Pull quote sections on every page
 - Semantic HTML5 throughout
 - Active nav state on each page
-- Consistent footer across all pages
-- Pull quote sections throughout
-- Gold ornamental dividers
 
-### Images Used
-| File | Purpose |
-|------|---------|
-| `images/hero-jungle.jpg` | Home hero & Vision page hero background |
-| `images/logo.png` | Navigation, hero, footer |
-| `images/tent-exterior-day.jpg` | Accommodations page, home preview card |
-| `images/tent-exterior-sunset.jpg` | Accommodations page, Vision page feature |
-| `images/tent-interior.jpg` | Accommodations full-width interior feature |
-| `images/guest-services-hut.jpg` | Amenities page |
-| `images/shower-pavilion.jpg` | Amenities page |
-| `images/grand-reception.jpg` | Amenities page hero & full section, home preview |
-| `images/beach-bar.jpg` | Dining page hero & full section, home preview |
-| `images/aerial-site-plan.jpg` | Master Plan page (hero, main image, detail) |
+### Navigation
+- Two-row desktop navigation (logo row + links row)
+- Hamburger mobile menu (≤ 900px) — three gold bars, dropdown on click
+- Active link highlighting per page
+- Consistent footer with full navigation list + location address
+
+### Responsiveness (v3 — fully fixed)
+- `css/responsive-patch.css` is the **single authoritative** responsive override file
+- Hamburger navigation: works correctly on all screen sizes — removed conflicting old 768px nav rules from style.css
+- No horizontal scroll or left-right page shifting — `overflow-x: hidden` on html/body
+- All inline-style grids collapse gracefully at 900px (tablet) and 600px (mobile)
+- iframe excluded from `max-width: 100%` rule so hurricane animation viewport works
+
+### Safety Page — Hurricane Animation
+- 50-year interactive hurricane animation embedded from MayaRoyale.com
+- **Iframe viewport technique:** outer clip box (`overflow: hidden`, 510px height) + iframe shifted `top: -70px` to hide their nav bar
+- Solid mahogany top mask (68px) with branded label replaces their header
+- Solid mahogany bottom mask (52px) permanently hides their footer / "Connect Wallet" / links
+- Left/right edge masks (8px) clean up side chrome
+- All masks use `pointer-events: none` — animation remains fully interactive
+- `.hurricane-viewport` CSS class for targeted responsive sizing
+
+### Mayan Glyph Decoration System
+- `css/mayan-glyphs.css` — base classes, opacity/color/size variants, borders, dividers, corners, watermarks
+- `js/mayan-glyphs.js` — authentic stone-carved SVG glyphs (serpent, pyramid, sun wheel, jaguar eye, maize, hand, mask, solar eye, feather, spiral, cross-diamond)
+- Applied site-wide on all 12 pages: pull quote watermarks, section dividers, border strips
+- Stone/rustic carved look: sepia/weathered filter, high contrast, tactile appearance
+
+### Contact Page
+- Reservation enquiry form: First/Last Name, Email, Phone, Arrival/Departure dates, Guests, Tent Preference, Interests, Referral source
+- Date validation: minimum arrival Jan 1 2028; departure auto-updates to be after arrival
+- Reservation code generator: format `IAG-28-XXXXXX`
+- Thank-you overlay with name, email, reservation code confirmation
+- Sidebar: email, location, coordinates, opening date, tent availability, response time, reassurance strip
+- **EmailJS / Formspree integration config removed** (deferred — form works in demo/display mode)
+
+### Staff Images (all generated)
+| File | Staff Member |
+|------|-------------|
+| `images/staff-concierge.jpg` | Welcome Concierge |
+| `images/staff-spa-therapist.jpg` | Spa Therapist |
+| `images/staff-jungle-guide.jpg` | Jungle Guide |
+| `images/staff-nutritionist.jpg` | Nutritionist / Chef |
+| `images/staff-bartender.jpg` | Bartender |
+| `images/staff-laguna-guide.jpg` | Laguna & Beach Guide |
 
 ---
 
@@ -70,17 +104,27 @@ A professional, multi-page luxury resort website for **Isla Aguada Glamping Co.*
 
 ```
 /
-├── index.html              # Home page
-├── vision.html             # The Vision page
-├── accommodations.html     # Accommodations page
-├── amenities.html          # Amenities page
-├── dining.html             # Dining & Beach page
-├── masterplan.html         # Master Plan page
+├── index.html              # Home
+├── vision.html             # The Vision
+├── accommodations.html     # Accommodations
+├── amenities.html          # Amenities
+├── wellness.html           # Wellness & Longevity
+├── dining.html             # Dining & Beach
+├── masterplan.html         # Master Plan
+├── safety.html             # Safety & Security
+├── nature.html             # Nature & Conservation
+├── sustainability.html     # Sustainability
+├── arrival.html            # Arrival & Getting Here
+├── contact.html            # Contact & Reserve
 ├── css/
-│   └── style.css           # Shared main stylesheet
+│   ├── style.css           # Main stylesheet (~2 000 lines)
+│   ├── responsive-patch.css # Authoritative responsive overrides (v3)
+│   └── mayan-glyphs.css    # Mayan decoration system
+├── js/
+│   └── mayan-glyphs.js     # Authentic stone-carved SVG glyphs
 ├── images/
-│   ├── hero-jungle.jpg
 │   ├── logo.png
+│   ├── hero-jungle.jpg
 │   ├── tent-exterior-day.jpg
 │   ├── tent-exterior-sunset.jpg
 │   ├── tent-interior.jpg
@@ -88,75 +132,66 @@ A professional, multi-page luxury resort website for **Isla Aguada Glamping Co.*
 │   ├── shower-pavilion.jpg
 │   ├── grand-reception.jpg
 │   ├── beach-bar.jpg
-│   └── aerial-site-plan.jpg
+│   ├── aerial-site-plan.jpg
+│   ├── staff-concierge.jpg
+│   ├── staff-spa-therapist.jpg
+│   ├── staff-jungle-guide.jpg
+│   ├── staff-nutritionist.jpg
+│   ├── staff-bartender.jpg
+│   └── staff-laguna-guide.jpg
 └── README.md
 ```
 
 ---
 
-## Navigation Structure
-
-| Page | URL | Description |
-|------|-----|-------------|
-| Home | `index.html` | Hero, features, preview gallery |
-| The Vision | `vision.html` | Resort concept and location |
-| Accommodations | `accommodations.html` | Safari tent details |
-| Amenities | `amenities.html` | Services, reception, facilities |
-| **Wellness & Longevity** | **`wellness.html`** | **Nutrition, Detox, Stem Cell, Regenerative Medicine** |
-| Dining & Beach | `dining.html` | Beach bar & restaurant |
-| Master Plan | `masterplan.html` | Aerial site plan, dimensions |
-| Safety | `safety.html` | Hurricane/crime/health safety data |
-| Nature & Conservation | `nature.html` | Turtles, wildlife, coastal preservation |
-| Sustainability | `sustainability.html` | Solar, water, carbon commitments |
-| Arrival | `arrival.html` | Transfer and journey information |
-
----
-
-## Resort Data Highlights
+## Resort Data
 
 | Metric | Value |
 |--------|-------|
-| Private Tents | ~50 |
-| Beach Zone | 60m × 100m |
-| Glamping Zone | 60m × 1,000m |
-| Total Site Area | ~66,000 m² |
+| Total Tents | 50 |
+| Standard Luxury Tents | 40 |
+| Ultra VIP Tents | 10 |
+| Beach Frontage | Gulf of Mexico (North Shore) |
+| Glamping Zone Depth | 2 km (jungle corridor) |
+| Laguna Access | Laguna de Términos — UNESCO Biosphere Reserve |
 | Reception Capacity | 100+ |
-| Tent Platform Height | 3 feet |
-| Highway Division | Federal Highway 180 |
+| Tent Platform Height | 3 feet elevated walkways |
+| Hurricane Landfalls (recorded history) | 0 |
+| Crime Ranking | Campeche = #1 safest state in Mexico |
 
 ---
 
-## Features Not Yet Implemented
+## Not Yet Implemented / Deferred
 
-- Enquiry / contact form
-- Interactive map/satellite view of the site
-- Photo gallery lightbox
-- Pricing/availability information
-- Booking integration
-- Blog / journal section
-- Animation on scroll (AOS library)
-- Social media links
+| Feature | Status |
+|---------|--------|
+| EmailJS / Formspree reservation integration | Deferred — form runs in demo mode |
+| Staff image placement on their respective pages | Pending (images exist, not yet inserted in HTML) |
+| Lightbox photo gallery | Not started |
+| Scroll animations (AOS) | Not started |
+| Interactive satellite/embedded map | Not started |
+| Blog / journal section | Not started |
+| Open Graph / social meta tags | Not started |
+| 404 error page | Not started |
 
 ---
 
 ## Recommended Next Steps
 
-1. **Add a Contact / Enquiry page** with a form for reservation enquiries
-2. **Integrate a lightbox gallery** on each image-heavy page (Fancybox or similar)
-3. **Add scroll animations** (AOS library) for section reveals
-4. **Embed interactive satellite map** for the master plan page
-5. **Add a Blog/Journal section** for expedition stories and resort news
-6. **Create a 404 error page** in the resort aesthetic
-7. **Add Open Graph / social meta tags** for sharing optimization
-8. **Consider video background** for the hero section when video assets are available
+1. **Place staff images** on their respective pages (images already exist in `/images/`)
+2. **Configure reservation form** — add real Formspree ID or EmailJS keys to contact.html `CONFIG` object when ready
+3. **Add scroll animations** using AOS library (`data-aos` attributes)
+4. **Lightbox gallery** on accommodations and amenities pages (Fancybox or GLightbox)
+5. **Open Graph meta tags** for social sharing (`og:title`, `og:image`, `og:description`)
+6. **Create 404.html** in resort aesthetic
+7. **Consider video hero** for `index.html` when video assets are available
 
 ---
 
 ## Deployment
 
-To publish this website, use the **Publish tab** in the project interface. All files are static HTML/CSS and require no server-side processing.
+Use the **Publish tab** in the Genspark editor to deploy. All files are static HTML/CSS/JS — no server-side processing required.
 
 ---
 
 *© 2025 Isla Aguada Glamping Co. — Campeche, Gulf of Mexico*
-# isla-glamping

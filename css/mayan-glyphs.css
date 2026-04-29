@@ -1,0 +1,199 @@
+/* =====================================================
+   ISLA AGUADA — MAYAN GLYPH STONE CARVING SYSTEM
+   Rustic, heavy, worn stone aesthetic.
+   Glyphs look carved from ancient limestone.
+   ===================================================== */
+
+/* ── Base glyph element ── */
+.mayan-glyph {
+  display: inline-block;
+  pointer-events: none;
+  flex-shrink: 0;
+  /* Stone carving filter — slightly rough edges */
+  filter: drop-shadow(1px 2px 3px rgba(0,0,0,0.55));
+}
+
+.mayan-glyph svg {
+  fill: var(--aged-gold);
+  display: block;
+}
+
+/* ── Opacity variants — more visible than before ── */
+.mayan-glyph--faint   { opacity: 0.18; }
+.mayan-glyph--subtle  { opacity: 0.28; }
+.mayan-glyph--medium  { opacity: 0.45; }
+.mayan-glyph--bright  { opacity: 0.70; }
+.mayan-glyph--full    { opacity: 0.90; }
+
+/* ── Colour variants ── */
+.mayan-glyph--gold  svg { fill: var(--aged-gold); }
+.mayan-glyph--stone svg { fill: #b8a882; }        /* worn limestone */
+.mayan-glyph--rust  svg { fill: #8b5e3c; }        /* terracotta stone */
+.mayan-glyph--cream svg { fill: var(--parchment); }
+.mayan-glyph--white svg { fill: #ffffff; }
+.mayan-glyph--dark  svg { fill: var(--dark-mahogany); }
+
+/* ── Size variants ── */
+.mayan-glyph--xs  svg { width: 28px;  height: 28px; }
+.mayan-glyph--sm  svg { width: 42px;  height: 42px; }
+.mayan-glyph--md  svg { width: 64px;  height: 64px; }
+.mayan-glyph--lg  svg { width: 90px;  height: 90px; }
+.mayan-glyph--xl  svg { width: 120px; height: 120px; }
+.mayan-glyph--2xl svg { width: 160px; height: 160px; }
+.mayan-glyph--3xl svg { width: 220px; height: 220px; }
+
+/* ── Stone texture treatment ── */
+.mayan-glyph--carved {
+  filter:
+    drop-shadow(0px 1px 0px rgba(255,220,120,0.3))
+    drop-shadow(1px 3px 6px rgba(0,0,0,0.7))
+    contrast(1.1)
+    brightness(0.95);
+}
+
+/* ── Horizontal border strip ── */
+.mayan-border {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  overflow: hidden;
+  width: 100%;
+  padding: 8px 0;
+  background: rgba(0,0,0,0.15);
+}
+
+.mayan-border .mayan-glyph {
+  opacity: 0.45;
+}
+
+/* ── Frieze border — full-width step pattern ── */
+.mayan-frieze {
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  opacity: 0.35;
+}
+
+.mayan-frieze svg {
+  width: 100%;
+  height: 32px;
+  fill: var(--aged-gold);
+  display: block;
+}
+
+/* ── Section divider with glyphs ── */
+.mayan-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin: 24px 0;
+}
+
+.mayan-divider::before,
+.mayan-divider::after {
+  content: '';
+  flex: 1;
+  max-width: 160px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.6), transparent);
+}
+
+.mayan-divider .mayan-glyph {
+  opacity: 0.75;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+/* ── Corner decoration ── */
+.mayan-corner-wrap {
+  position: relative;
+}
+
+.mayan-corner {
+  position: absolute;
+  pointer-events: none;
+}
+.mayan-corner--tl { top: 12px;  left: 12px; }
+.mayan-corner--tr { top: 12px;  right: 12px; transform: scaleX(-1); }
+.mayan-corner--bl { bottom: 12px; left: 12px; transform: scaleY(-1); }
+.mayan-corner--br { bottom: 12px; right: 12px; transform: scale(-1,-1); }
+
+/* ── Watermark background glyph ── */
+.mayan-bg-glyph {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mayan-bg-glyph svg {
+  fill: var(--aged-gold);
+  width: 360px;
+  height: 360px;
+}
+
+/* ── Sidebar / float glyphs ── */
+.mayan-float-left {
+  float: left;
+  margin: 4px 24px 12px 0;
+}
+
+.mayan-float-right {
+  float: right;
+  margin: 4px 0 12px 24px;
+}
+
+/* ── Stone panel — glyph row used as section decoration ── */
+.mayan-stone-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(201,168,76,0.2);
+  border-bottom: 1px solid rgba(201,168,76,0.2);
+  margin: 32px 0;
+}
+
+.mayan-stone-row .mayan-glyph {
+  opacity: 0.55;
+  filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.6));
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mayan-stone-row .mayan-glyph:hover {
+  opacity: 0.85;
+  transform: scale(1.08);
+}
+
+/* ── Pull-quote side glyphs ── */
+.mayan-pull-left,
+.mayan-pull-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.22;
+  pointer-events: none;
+  filter: drop-shadow(1px 2px 5px rgba(0,0,0,0.6));
+}
+.mayan-pull-left  { left: 16px; }
+.mayan-pull-right { right: 16px; }
+
+/* Responsive — scale down on mobile */
+@media (max-width: 768px) {
+  .mayan-glyph--xl  svg { width: 80px;  height: 80px; }
+  .mayan-glyph--2xl svg { width: 110px; height: 110px; }
+  .mayan-glyph--3xl svg { width: 160px; height: 160px; }
+  .mayan-bg-glyph svg   { width: 240px; height: 240px; }
+  .mayan-pull-left,
+  .mayan-pull-right     { display: none; }
+}
+
+@media (max-width: 480px) {
+  .mayan-stone-row { gap: 8px; }
+  .mayan-stone-row .mayan-glyph--md svg { width: 44px; height: 44px; }
+}

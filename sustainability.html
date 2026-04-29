@@ -7,6 +7,7 @@
   <meta name="description" content="Isla Aguada Glamping Co. is fully off-grid and self-sufficient — powered entirely by solar energy farms, freshwater generated from the atmosphere, organic farming, and zero-waste operations. True luxury that leaves nothing behind." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="css/mayan-glyphs.css" />
 </head>
 <body>
 
@@ -14,8 +15,8 @@
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-row-1">
       <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
-        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co. Logo" /><span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -23,7 +24,6 @@
     </div>
     <div class="nav-row-2">
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="index.html">Home</a></li>
         <li><a href="vision.html">The Vision</a></li>
         <li><a href="accommodations.html">Accommodations</a></li>
         <li><a href="amenities.html">Amenities</a></li>
@@ -363,7 +363,10 @@
     </section>
 
     <!-- FINAL PULL QUOTE -->
-    <section class="pull-quote" style="background-color: var(--dark-mahogany);">
+    <section class="pull-quote" style="background-color: var(--dark-mahogany); position:relative; overflow:hidden;">
+      <span class="mayan-glyph mayan-glyph--gold mayan-glyph--lg mayan-glyph--carved" data-glyph="sun_face" style="position:absolute; top:50%; left:2%; transform:translateY(-50%); opacity:0.22;"></span>
+      <span class="mayan-glyph mayan-glyph--gold mayan-glyph--lg mayan-glyph--carved" data-glyph="rain_scroll" style="position:absolute; top:50%; right:2%; transform:translateY(-50%); opacity:0.22;"></span>
+      <span class="mayan-glyph mayan-glyph--gold" data-glyph="bead_row" style="position:absolute; top:0; left:0; width:100%; height:20px; opacity:0.4;"></span>
       <blockquote>
         We did not build a sustainable resort because it was the right thing to say. 
         We built it because a place this beautiful deserves to exist forever — 
@@ -379,13 +382,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co." />
         <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          
           <li><a href="vision.html">The Vision</a></li>
           <li><a href="accommodations.html">Accommodations</a></li>
           <li><a href="amenities.html">Amenities</a></li>
@@ -429,6 +432,7 @@
       });
     });
   </script>
+  <script src="js/mayan-glyphs.js"></script>
 
 </body>
 </html>

@@ -7,6 +7,7 @@
   <meta name="description" content="The vision behind Isla Aguada Glamping Co. — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico, inspired by El Dorado expedition romance." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="css/mayan-glyphs.css" />
 </head>
 <body>
 
@@ -14,8 +15,7 @@
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-row-1">
       <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
-        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co. Logo" /><span class="nav-logo-text">Isla Aguada Glamping Co.</span>
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -23,7 +23,6 @@
     </div>
     <div class="nav-row-2">
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="index.html">Home</a></li>
         <li><a href="vision.html" class="active">The Vision</a></li>
         <li><a href="accommodations.html">Accommodations</a></li>
         <li><a href="amenities.html">Amenities</a></li>
@@ -85,6 +84,7 @@
 
     <!-- STATS -->
     <section class="section section--dark" id="vision-stats" style="padding-top: 0;">
+      <div class="mayan-frieze" style="opacity:0.35;"><svg viewBox="0 0 200 32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="width:100%;height:32px;fill:var(--aged-gold);"><polyline points="0,28 0,20 8,20 8,14 16,14 16,8 24,8 24,14 32,14 32,20 40,20 40,28 40,28 40,20 48,20 48,14 56,14 56,8 64,8 64,14 72,14 72,20 80,20 80,28 80,28 80,20 88,20 88,14 96,14 96,8 104,8 104,14 112,14 112,20 120,20 120,28 120,28 120,20 128,20 128,14 136,14 136,8 144,8 144,14 152,14 152,20 160,20 160,28 160,28 160,20 168,20 168,14 176,14 176,8 184,8 184,14 192,14 192,20 200,20 200,28" fill="var(--aged-gold)"/></svg></div>
       <div class="container">
         <div class="vision-stats">
           <div class="stat-box">
@@ -107,7 +107,9 @@
     <section class="section section--dark" id="vision-expedition" style="padding-top: 0;">
       <div class="container">
         <div class="vision-expedition">
-          <div class="expedition-border">
+          <div class="expedition-border" style="position:relative; overflow:hidden;">
+            <span class="mayan-glyph mayan-glyph--gold mayan-glyph--md mayan-glyph--carved" data-glyph="pyramid_stone" style="position:absolute; top:12px; right:20px; opacity:0.35;"></span>
+            <span class="mayan-glyph mayan-glyph--gold mayan-glyph--sm mayan-glyph--carved" data-glyph="serpent_head" style="position:absolute; bottom:12px; left:20px; opacity:0.28;"></span>
             <h3>The El Dorado / Lost City Aesthetic</h3>
             <p>
               The design language of Isla Aguada is rooted in the romanticism of early twentieth-century expedition 
@@ -182,7 +184,11 @@
     </section>
 
     <!-- PULL QUOTE -->
-    <section class="pull-quote">
+    <section class="pull-quote" style="position:relative; overflow:hidden;">
+      <span class="mayan-glyph mayan-glyph--cream mayan-glyph--lg mayan-glyph--carved" data-glyph="scroll_eye" style="position:absolute; top:50%; left:2%; transform:translateY(-50%); opacity:0.20;"></span>
+      <span class="mayan-glyph mayan-glyph--cream mayan-glyph--lg mayan-glyph--carved" data-glyph="face_cartouche" style="position:absolute; top:50%; right:2%; transform:translateY(-50%); opacity:0.20;"></span>
+      <span class="mayan-glyph mayan-glyph--gold" data-glyph="serpent_border" style="position:absolute; top:0; left:0; width:100%; height:20px; opacity:0.35;"></span>
+      <span class="mayan-glyph mayan-glyph--gold" data-glyph="serpent_border" style="position:absolute; bottom:0; left:0; width:100%; height:20px; opacity:0.35; transform:scaleY(-1);"></span>
       <blockquote>
         We did not want to build a hotel near the jungle. We wanted to build a place that 
         <em>is</em> the jungle — where guests fall asleep to the chorus of the canopy and wake 
@@ -262,13 +268,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co." />
         <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          
           <li><a href="vision.html">The Vision</a></li>
           <li><a href="accommodations.html">Accommodations</a></li>
           <li><a href="amenities.html">Amenities</a></li>
@@ -312,6 +318,7 @@
       });
     });
   </script>
+  <script src="js/mayan-glyphs.js"></script>
 
 </body>
 </html>

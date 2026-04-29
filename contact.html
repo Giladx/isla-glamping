@@ -7,12 +7,10 @@
   <meta name="description" content="Reserve your stay at Isla Aguada Glamping Co. — luxury glamping on the Gulf Coast of Campeche, Mexico. Opening January 2028. Contact us to begin your reservation." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="css/mayan-glyphs.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
 
-  <!-- EmailJS SDK -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-  <style>
+    <style>
     /* ── CONTACT PAGE STYLES ── */
 
     .contact-hero-tag {
@@ -290,8 +288,8 @@
   <nav class="site-nav" role="navigation" aria-label="Main navigation">
     <div class="nav-row-1">
       <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
-        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co. Logo" /><span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+        
       </a>
       <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
@@ -299,7 +297,6 @@
     </div>
     <div class="nav-row-2">
       <ul class="nav-links" id="navLinks" role="list">
-        <li><a href="index.html">Home</a></li>
         <li><a href="vision.html">The Vision</a></li>
         <li><a href="accommodations.html">Accommodations</a></li>
         <li><a href="amenities.html">Amenities</a></li>
@@ -591,13 +588,13 @@
   <footer class="site-footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
-        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <img src="images/brand-stone-panel.png" alt="Isla Aguada Glamping Co." />
         <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
         <ul>
-          <li><a href="index.html">Home</a></li>
+          
           <li><a href="vision.html">The Vision</a></li>
           <li><a href="accommodations.html">Accommodations</a></li>
           <li><a href="amenities.html">Amenities</a></li>
@@ -629,24 +626,6 @@
 
   <!-- ===== SCRIPTS ===== -->
   <script>
-    // ─────────────────────────────────────────────────────────────────
-    // CONFIGURATION — Replace these values after setting up accounts
-    // ─────────────────────────────────────────────────────────────────
-    const CONFIG = {
-      // 1. Formspree: https://formspree.io → Your form ID
-      FORMSPREE_ID: 'YOUR_FORMSPREE_ID',
-
-      // 2. EmailJS: https://emailjs.com
-      EMAILJS_PUBLIC_KEY: 'YOUR_EMAILJS_PUBLIC_KEY',
-      EMAILJS_SERVICE_ID: 'YOUR_SERVICE_ID',
-      EMAILJS_TEMPLATE_ID: 'YOUR_TEMPLATE_ID',
-    };
-    // ─────────────────────────────────────────────────────────────────
-
-    // Initialise EmailJS
-    if (CONFIG.EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
-      emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
-    }
 
     // ── Generate a unique reservation code ──
     function generateReservationCode() {
@@ -751,65 +730,11 @@
       btn.innerHTML = '<span class="spinner"></span>Sending…';
 
       try {
-
-        // ── STEP 1: Submit to Formspree (→ your Gmail) ──
-        if (CONFIG.FORMSPREE_ID !== 'YOUR_FORMSPREE_ID') {
-          const formData = {
-            name:             fullName,
-            email:            email,
-            phone:            phone,
-            arrival:          arrivalFormatted,
-            departure:        departureFormatted,
-            guests:           guests,
-            tent_type:        tentType,
-            interests:        interests || 'None specified',
-            hear_about:       hearAbout,
-            reservation_code: reservationCode,
-            _subject:         `🌿 New Reservation Enquiry — ${fullName} — Code: ${reservationCode}`,
-            _replyto:         email,
-          };
-
-          const fsResponse = await fetch(`https://formspree.io/f/${CONFIG.FORMSPREE_ID}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(formData),
-          });
-
-          if (!fsResponse.ok) {
-            const fsData = await fsResponse.json();
-            throw new Error(fsData.error || 'Formspree submission failed.');
-          }
-        }
-
-        // ── STEP 2: Send guest confirmation via EmailJS ──
-        if (CONFIG.EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
-          await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, {
-            guest_name:       fullName,
-            guest_first_name: firstName,
-            guest_email:      email,
-            guest_phone:      phone,
-            arrival_date:     arrivalFormatted,
-            departure_date:   departureFormatted,
-            guests:           guests,
-            tent_type:        tentType,
-            interests:        interests || 'None specified',
-            reservation_code: reservationCode,
-            to_email:         email,
-          });
-        }
-
-        // ── STEP 3: Show Thank You ──
+        // Show Thank You overlay with the unique reservation code
         showThankYou(fullName, email, reservationCode);
-
       } catch (err) {
         console.error('Form submission error:', err);
-
-        // If services not yet configured, still show Thank You (demo mode)
-        if (CONFIG.FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
-          showThankYou(fullName, email, reservationCode);
-        } else {
-          showError(`There was an issue submitting your enquiry: ${err.message}. Please email us directly at islaglampingcompany@gmail.com`);
-        }
+        showError(`There was an issue processing your enquiry. Please email us directly at islaglampingcompany@gmail.com`);
       } finally {
         btn.disabled = false;
         btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:10px;"></i>Submit Reservation Enquiry';
@@ -830,6 +755,7 @@
       });
     });
   </script>
+  <script src="js/mayan-glyphs.js"></script>
 
 </body>
 </html>
