@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isla Aguada Glamping Co. — Where the Jungle Meets the Sea</title>
+  <meta name="description" content="A world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico. 40 luxury safari tents and 10 Ultra VIP tents set within a pristine jungle corridor along the Gulf of Mexico." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <!-- Row 1: Logo + Mobile Toggle -->
+    <div class="nav-row-1">
+      <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
+        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
+        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Row 2: Links -->
+    <div class="nav-row-2">
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="vision.html">The Vision</a></li>
+        <li><a href="accommodations.html">Accommodations</a></li>
+        <li><a href="amenities.html">Amenities</a></li>
+        <li><a href="wellness.html">Wellness</a></li>
+        <li><a href="dining.html">Dining &amp; Beach</a></li>
+        <li><a href="masterplan.html">Master Plan</a></li>
+        <li><a href="safety.html">Safety</a></li>
+        <li><a href="nature.html">Nature</a></li>
+        <li><a href="sustainability.html">Sustainability</a></li>
+        <li><a href="arrival.html">Arrival</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="page-wrap">
+
+    <!-- HERO -->
+    <section class="hero" id="hero" aria-label="Hero section">
+      <div class="hero-bg" role="img" aria-label="Jungle landscape of Campeche, Mexico"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+
+      <div class="hero-content">
+        <h1 class="hero-tagline">Where the Jungle Meets the Sea</h1>
+        <p class="hero-coords">18°56′16.5″N &nbsp;·&nbsp; 91°18′24.7″W</p>
+
+        <a href="vision.html" class="hero-cta">Discover the Vision</a>
+      </div>
+
+      <div class="hero-scroll" aria-hidden="true">
+        <span>Explore</span>
+        <div class="scroll-arrow"></div>
+      </div>
+    </section>
+
+    <!-- INTRO STRIP -->
+    <section class="intro-strip" id="intro">
+      <p>
+        Nestled between the ancient jungle and the shimmering Gulf of Mexico on the coast of Campeche, 
+        Isla Aguada Glamping Co. is a vision of unparalleled luxury in the wild — where expedition 
+        romance meets the finest comforts of the modern world.
+      </p>
+
+      <!-- ICON PILLARS -->
+      <div class="home-pillars" style="
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 0;
+        margin-top: 52px;
+        border-top: 1px solid rgba(201,168,76,0.25);
+        border-bottom: 1px solid rgba(201,168,76,0.25);
+        padding: 36px 0 32px;
+      ">
+
+        <!-- ECO -->
+        <div class="home-pillars__item" style="flex: 1; text-align: center; padding: 0 28px; border-right: 1px solid rgba(201,168,76,0.2);">
+          <div style="width: 52px; height: 52px; margin: 0 auto 16px; border: 1px solid rgba(201,168,76,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-leaf" style="font-size: 1.3rem; color: var(--aged-gold);"></i>
+          </div>
+          <p style="font-family: var(--font-heading); font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 8px;">Eco</p>
+          <p style="font-family: var(--font-body); font-size: 0.78rem; color: rgba(250,240,220,0.55); line-height: 1.6; font-style: italic;">In harmony<br/>with nature</p>
+        </div>
+
+        <!-- SUSTAINABILITY -->
+        <div class="home-pillars__item" style="flex: 1; text-align: center; padding: 0 28px; border-right: 1px solid rgba(201,168,76,0.2);">
+          <div style="width: 52px; height: 52px; margin: 0 auto 16px; border: 1px solid rgba(201,168,76,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-sun" style="font-size: 1.3rem; color: var(--aged-gold);"></i>
+          </div>
+          <p style="font-family: var(--font-heading); font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 8px;">Sustainability</p>
+          <p style="font-family: var(--font-body); font-size: 0.78rem; color: rgba(250,240,220,0.55); line-height: 1.6; font-style: italic;">Solar powered<br/>&amp; self-sufficient</p>
+        </div>
+
+        <!-- GLAMPING -->
+        <div class="home-pillars__item" style="flex: 1; text-align: center; padding: 0 28px; border-right: 1px solid rgba(201,168,76,0.2);">
+          <div style="width: 52px; height: 52px; margin: 0 auto 16px; border: 1px solid rgba(201,168,76,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-campground" style="font-size: 1.3rem; color: var(--aged-gold);"></i>
+          </div>
+          <p style="font-family: var(--font-heading); font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 8px;">Glamping</p>
+          <p style="font-family: var(--font-body); font-size: 0.78rem; color: rgba(250,240,220,0.55); line-height: 1.6; font-style: italic;">Luxury safari tents<br/>in the wild</p>
+        </div>
+
+        <!-- PUEBLO MAGICO -->
+        <div class="home-pillars__item" style="flex: 1; text-align: center; padding: 0 28px;">
+          <div style="width: 52px; height: 52px; margin: 0 auto 16px; border: 1px solid rgba(201,168,76,0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <i class="fa-solid fa-star" style="font-size: 1.3rem; color: var(--aged-gold);"></i>
+          </div>
+          <p style="font-family: var(--font-heading); font-size: 0.58rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 8px;">Pueblo M&aacute;gico</p>
+          <p style="font-family: var(--font-body); font-size: 0.78rem; color: rgba(250,240,220,0.55); line-height: 1.6; font-style: italic;">Designated<br/>Magic Town</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FEATURES GRID -->
+    <section class="section section--dark" id="features">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">An Expedition into Luxury</span>
+          <h2>The Experience</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>Inspired by the golden age of safari and the romance of El Dorado expeditions, every detail 
+             of Isla Aguada is designed to transport you to a world of discovery and wonder.</p>
+        </header>
+
+        <div class="features-grid">
+          <article class="feature-item">
+            <span class="feature-icon">🌿</span>
+            <h3>Jungle Immersion</h3>
+            <p>40 luxury safari tents and 10 exclusive Ultra VIP tents hidden within a pristine jungle corridor, each elevated on dark mahogany walkways.</p>
+          </article>
+          <article class="feature-item">
+            <span class="feature-icon">🌊</span>
+            <h3>Gulf Frontage</h3>
+            <p>Direct access to the turquoise waters of the Gulf of Mexico along our private beach zone.</p>
+          </article>
+          <article class="feature-item">
+            <span class="feature-icon">🏛️</span>
+            <h3>Grand Reception</h3>
+            <p>A magnificent thatched pavilion housing a full resort bar, concierge, and 100+ capacity social lounge.</p>
+          </article>
+          <article class="feature-item">
+            <span class="feature-icon">🍹</span>
+            <h3>Mas'Tul Bar &amp; Restaurant</h3>
+            <p>A legendary circular two-storey thatched pavilion — fire shows, live music, belly dancers, world-class cocktails and panoramic Gulf views until 2 AM.</p>
+          </article>
+          <article class="feature-item">
+            <span class="feature-icon">⛺</span>
+            <h3>Safari Tents</h3>
+            <p>Curved canvas roofs, Carrara marble floors, accordion glass doors, Edison lighting and king-sized beds in every tent.</p>
+          </article>
+          <article class="feature-item">
+            <span class="feature-icon">🦋</span>
+            <h3>Campeche, Mexico</h3>
+            <p>Set on a UNESCO-recognised coastline rich with endemic wildlife, mangroves, and the legends of the ancient Maya.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREVIEW GRID -->
+    <section class="section" id="preview" style="padding-bottom: 0;">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">A Glimpse Within</span>
+          <h2>Explore the Resort</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+        </header>
+      </div>
+
+      <div class="preview-grid" style="padding: 0 20px;">
+        <article class="preview-card">
+          <img src="images/tent-exterior-day.jpg" alt="Luxury safari tent exterior at Isla Aguada Glamping Co." loading="lazy" />
+          <div class="preview-card-overlay">
+            <h3>Accommodations</h3>
+            <p>Private safari tents in the jungle</p>
+            <a href="accommodations.html" class="preview-card-link">View Tents →</a>
+          </div>
+        </article>
+        <article class="preview-card">
+          <img src="images/beach-bar.jpg" alt="Mas'Tul Bar and Restaurant at Isla Aguada" loading="lazy" />
+          <div class="preview-card-overlay">
+            <h3>Mas'Tul Bar &amp; Restaurant</h3>
+            <p>Fire shows · Live music · Gulf dining · Open until 2 AM</p>
+            <a href="dining.html" class="preview-card-link">Enter Mas'Tul →</a>
+          </div>
+        </article>
+        <article class="preview-card">
+          <img src="images/grand-reception.jpg" alt="Grand reception interior with thatched ceiling and bar" loading="lazy" />
+          <div class="preview-card-overlay">
+            <h3>Amenities</h3>
+            <p>Grand reception &amp; resort services</p>
+            <a href="amenities.html" class="preview-card-link">View Amenities →</a>
+          </div>
+        </article>
+        <article class="preview-card">
+          <img src="images/aerial-site-plan.jpg" alt="Aerial site plan of Isla Aguada Glamping Co." loading="lazy" />
+          <div class="preview-card-overlay">
+            <h3>Master Plan</h3>
+            <p>The full resort site plan</p>
+            <a href="masterplan.html" class="preview-card-link">View Plan →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PULL QUOTE -->
+    <!-- STAFF — CONCIERGE -->
+    <section style="display:grid; grid-template-columns:1fr 1fr; min-height:480px;">
+      <div style="overflow:hidden;">
+        <img src="images/staff-concierge.jpg" alt="Isla Aguada Glamping Co. concierge welcoming guests at the Grand Reception" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:center top;" />
+      </div>
+      <div style="background:var(--dark-mahogany); padding:64px 56px; display:flex; flex-direction:column; justify-content:center;">
+        <span style="font-family:var(--font-heading); font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:18px;">Our People</span>
+        <h3 style="font-family:var(--font-heading); font-size:clamp(1.1rem,2.2vw,1.6rem); letter-spacing:0.1em; text-transform:uppercase; color:var(--parchment); margin-bottom:24px; line-height:1.3;">Every Guest.<br/>Personally Welcomed.</h3>
+        <div style="width:40px; height:2px; background:var(--aged-gold); margin-bottom:24px;"></div>
+        <p style="font-size:0.96rem; color:rgba(250,240,220,0.82); line-height:1.9; margin-bottom:20px;">
+          From the moment you arrive, you are known by name. Our concierge team — trained to the standard of the world's finest properties — are your guides, your fixers, your companions throughout every day of your stay.
+        </p>
+        <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(201,168,76,0.7);">Isla Aguada Glamping Co. · Guest Services</span>
+      </div>
+    </section>
+
+    <section class="pull-quote">
+      <blockquote>
+        An extraordinary place where the dense jungle gives way to an endless horizon of turquoise sea — 
+        a sanctuary conceived in the spirit of discovery, built for those who seek beauty beyond the ordinary.
+      </blockquote>
+      <cite>— The Founders, Isla Aguada Glamping Co.</cite>
+    </section>
+
+    <!-- CTA STRIP -->
+    <section class="section section--cream" id="cta-strip" style="text-align: center;">
+      <div class="container">
+        <span class="section-tag">Campeche, Gulf of Mexico</span>
+        <h2 style="font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.4rem); color: var(--jungle-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 24px;">
+          A Resort Born from Vision
+        </h2>
+        <div class="gold-divider" style="margin-bottom: 28px;"><div class="diamond"></div></div>
+        <p style="max-width: 640px; margin: 0 auto 40px; color: var(--text-mid); line-height: 1.85; font-size: 1rem;">
+          Discover every facet of Isla Aguada Glamping Co. — from the architecture of our private tents 
+          to the masterplan of our dual-zone resort property divided by Federal Highway 180.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="vision.html" class="btn-gold">The Vision</a>
+          <a href="masterplan.html" class="btn-outline">View Site Plan</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="vision.html">The Vision</a></li>
+          <li><a href="accommodations.html">Accommodations</a></li>
+          <li><a href="amenities.html">Amenities</a></li>
+          <li><a href="wellness.html">Wellness &amp; Longevity</a></li>
+          <li><a href="dining.html">Dining &amp; Beach</a></li>
+          <li><a href="masterplan.html">Master Plan</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="nature.html">Nature &amp; Conservation</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="arrival.html">Arrival</a></li>
+          <li><a href="contact.html">Contact &amp; Reserve</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Location</h4>
+        <address>
+          Isla Aguada<br />
+          Campeche, Mexico<br /><br />
+          18°56′16.5″N<br />
+          91°18′24.7″W
+        </address>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2025 Isla Aguada Glamping Co. All rights reserved.</p>
+      <p>Campeche, Gulf of Mexico &nbsp;·&nbsp; 18°56′16.5″N 91°18′24.7″W</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    // Mobile nav toggle
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+
+    // Close nav when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

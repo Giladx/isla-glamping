@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wellness &amp; Longevity — Isla Aguada Glamping Co.</title>
+  <meta name="description" content="World-class wellness at Isla Aguada Glamping Co. — Nutrition Therapy, Detox Programmes, Stem Cell Treatments, Functional Medicine, Spa, and Longevity Protocols in the heart of the Campeche jungle." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+  <style>
+    /* ── WELLNESS PAGE STYLES ── */
+    .wellness-hero-text {
+      font-family: var(--font-heading);
+      font-size: clamp(0.6rem, 1.2vw, 0.75rem);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    /* Pillar cards */
+    .wellness-pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 48px;
+    }
+    @media (max-width: 900px) {
+      .wellness-pillar-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .wellness-pillar-grid { grid-template-columns: 1fr; }
+    }
+    .wellness-pillar {
+      background: var(--jungle-green);
+      padding: 44px 36px;
+      border: 1px solid rgba(201,168,76,0.15);
+      transition: border-color 0.3s;
+    }
+    .wellness-pillar:nth-child(even) {
+      background: var(--dark-mahogany);
+    }
+    .wellness-pillar:hover { border-color: rgba(201,168,76,0.55); }
+    .wellness-pillar .pillar-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 16px;
+      color: var(--aged-gold);
+    }
+    .wellness-pillar h3 {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      margin-bottom: 14px;
+    }
+    .wellness-pillar p {
+      font-size: 0.9rem;
+      color: rgba(250,240,220,0.82);
+      line-height: 1.85;
+    }
+
+    /* Therapy component rows */
+    .therapy-block {
+      background: rgba(201,168,76,0.05);
+      border-left: 3px solid var(--aged-gold);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 32px 36px;
+      margin-bottom: 2px;
+    }
+    .therapy-block h4 {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      margin-bottom: 10px;
+    }
+    .therapy-block p {
+      font-size: 0.92rem;
+      color: rgba(250,240,220,0.88);
+      line-height: 1.85;
+      margin: 0;
+    }
+    .therapy-block .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .therapy-tag {
+      font-family: var(--font-heading);
+      font-size: 0.55rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      border: 1px solid rgba(201,168,76,0.4);
+      padding: 4px 12px;
+      border-radius: 2px;
+    }
+
+    /* Treatment cards */
+    .treatment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 0;
+    }
+    @media (max-width: 700px) {
+      .treatment-grid { grid-template-columns: 1fr; }
+    }
+    .treatment-card {
+      padding: 44px 40px;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .treatment-card .tc-icon {
+      font-size: 2.2rem;
+      margin-bottom: 18px;
+      display: block;
+      color: var(--aged-gold);
+    }
+    .treatment-card h3 {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      margin-bottom: 14px;
+    }
+    .treatment-card p {
+      font-size: 0.91rem;
+      color: rgba(250,240,220,0.82);
+      line-height: 1.85;
+    }
+    .treatment-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0 0;
+    }
+    .treatment-card ul li {
+      font-size: 0.86rem;
+      color: rgba(250,240,220,0.72);
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+    .treatment-card ul li::before {
+      content: '◆';
+      font-size: 0.4rem;
+      color: var(--aged-gold);
+      position: absolute;
+      left: 0;
+      top: 9px;
+    }
+
+    /* Detox programme band */
+    .detox-band {
+      background: linear-gradient(135deg, #0d1f0f 0%, #1a3a1e 50%, #0d1f0f 100%);
+      border-top: 2px solid var(--aged-gold);
+      border-bottom: 2px solid var(--aged-gold);
+      padding: 80px 0;
+      color: rgba(250,240,220,0.88);
+    }
+    .detox-band .section-header p {
+      color: rgba(250,240,220,0.88) !important;
+    }
+    .detox-protocol h4 {
+      color: rgba(250,240,220,0.92) !important;
+    }
+    .detox-protocol p {
+      color: rgba(250,240,220,0.72) !important;
+    }
+    .detox-protocol-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 48px;
+    }
+    @media (max-width: 900px) {
+      .detox-protocol-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 560px) {
+      .detox-protocol-grid { grid-template-columns: 1fr; }
+    }
+    .detox-protocol {
+      padding: 36px 28px;
+      text-align: center;
+      border: 1px solid rgba(201,168,76,0.25);
+      background: rgba(0,0,0,0.3);
+    }
+    .detox-protocol .dp-num {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      color: var(--aged-gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .detox-protocol h4 {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      margin-bottom: 12px;
+    }
+    .detox-protocol p {
+      font-size: 0.82rem;
+      color: rgba(250,240,220,0.7);
+      line-height: 1.75;
+    }
+
+    /* Stem cell section */
+    .stemcell-section {
+      background: #0a0a0a;
+      padding: 80px 0;
+      border-top: 1px solid rgba(201,168,76,0.3);
+      color: rgba(250,240,220,0.88);
+    }
+    .stemcell-section .section-header p {
+      color: rgba(250,240,220,0.88) !important;
+    }
+
+    /* Activity cards */
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 44px;
+    }
+    @media (max-width: 800px) {
+      .activity-grid { grid-template-columns: 1fr; }
+    }
+    .activity-card {
+      background: var(--jungle-green);
+      padding: 44px 36px;
+      border: 1px solid rgba(201,168,76,0.15);
+      text-align: center;
+    }
+    .activity-card:nth-child(even) {
+      background: var(--dark-mahogany);
+    }
+    .activity-card .ac-icon {
+      font-size: 2.4rem;
+      display: block;
+      margin-bottom: 18px;
+      color: var(--aged-gold);
+    }
+    .activity-card h3 {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      margin-bottom: 12px;
+    }
+    .activity-card p {
+      font-size: 0.9rem;
+      color: rgba(250,240,220,0.82);
+      line-height: 1.85;
+    }
+
+    /* Approach strip */
+    .approach-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      margin-top: 44px;
+    }
+    .approach-tag {
+      background: var(--jungle-green);
+      border: 1px solid rgba(201,168,76,0.35);
+      padding: 14px 24px;
+      flex: 1;
+      min-width: 150px;
+      text-align: center;
+    }
+    .approach-tag span {
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .approach-tag p {
+      font-size: 0.8rem;
+      color: rgba(250,240,220,0.82);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    /* Promise banner */
+    .wellness-promise {
+      background: var(--aged-gold);
+      padding: 60px 48px;
+      text-align: center;
+    }
+    .wellness-promise h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--dark-mahogany);
+      margin-bottom: 18px;
+    }
+    .wellness-promise p {
+      font-size: 1rem;
+      color: var(--dark-mahogany);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.85;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-row-1">
+      <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
+        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
+        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-row-2">
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="vision.html">The Vision</a></li>
+        <li><a href="accommodations.html">Accommodations</a></li>
+        <li><a href="amenities.html">Amenities</a></li>
+        <li><a href="wellness.html" class="active">Wellness</a></li>
+        <li><a href="dining.html">Dining &amp; Beach</a></li>
+        <li><a href="masterplan.html">Master Plan</a></li>
+        <li><a href="safety.html">Safety</a></li>
+        <li><a href="nature.html">Nature</a></li>
+        <li><a href="sustainability.html">Sustainability</a></li>
+        <li><a href="arrival.html">Arrival</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="page-wrap">
+
+    <!-- ═══ HERO ═══ -->
+    <section class="page-hero" aria-label="Wellness page hero">
+      <div class="page-hero-bg" style="background-image: url('images/hero-jungle.jpg'); filter: brightness(0.38);" role="img" aria-label="Jungle canopy at Isla Aguada"></div>
+      <div class="page-hero-content">
+        <span class="wellness-hero-text">Mind · Body · Longevity</span>
+        <h1>Wellness &amp; Longevity</h1>
+        <p>Where Ancient Jungle Wisdom Meets Cutting-Edge Science</p>
+      </div>
+    </section>
+
+    <!-- ═══ INTRO ═══ -->
+    <section class="section" id="wellness-intro">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Total Transformation</span>
+          <h2>A New Standard in Wellness</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>
+            Isla Aguada Glamping Co. offers one of the most comprehensive and forward-thinking 
+            wellness programmes in the Americas. Far removed from the noise of modern life, 
+            surrounded by pristine jungle, clean Gulf air, and the stillness of Laguna de Términos, 
+            this is the ideal environment for genuine transformation — cellular, nutritional, 
+            physical, and spiritual. We partner with leading practitioners in Nutrition Therapy, 
+            Functional Medicine, Detoxification, Stem Cell Science, and Integrative Wellbeing 
+            to deliver results that last long after you leave.
+          </p>
+        </header>
+
+        <!-- Six Wellness Pillars -->
+        <div class="wellness-pillar-grid">
+
+          <div class="wellness-pillar">
+            <i class="fas fa-leaf pillar-icon"></i>
+            <h3>Nutrition Therapy</h3>
+            <p>Personalised programmes designed by Registered Dietitians — from detox plans and weight management to food-as-medicine protocols tailored precisely to your biology.</p>
+          </div>
+
+          <div class="wellness-pillar">
+            <i class="fas fa-flask pillar-icon"></i>
+            <h3>Detox &amp; Cleanse</h3>
+            <p>Full-body detoxification protocols — juice fasts, cellular cleansing, liver support, lymphatic drainage, and colon hydrotherapy — guided by clinical specialists.</p>
+          </div>
+
+          <div class="wellness-pillar">
+            <i class="fas fa-dna pillar-icon"></i>
+            <h3>Stem Cell &amp; Regenerative</h3>
+            <p>Access to cutting-edge regenerative therapies including stem cell injections, NAD⁺ infusions, peptide protocols, and longevity optimisation programmes.</p>
+          </div>
+
+          <div class="wellness-pillar">
+            <i class="fas fa-heartbeat pillar-icon"></i>
+            <h3>Functional Medicine</h3>
+            <p>Root-cause diagnostics — comprehensive blood panels, metabolic analysis, hormone profiling, and microbiome testing — to identify and resolve underlying imbalances.</p>
+          </div>
+
+          <div class="wellness-pillar">
+            <i class="fas fa-spa pillar-icon"></i>
+            <h3>Spa &amp; Body Therapies</h3>
+            <p>In-jungle spa treatments, deep-tissue massage, lymphatic therapy, cupping, Mayan herbal wraps, and sound healing — performed on your private pavilion deck.</p>
+          </div>
+
+          <div class="wellness-pillar">
+            <i class="fas fa-sun pillar-icon"></i>
+            <h3>Mind &amp; Movement</h3>
+            <p>Sunrise yoga on the beach, breathwork, guided meditation, shamanic Mayan ceremonies, forest bathing, and structured movement programmes for every level.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ NUTRITION THERAPY ═══ -->
+    <section class="section section--dark" id="nutrition-therapy">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Food as Medicine</span>
+          <h2>Nutrition Therapy</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>
+            Your nutritional health is the foundation of everything. Our team of Registered 
+            Dietitians, clinical nutritionists, and functional medicine practitioners work 
+            together to build a complete picture of your metabolic and nutritional landscape — 
+            then create a precision programme designed exclusively for you.
+          </p>
+        </header>
+
+        <!-- Five core components -->
+        <div style="margin-top: 48px;">
+
+          <div class="therapy-block">
+            <h4><i class="fas fa-user-md" style="margin-right: 10px; color: var(--aged-gold);"></i>Personalised Consultations</h4>
+            <p>
+              One-on-one private sessions with a Registered Dietitian or clinical nutritionist. 
+              We begin with a comprehensive review of your complete health history, lifestyle, 
+              sleep patterns, stress markers, digestive health, and wellness goals. No two 
+              consultations are the same — this is a detailed conversation that forms the 
+              foundation of your entire programme.
+            </p>
+            <div class="tag-row">
+              <span class="therapy-tag">Registered Dietitian</span>
+              <span class="therapy-tag">Clinical Nutritionist</span>
+              <span class="therapy-tag">Health History Review</span>
+              <span class="therapy-tag">Goal Setting</span>
+            </div>
+          </div>
+
+          <div class="therapy-block">
+            <h4><i class="fas fa-clipboard-list" style="margin-right: 10px; color: var(--aged-gold);"></i>Individualised Meal Plans</h4>
+            <p>
+              Fully customised daily menus crafted by our in-house nutritionist and Executive Chef 
+              working in tandem. Your plan may be calibrated for cellular detoxification, 
+              anti-inflammatory healing, weight management, metabolic reset, or management 
+              of specific food sensitivities and allergies. Every ingredient comes from our 
+              own organic garden or is sourced fresh from local producers that morning.
+            </p>
+            <div class="tag-row">
+              <span class="therapy-tag">Detox Menus</span>
+              <span class="therapy-tag">Weight Management</span>
+              <span class="therapy-tag">Food Sensitivity Protocols</span>
+              <span class="therapy-tag">Anti-Inflammatory</span>
+              <span class="therapy-tag">Organic &amp; Farm-to-Fork</span>
+            </div>
+          </div>
+
+          <div class="therapy-block">
+            <h4><i class="fas fa-vial" style="margin-right: 10px; color: var(--aged-gold);"></i>Nutritional Assessments &amp; Diagnostics</h4>
+            <p>
+              Comprehensive diagnostic testing to establish your baseline and identify hidden 
+              deficiencies or metabolic imbalances. Available assessments include comprehensive 
+              blood panels (micronutrient, hormone, thyroid, inflammation markers), 3D body 
+              composition scans, metabolic rate analysis, food intolerance and allergy testing, 
+              gut microbiome profiling, and toxin load screenings. Results are reviewed in a 
+              private consultation and form the basis of your personalised protocol.
+            </p>
+            <div class="tag-row">
+              <span class="therapy-tag">Comprehensive Blood Work</span>
+              <span class="therapy-tag">3D Body Composition Scan</span>
+              <span class="therapy-tag">Metabolic Analysis</span>
+              <span class="therapy-tag">Microbiome Profiling</span>
+              <span class="therapy-tag">Toxin Load Screening</span>
+              <span class="therapy-tag">Hormone Panel</span>
+            </div>
+          </div>
+
+          <div class="therapy-block">
+            <h4><i class="fas fa-balance-scale" style="margin-right: 10px; color: var(--aged-gold);"></i>Dietary Guidance — Food as Medicine</h4>
+            <p>
+              Beyond meal plans, our practitioners educate and empower. You will work through 
+              meal balancing, portion calibration, macronutrient understanding, the science of 
+              nutrient timing, and the concept of food as medicine — drawing on both modern 
+              clinical nutrition and the ancient Mayan traditions of healing plants and herbs 
+              that surround you in this jungle.
+            </p>
+            <div class="tag-row">
+              <span class="therapy-tag">Meal Balancing</span>
+              <span class="therapy-tag">Portion Control</span>
+              <span class="therapy-tag">Nutrient Timing</span>
+              <span class="therapy-tag">Food as Medicine</span>
+              <span class="therapy-tag">Mayan Healing Plants</span>
+            </div>
+          </div>
+
+          <div class="therapy-block">
+            <h4><i class="fas fa-home" style="margin-right: 10px; color: var(--aged-gold);"></i>Post-Retreat Planning</h4>
+            <p>
+              Transformation should not end when you check out. Every guest departs with a 
+              personalised Post-Retreat Nutrition Blueprint — a practical, actionable guide 
+              to maintaining and building on the progress made during your stay. 
+              This includes a 30-day home meal framework, supplement recommendations, 
+              a "Pantry Edit" guide, and a 2-week remote follow-up consultation with your dietitian.
+            </p>
+            <div class="tag-row">
+              <span class="therapy-tag">30-Day Home Plan</span>
+              <span class="therapy-tag">Supplement Protocol</span>
+              <span class="therapy-tag">Pantry Edit Guide</span>
+              <span class="therapy-tag">Remote Follow-Up</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ DETOX PROGRAMMES ═══ -->
+    <section class="detox-band" id="detox">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Cellular Reset</span>
+          <h2 style="color: var(--parchment);">Detox &amp; Cleanse Programmes</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>
+            True detoxification is a clinical process, not a trend. Our medically supervised 
+            detox programmes are designed to systematically reduce the toxic burden on your 
+            liver, gut, lymphatic system, and cells — restoring clarity, energy, and metabolic function. 
+            Each programme is overseen by a physician and tailored to your diagnostic results.
+          </p>
+        </header>
+
+        <div class="detox-protocol-grid">
+          <div class="detox-protocol">
+            <span class="dp-num">3</span>
+            <h4>Day Reset</h4>
+            <p>Intensive juice fast, lymphatic massage, infrared sauna, and supervised supplement protocol for rapid cellular cleansing.</p>
+          </div>
+          <div class="detox-protocol">
+            <span class="dp-num">7</span>
+            <h4>Day Deep Cleanse</h4>
+            <p>Full liver support protocol, colon hydrotherapy, raw and vegan nutrition, daily body work, and guided fasting windows.</p>
+          </div>
+          <div class="detox-protocol">
+            <span class="dp-num">14</span>
+            <h4>Day Transformation</h4>
+            <p>Comprehensive metabolic reset combining detox nutrition, functional medicine, movement, and mind-body practices.</p>
+          </div>
+          <div class="detox-protocol">
+            <span class="dp-num">21</span>
+            <h4>Day Longevity Protocol</h4>
+            <p>Full regenerative programme — detox, stem cell support, hormone balancing, microbiome restoration, and lifestyle re-engineering.</p>
+          </div>
+        </div>
+
+        <!-- Detox modalities -->
+        <div style="margin-top: 2px; display: grid; grid-template-columns: repeat(3,1fr); gap: 2px;">
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(201,168,76,0.2); padding: 36px 32px; text-align:center;">
+            <i class="fas fa-tint" style="font-size:1.8rem; color:var(--aged-gold); display:block; margin-bottom:14px;"></i>
+            <h4 style="font-family:var(--font-heading); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:10px;">Cold-Pressed Juice Fasts</h4>
+            <p style="font-size:0.83rem; color:rgba(250,240,220,0.68); line-height:1.75;">Organic, freshly pressed from our own garden and local farms — every bottle made on-site each morning.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(201,168,76,0.2); padding: 36px 32px; text-align:center;">
+            <i class="fas fa-wind" style="font-size:1.8rem; color:var(--aged-gold); display:block; margin-bottom:14px;"></i>
+            <h4 style="font-family:var(--font-heading); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:10px;">Colon Hydrotherapy</h4>
+            <p style="font-size:0.83rem; color:rgba(250,240,220,0.68); line-height:1.75;">Clinically administered by certified colon hydrotherapists in a private, medically equipped suite.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(201,168,76,0.2); padding: 36px 32px; text-align:center;">
+            <i class="fas fa-fire" style="font-size:1.8rem; color:var(--aged-gold); display:block; margin-bottom:14px;"></i>
+            <h4 style="font-family:var(--font-heading); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:10px;">Infrared Sauna &amp; Sweat Therapy</h4>
+            <p style="font-size:0.83rem; color:rgba(250,240,220,0.68); line-height:1.75;">Private infrared sauna cabins positioned within the jungle — deep tissue heat to accelerate toxin elimination.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(201,168,76,0.2); padding: 36px 32px; text-align:center;">
+            <i class="fas fa-hand-holding-heart" style="font-size:1.8rem; color:var(--aged-gold); display:block; margin-bottom:14px;"></i>
+            <h4 style="font-family:var(--font-heading); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:10px;">Lymphatic Drainage</h4>
+            <p style="font-size:0.83rem; color:rgba(250,240,220,0.68); line-height:1.75;">Manual lymphatic drainage massage by certified therapists to accelerate the removal of metabolic waste.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(201,168,76,0.2); padding: 36px 32px; text-align:center;">
+            <i class="fas fa-moon" style="font-size:1.8rem; color:var(--aged-gold); display:block; margin-bottom:14px;"></i>
+            <h4 style="font-family:var(--font-heading); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:10px;">Intermittent &amp; Extended Fasting</h4>
+            <p style="font-size:0.83rem; color:rgba(250,240,220,0.68); line-height:1.75;">Medically supervised fasting windows — 16:8, 24hr, and extended protocols — to activate autophagy and cellular repair.</p>
+          </div>
+          <div style="background: rgba(0,0,0,0.4); border: 1px solid rgba(201,168,76,0.2); padding: 36px 32px; text-align:center;">
+            <i class="fas fa-seedling" style="font-size:1.8rem; color:var(--aged-gold); display:block; margin-bottom:14px;"></i>
+            <h4 style="font-family:var(--font-heading); font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:10px;">Mayan Herbal Cleansing</h4>
+            <p style="font-size:0.83rem; color:rgba(250,240,220,0.68); line-height:1.75;">Traditional Mayan plant medicine — sourced from the surrounding jungle — used for centuries to purify and restore the body.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ STEM CELL & REGENERATIVE ═══ -->
+    <section class="stemcell-section" id="stem-cell">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">The Future of Longevity</span>
+          <h2 style="color: var(--parchment);">Stem Cell &amp; Regenerative Medicine</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>
+            Mexico is at the forefront of regenerative medicine, operating with a clinical 
+            freedom and scientific rigour that puts it ahead of most Western nations. 
+            Isla Aguada partners with Mexico's leading regenerative medicine physicians to 
+            offer guests access to treatments that can genuinely reverse markers of biological 
+            ageing, accelerate healing, and restore cellular function. All treatments are 
+            administered by licensed medical doctors in our private medical suite.
+          </p>
+        </header>
+
+        <div class="treatment-grid" style="margin-top: 48px;">
+
+          <div class="treatment-card" style="background: #111;">
+            <i class="fas fa-dna tc-icon"></i>
+            <h3>Stem Cell Injections</h3>
+            <p>Mesenchymal stem cell therapies (MSC) administered by specialist physicians. Used to accelerate tissue repair, reduce systemic inflammation, restore joint function, and reverse markers of cellular ageing.</p>
+            <ul>
+              <li>IV Stem Cell Infusions</li>
+              <li>Joint &amp; Musculoskeletal Injections</li>
+              <li>Anti-Ageing Cellular Protocols</li>
+              <li>Post-surgical recovery acceleration</li>
+              <li>Autoimmune support protocols</li>
+            </ul>
+          </div>
+
+          <div class="treatment-card" style="background: #0d1a0d;">
+            <i class="fas fa-syringe tc-icon"></i>
+            <h3>NAD⁺ IV Infusions</h3>
+            <p>Nicotinamide Adenine Dinucleotide (NAD⁺) is the master molecule of cellular energy. IV infusions deliver a direct, profound boost to mitochondrial function, cognitive clarity, mood regulation, and anti-ageing processes.</p>
+            <ul>
+              <li>High-dose NAD⁺ Infusion Protocols</li>
+              <li>Brain restoration &amp; cognitive enhancement</li>
+              <li>Addiction and dependency recovery support</li>
+              <li>Energy and fatigue reversal</li>
+              <li>Combines with Vitamin C &amp; glutathione drips</li>
+            </ul>
+          </div>
+
+          <div class="treatment-card" style="background: #0d1a0d;">
+            <i class="fas fa-pills tc-icon"></i>
+            <h3>Peptide Therapy</h3>
+            <p>Targeted peptide protocols that signal the body to repair, regenerate, and optimise. From growth hormone secretagogues to gut healing and immune modulation peptides — precisely selected for your biological profile.</p>
+            <ul>
+              <li>BPC-157 — gut and tissue healing</li>
+              <li>Thymosin Alpha-1 — immune modulation</li>
+              <li>CJC-1295 / Ipamorelin — GH optimisation</li>
+              <li>Epithalon — telomere support &amp; longevity</li>
+              <li>Selank &amp; Semax — neurological support</li>
+            </ul>
+          </div>
+
+          <div class="treatment-card" style="background: #111;">
+            <i class="fas fa-broadcast-tower tc-icon"></i>
+            <h3>IV Nutrient Therapy</h3>
+            <p>Medical-grade intravenous nutrient infusions delivering vitamins, minerals, antioxidants, and amino acids directly into the bloodstream for 100% bioavailability — bypassing the digestive system entirely.</p>
+            <ul>
+              <li>Myers' Cocktail — the gold standard IV drip</li>
+              <li>High-dose Vitamin C</li>
+              <li>Glutathione — master antioxidant</li>
+              <li>Alpha-lipoic acid</li>
+              <li>Magnesium, zinc, B-complex protocols</li>
+            </ul>
+          </div>
+
+          <div class="treatment-card" style="background: #111;">
+            <i class="fas fa-chart-line tc-icon"></i>
+            <h3>Hormone Optimisation</h3>
+            <p>Comprehensive hormone profiling followed by precision bio-identical hormone replacement and optimisation protocols — for both men and women — to restore vitality, libido, mood, body composition, and sleep.</p>
+            <ul>
+              <li>Full hormone panel diagnostics</li>
+              <li>Testosterone optimisation (men &amp; women)</li>
+              <li>Thyroid function restoration</li>
+              <li>Oestrogen &amp; progesterone balancing</li>
+              <li>Cortisol &amp; adrenal support</li>
+            </ul>
+          </div>
+
+          <div class="treatment-card" style="background: #0d1a0d;">
+            <i class="fas fa-shield-alt tc-icon"></i>
+            <h3>Ozone Therapy</h3>
+            <p>Medical ozone therapy is one of the most powerful regenerative and anti-ageing tools available. Used to oxygenate tissues, destroy pathogens, stimulate cellular repair, and reduce systemic inflammation at the deepest level.</p>
+            <ul>
+              <li>Major Autohemotherapy (MAH)</li>
+              <li>Prolozone joint injections</li>
+              <li>Rectal insufflation protocols</li>
+              <li>Ozone saunas</li>
+              <li>Dental ozone treatments</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <!-- Medical note -->
+        <div style="margin-top: 2px; background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.3); padding: 44px 48px; text-align: center;">
+          <i class="fas fa-user-md" style="font-size:2rem; color:var(--aged-gold); display:block; margin-bottom:16px;"></i>
+          <span style="font-family:var(--font-heading); font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:12px;">Medical Oversight &amp; Safety</span>
+          <p style="font-family:var(--font-body); font-style:italic; font-size:1rem; color:rgba(250,240,220,0.88); max-width:760px; margin:0 auto; line-height:1.9;">
+            All regenerative and clinical treatments at Isla Aguada are administered exclusively by 
+            licensed medical doctors registered with the Mexican Ministry of Health (COFEPRIS). 
+            Every guest undergoes a thorough medical consultation and diagnostic workup before 
+            any clinical treatment begins. Your safety and outcomes are our absolute priority.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STAFF — NUTRITIONIST -->
+    <section style="display:grid; grid-template-columns:1fr 1fr; min-height:480px;">
+      <div style="overflow:hidden;">
+        <img src="images/staff-nutritionist.jpg" alt="Isla Aguada head nutritionist and chef with organic farm harvest" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:center;" />
+      </div>
+      <div style="background:#0a0a0a; padding:64px 56px; display:flex; flex-direction:column; justify-content:center; border-left:3px solid var(--aged-gold);">
+        <span style="font-family:var(--font-heading); font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:18px;">Our Nutrition Team</span>
+        <h3 style="font-family:var(--font-heading); font-size:clamp(1.1rem,2.2vw,1.6rem); letter-spacing:0.1em; text-transform:uppercase; color:var(--parchment); margin-bottom:24px; line-height:1.3;">Grown Here.<br/>Harvested Today.<br/>On Your Table Tonight.</h3>
+        <div style="width:40px; height:2px; background:var(--aged-gold); margin-bottom:24px;"></div>
+        <p style="font-size:0.96rem; color:rgba(250,240,220,0.82); line-height:1.9; margin-bottom:20px;">
+          Our Registered Dietitian and Executive Chef work as one — designing every plate around your personal health goals and the organic harvest of the morning. This is food as medicine. This is food as celebration.
+        </p>
+        <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(201,168,76,0.7);">Isla Aguada Glamping Co. · Nutrition &amp; Culinary</span>
+      </div>
+    </section>
+
+    <!-- ═══ NUTRITION ACTIVITIES ═══ -->
+    <section class="section section--dark" id="nutrition-activities">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Learn · Practice · Transform</span>
+          <h2>Nutrition-Focused Activities</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>
+            Knowledge is the most powerful supplement. Alongside your personal nutrition 
+            programme, we offer immersive educational experiences that equip you with the 
+            understanding and skills to continue your transformation at home — for life.
+          </p>
+        </header>
+
+        <div class="activity-grid">
+
+          <div class="activity-card">
+            <i class="fas fa-utensils ac-icon"></i>
+            <h3>Cooking Demonstrations &amp; Classes</h3>
+            <p>Hands-on sessions in our open-air jungle kitchen with our Executive Chef and Nutritionist working side by side. Learn to prepare organic, anti-inflammatory, and deeply nourishing meals using ingredients harvested from our garden that morning — from Mayan medicinal herbs to fresh Gulf seafood.</p>
+          </div>
+
+          <div class="activity-card">
+            <i class="fas fa-brain ac-icon"></i>
+            <h3>Nutritional Workshops</h3>
+            <p>Intimate group workshops covering the science and practice of optimal nutrition. Topics include mindful eating, the gut-brain connection, reducing systemic inflammation through diet, the microbiome and immunity, reading your blood work, and understanding the relationship between food and longevity.</p>
+          </div>
+
+          <div class="activity-card">
+            <i class="fas fa-shopping-basket ac-icon"></i>
+            <h3>The Pantry Edit</h3>
+            <p>A private one-on-one session with your dietitian where you learn exactly which foods to remove and which to add to your home kitchen. You leave with a personalised shopping guide, a list of foods that are actively harming you, and a practical framework for rebuilding your pantry around functional, healing foods.</p>
+          </div>
+
+          <div class="activity-card">
+            <i class="fas fa-glass-whiskey ac-icon"></i>
+            <h3>Cold-Press Juice &amp; Smoothie Bar</h3>
+            <p>A living, daily ritual — our sunrise juice and smoothie bar is staffed by our nutritionist each morning. Every blend is calibrated to your current programme phase: detox, immune boost, anti-inflammatory, energy, or hormone support. Learn to replicate each formula at home.</p>
+          </div>
+
+          <div class="activity-card">
+            <i class="fas fa-seedling ac-icon"></i>
+            <h3>Farm &amp; Garden Tours</h3>
+            <p>Walk the organic gardens and production areas of Isla Aguada with our Head Gardener and Nutritionist. Understand which plants and herbs hold medicinal value, how our food is grown without pesticides or chemicals, and how the ancient Mayan relationship with plants can be integrated into your daily life.</p>
+          </div>
+
+          <div class="activity-card">
+            <i class="fas fa-moon ac-icon"></i>
+            <h3>Mindful Eating &amp; Ritual</h3>
+            <p>Guided sessions on the practice of mindful eating — slowing down, tuning into hunger and satiation signals, understanding emotional eating patterns, and building a healthier relationship with food. Conducted in the jungle at sunrise or sunset, these sessions are as meditative as they are transformative.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ SPECIALISED APPROACHES ═══ -->
+    <section class="section section--dark" id="specialist-approaches">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Precision Protocols</span>
+          <h2>Specialised Nutrition Approaches</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>
+            Not one approach fits all. Our practitioners are trained across a wide spectrum of 
+            evidence-based and traditional nutritional philosophies — allowing us to match the 
+            right methodology to your biology, goals, and values.
+          </p>
+        </header>
+
+        <div class="approach-strip">
+          <div class="approach-tag">
+            <span>Plant-Forward</span>
+            <p>Whole-food plant-based protocols for inflammation reduction and longevity</p>
+          </div>
+          <div class="approach-tag">
+            <span>Raw &amp; Living Foods</span>
+            <p>Enzyme-rich raw food programmes for cellular regeneration</p>
+          </div>
+          <div class="approach-tag">
+            <span>Juice Fasting</span>
+            <p>Supervised cold-pressed juice fasts from 1 to 14 days</p>
+          </div>
+          <div class="approach-tag">
+            <span>Macrobiotic</span>
+            <p>Traditional Japanese macrobiotic whole-grain and plant protocols</p>
+          </div>
+          <div class="approach-tag">
+            <span>Ketogenic</span>
+            <p>Clinical ketogenic protocols for metabolic reset and neurological support</p>
+          </div>
+          <div class="approach-tag">
+            <span>Vegan &amp; Vegetarian</span>
+            <p>Nutritionally complete plant-based programmes with full supplement support</p>
+          </div>
+          <div class="approach-tag">
+            <span>Mediterranean</span>
+            <p>Evidence-based longevity nutrition from the Mediterranean Blue Zone model</p>
+          </div>
+          <div class="approach-tag">
+            <span>Mayan Ancestral</span>
+            <p>Ancient Mayan healing foods, medicinal herbs, and traditional food wisdom</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ WHAT'S INCLUDED ═══ -->
+    <section class="section section--mahogany" id="wellness-packages">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Full Programmes</span>
+          <h2>What's Included in Your Wellness Package</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+        </header>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 44px;">
+
+          <div style="background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); padding: 40px 32px;">
+            <h3 style="font-family:var(--font-heading); font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold); margin-bottom: 20px;">Nutrition &amp; Medicine</h3>
+            <ul class="feature-list" style="color: var(--parchment);">
+              <li>Initial dietitian consultation</li>
+              <li>Personalised daily meal plan</li>
+              <li>Diagnostic blood work &amp; analysis</li>
+              <li>3D body composition scan</li>
+              <li>Daily organic gourmet health cuisine</li>
+              <li>Morning juice &amp; smoothie bar</li>
+              <li>Cooking class (1 per stay)</li>
+              <li>Nutritional workshop (group)</li>
+              <li>Post-retreat blueprint &amp; pantry edit</li>
+              <li>2-week remote follow-up</li>
+            </ul>
+          </div>
+
+          <div style="background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); padding: 40px 32px;">
+            <h3 style="font-family:var(--font-heading); font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold); margin-bottom: 20px;">Fitness &amp; Movement</h3>
+            <ul class="feature-list" style="color: var(--parchment);">
+              <li>Sunrise yoga on the beach — daily</li>
+              <li>Personal training sessions</li>
+              <li>Guided jungle hikes</li>
+              <li>Beach wind sports</li>
+              <li>Breathwork &amp; pranayama</li>
+              <li>Guided meditation</li>
+              <li>Forest bathing — Shinrin-yoku</li>
+              <li>Swimming &amp; aqua therapy</li>
+              <li>Mobility &amp; stretching protocols</li>
+            </ul>
+          </div>
+
+          <div style="background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2); padding: 40px 32px;">
+            <h3 style="font-family:var(--font-heading); font-size:0.72rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold); margin-bottom: 20px;">Spa &amp; Alternative Therapies</h3>
+            <ul class="feature-list" style="color: var(--parchment);">
+              <li>In-pavilion spa treatments</li>
+              <li>Mayan herbal body wraps</li>
+              <li>Aromatherapy &amp; herbal baths</li>
+              <li>Sound healing &amp; Tibetan bowls</li>
+              <li>Cupping &amp; guasha therapy</li>
+              <li>Temazcal — Mayan sweat ceremony</li>
+              <li>Acupuncture</li>
+              <li>Reiki &amp; energy work</li>
+              <li>Shamanic Mayan ceremonies</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ WELLNESS PROMISE ═══ -->
+    <div class="wellness-promise">
+      <h3>The Isla Aguada Wellness Promise</h3>
+      <p>
+        "You will leave different from how you arrived. Not just rested — transformed. 
+        We combine the world's most advanced clinical protocols with the deepest, 
+        most ancient healing environment on the Gulf Coast of Mexico. 
+        The jungle heals. The science confirms. We simply bring both together — for you."
+      </p>
+    </div>
+
+    <!-- ═══ PULL QUOTE ═══ -->
+    <section class="pull-quote">
+      <blockquote>
+        The most powerful healing tool ever discovered is not a drug or a procedure — 
+        it is the right food, in the right environment, at the right time. 
+        Add stem cell science and the stillness of the jungle, and the results are extraordinary.
+      </blockquote>
+      <cite>— Wellness Director, Isla Aguada Glamping Co.</cite>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="section section--cream" style="text-align: center;">
+      <div class="container">
+        <h2 style="font-family: var(--font-heading); font-size: clamp(1.4rem, 2.8vw, 2rem); color: var(--jungle-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">
+          Begin Your Transformation
+        </h2>
+        <div class="gold-divider" style="margin-bottom: 32px;"><div class="diamond"></div></div>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="accommodations.html" class="btn-gold">View Accommodations</a>
+          <a href="dining.html" class="btn-outline">Explore Dining</a>
+          <a href="nature.html" class="btn-outline">Nature &amp; Conservation</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="vision.html">The Vision</a></li>
+          <li><a href="accommodations.html">Accommodations</a></li>
+          <li><a href="amenities.html">Amenities</a></li>
+          <li><a href="wellness.html">Wellness &amp; Longevity</a></li>
+          <li><a href="dining.html">Dining &amp; Beach</a></li>
+          <li><a href="masterplan.html">Master Plan</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="nature.html">Nature &amp; Conservation</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="arrival.html">Arrival</a></li>
+          <li><a href="contact.html">Contact &amp; Reserve</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Location</h4>
+        <address>
+          Isla Aguada<br />
+          Campeche, Mexico<br /><br />
+          18°56′16.5″N<br />
+          91°18′24.7″W
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Isla Aguada Glamping Co. All rights reserved.</p>
+      <p>Campeche, Gulf of Mexico &nbsp;·&nbsp; 18°56′16.5″N 91°18′24.7″W</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Master Plan — Isla Aguada Glamping Co.</title>
+  <meta name="description" content="Isla Aguada Glamping Co. sits on Palmar Peninsula — a rare strip of land between the Gulf of Mexico and Laguna de Términos. Gulf beach on one side, laguna access on the other. The most extraordinary resort site in Mexico." />
+  <style>
+    /* ── PENINSULA DIAGRAM ── */
+    .peninsula-diagram {
+      background: #04111a;
+      padding: 72px 0;
+      border-top: 2px solid var(--aged-gold);
+      border-bottom: 2px solid var(--aged-gold);
+    }
+    .peninsula-map {
+      max-width: 860px;
+      margin: 48px auto 0;
+      position: relative;
+      padding: 0 40px;
+    }
+    /* Cross-section visual */
+    .cross-section {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      align-items: stretch;
+      border: 1px solid rgba(201,168,76,0.3);
+      overflow: hidden;
+    }
+    .cs-gulf {
+      background: linear-gradient(135deg, #04324a 0%, #055a7a 100%);
+      padding: 48px 36px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    .cs-land {
+      background: linear-gradient(180deg, #1a3a2a 0%, #0d1f0f 60%, #1a3a2a 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-left: 1px solid rgba(201,168,76,0.2);
+      border-right: 1px solid rgba(201,168,76,0.2);
+      position: relative;
+    }
+    .cs-land::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 2px;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.4), transparent);
+    }
+    .cs-laguna {
+      background: linear-gradient(135deg, #0a2a1a 0%, #0d4a2a 100%);
+      padding: 48px 36px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+    .cs-label {
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+    }
+    .cs-title {
+      font-family: var(--font-heading);
+      font-size: clamp(0.9rem, 2vw, 1.3rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--parchment);
+      line-height: 1.3;
+    }
+    .cs-body {
+      font-size: 0.84rem;
+      color: rgba(250,240,220,0.72);
+      line-height: 1.75;
+      margin: 0;
+    }
+    .cs-icon {
+      font-size: 2rem;
+    }
+    .cs-land-label {
+      font-family: var(--font-heading);
+      font-size: 0.48rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.7);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+      padding: 8px 0;
+    }
+    .cs-road {
+      background: rgba(201,168,76,0.15);
+      border-top: 1px solid rgba(201,168,76,0.4);
+      border-bottom: 1px solid rgba(201,168,76,0.4);
+      padding: 6px 0;
+      text-align: center;
+      width: 100%;
+    }
+    .cs-road span {
+      font-family: var(--font-heading);
+      font-size: 0.42rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+    }
+    /* Peninsula stat pills */
+    .peninsula-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      margin-top: 2px;
+    }
+    @media (max-width: 700px) {
+      .peninsula-stats { grid-template-columns: 1fr 1fr; }
+      .cross-section { grid-template-columns: 1fr; }
+      .cs-land { flex-direction: row; padding: 12px 16px; }
+      .cs-land-label { writing-mode: horizontal-tb; transform: none; }
+    }
+    .pen-stat {
+      background: rgba(201,168,76,0.07);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 32px 20px;
+      text-align: center;
+    }
+    .pen-stat .ps-icon { font-size: 1.6rem; display: block; margin-bottom: 10px; }
+    .pen-stat .ps-val {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--aged-gold);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .pen-stat .ps-lbl {
+      font-family: var(--font-heading);
+      font-size: 0.56rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(250,240,220,0.7);
+    }
+  </style>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive-patch.css" />
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-row-1">
+      <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
+        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
+        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-row-2">
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="vision.html">The Vision</a></li>
+        <li><a href="accommodations.html">Accommodations</a></li>
+        <li><a href="amenities.html">Amenities</a></li>
+        <li><a href="wellness.html">Wellness</a></li>
+        <li><a href="dining.html">Dining &amp; Beach</a></li>
+        <li><a href="masterplan.html" class="active">Master Plan</a></li>
+        <li><a href="safety.html">Safety</a></li>
+        <li><a href="nature.html">Nature</a></li>
+        <li><a href="sustainability.html">Sustainability</a></li>
+        <li><a href="arrival.html">Arrival</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="page-wrap">
+
+    <!-- PAGE HERO -->
+    <section class="page-hero" aria-label="Master Plan page hero">
+      <div class="page-hero-bg" style="background-image: url('images/aerial-site-plan.jpg');" role="img" aria-label="Aerial site plan of Isla Aguada Glamping Co."></div>
+      <div class="page-hero-content">
+        <h1>Master Plan</h1>
+        <p>Palmar Peninsula — Gulf of Mexico &amp; Laguna de Términos</p>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="section section--dark" id="masterplan-intro">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Palmar Peninsula · Campeche</span>
+          <h2>The Rarest Site in Mexico</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>
+            Isla Aguada Glamping Co. occupies an extraordinary position on <strong style="color:var(--aged-gold);">Palmar Peninsula</strong> — 
+            a narrow strip of land on the Campeche coast where the Gulf of Mexico lies on one side 
+            and the vast Laguna de Términos stretches out on the other. 
+            This is not simply a beachfront resort. It is a resort on a peninsula, 
+            with direct access to two entirely different bodies of water — 
+            the open Gulf and Mexico's largest coastal lagoon — within the same property.
+          </p>
+        </header>
+      </div>
+    </section>
+
+    <!-- PENINSULA DIAGRAM -->
+    <section class="peninsula-diagram" id="peninsula">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Geographical Advantage</span>
+          <h2 style="color: var(--parchment);">A Peninsula — Water on Both Sides</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p style="color: rgba(250,240,220,0.85);">
+            Palmar Peninsula is one of the most geographically privileged pieces of land on Mexico's Gulf Coast. 
+            The resort property stretches from the open Gulf of Mexico in the north all the way 
+            to the shores of Laguna de Términos in the south — giving guests access to two 
+            completely different water environments, two sets of wildlife, two kinds of light, 
+            two entirely different experiences of water — without ever leaving the resort.
+          </p>
+        </header>
+
+        <!-- Cross-section diagram -->
+        <div class="peninsula-map">
+          <div class="cross-section">
+
+            <!-- GULF SIDE -->
+            <div class="cs-gulf">
+              <span class="cs-icon">🌊</span>
+              <span class="cs-label">North Shore</span>
+              <span class="cs-title">Gulf of Mexico</span>
+              <p class="cs-body">Open ocean. Wild beaches. Turquoise water. Zero sargassum. Zero hurricanes in recorded history. Direct beach frontage with Mas'Tul Bar &amp; Restaurant, private cabanas, kitesurfing, and the full expanse of the Gulf.</p>
+              <div style="margin-top:14px; padding-top:14px; border-top:1px solid rgba(201,168,76,0.3);">
+                <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold);">Swimming &middot; Wind Sports &middot; Sunsets &middot; Beach Dining</span>
+              </div>
+            </div>
+
+            <!-- LAND / JUNGLE -->
+            <div class="cs-land">
+              <span class="cs-land-label">Palmar Peninsula</span>
+              <div class="cs-road">
+                <span>Hwy 180</span>
+              </div>
+              <span class="cs-land-label">Jungle Corridor</span>
+            </div>
+
+            <!-- LAGUNA SIDE -->
+            <div class="cs-laguna">
+              <span class="cs-icon">🛶</span>
+              <span class="cs-label">South Shore</span>
+              <span class="cs-title">Laguna de Términos</span>
+              <p class="cs-body">Mexico's largest coastal lagoon. Mirror-still waters. Mangrove channels. Manatees, dolphins, crocodiles, flamingos and 300+ bird species. A UNESCO Biosphere Reserve of extraordinary ecological significance.</p>
+              <div style="margin-top:14px; padding-top:14px; border-top:1px solid rgba(201,168,76,0.3);">
+                <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--aged-gold);">Kayak Tours &middot; Boat Excursions &middot; Wildlife &middot; Birdwatching</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Four stat pills -->
+          <div class="peninsula-stats">
+            <div class="pen-stat">
+              <span class="ps-icon">🌊</span>
+              <span class="ps-val">Gulf Beach</span>
+              <span class="ps-lbl">North Shore Access</span>
+            </div>
+            <div class="pen-stat">
+              <span class="ps-icon">🌿</span>
+              <span class="ps-val">2km+</span>
+              <span class="ps-lbl">Jungle Corridor Depth</span>
+            </div>
+            <div class="pen-stat">
+              <span class="ps-icon">🛶</span>
+              <span class="ps-val">Laguna Access</span>
+              <span class="ps-lbl">South Shore · Términos</span>
+            </div>
+            <div class="pen-stat">
+              <span class="ps-icon">★</span>
+              <span class="ps-val">2 Water Worlds</span>
+              <span class="ps-lbl">One Peninsula Property</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LAGUNA TOURS FEATURE -->
+    <section class="section section--dark" id="laguna-access">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">On Your Doorstep</span>
+          <h2>Laguna de Términos — Resort Access</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>
+            Because the resort sits on Palmar Peninsula, the shores of Laguna de Términos 
+            are not a distant excursion — they are within the resort boundary. 
+            Step out of the jungle and onto the laguna's edge. 
+            No transfers, no waiting. Just water, wildlife, and silence.
+          </p>
+        </header>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:0;">
+
+          <div style="background:var(--dark-mahogany); padding:48px 44px;">
+            <span style="font-size:2.2rem; display:block; margin-bottom:18px;">🚣</span>
+            <h3 style="font-family:var(--font-heading); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:14px;">Guided Laguna Boat Tours</h3>
+            <p style="font-size:0.94rem; color:rgba(250,240,220,0.85); line-height:1.85; margin-bottom:14px;">
+              Glide through the mirror-still channels of the laguna on a private guided boat tour. 
+              Your naturalist guide navigates through mangrove tunnels, open water, and hidden inlets 
+              teeming with birds, manatees, and crocodiles. Morning and sunset departures available directly from the resort's laguna landing.
+            </p>
+            <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(201,168,76,0.7);">Private &amp; Group Tours &middot; Dawn &amp; Dusk Departures</span>
+          </div>
+
+          <div style="background:var(--jungle-green); padding:48px 44px;">
+            <span style="font-size:2.2rem; display:block; margin-bottom:18px;">🙏</span>
+            <h3 style="font-family:var(--font-heading); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:14px;">Kayak &amp; Paddleboard</h3>
+            <p style="font-size:0.94rem; color:rgba(250,240,220,0.85); line-height:1.85; margin-bottom:14px;">
+              Self-guided or accompanied kayak and stand-up paddleboard excursions along the laguna's edge. 
+              The still water and shallow channels make for an intimate, peaceful experience — 
+              move at your own pace through one of the most biodiverse coastal wetlands in the Americas.
+            </p>
+            <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(201,168,76,0.7);">All Equipment Provided &middot; All Levels Welcome</span>
+          </div>
+
+          <div style="background:var(--jungle-green); padding:48px 44px;">
+            <span style="font-size:2.2rem; display:block; margin-bottom:18px;">🦢</span>
+            <h3 style="font-family:var(--font-heading); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:14px;">Wildlife &amp; Birdwatching</h3>
+            <p style="font-size:0.94rem; color:rgba(250,240,220,0.85); line-height:1.85; margin-bottom:14px;">
+              300+ bird species have been recorded around Laguna de Términos — including 
+              roseate spoonbills, frigatebirds, pelicans, herons, flamingos, and dozens of endemic species. 
+              Expert birdwatching guides depart at first light from the laguna shore, 
+              where sightings are guaranteed in every season.
+            </p>
+            <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(201,168,76,0.7);">Expert Guides &middot; 300+ Species &middot; Year-Round</span>
+          </div>
+
+          <div style="background:var(--dark-mahogany); padding:48px 44px;">
+            <span style="font-size:2.2rem; display:block; margin-bottom:18px;">🐪</span>
+            <h3 style="font-family:var(--font-heading); font-size:0.8rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--aged-gold); margin-bottom:14px;">Manatees, Dolphins &amp; Crocodiles</h3>
+            <p style="font-size:0.94rem; color:rgba(250,240,220,0.85); line-height:1.85; margin-bottom:14px;">
+              The laguna is home to resident populations of West Indian manatees, bottlenose dolphins, 
+              and Morelet's crocodiles. These are not occasional sightings — 
+              this is their habitat. Our guides know exactly where and when to find them, 
+              and all encounters are observed respectfully from the water.
+            </p>
+            <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(201,168,76,0.7);">Manatees &middot; Dolphins &middot; Crocodiles &middot; Ethical Wildlife Encounters</span>
+          </div>
+
+        </div>
+
+        <!-- STAFF — LAGUNA GUIDE -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; min-height:420px; margin-top:2px; margin-bottom:2px;">
+          <div style="background:#04111a; padding:56px 48px; display:flex; flex-direction:column; justify-content:center; border:1px solid rgba(201,168,76,0.2);">
+            <span style="font-family:var(--font-heading); font-size:0.58rem; letter-spacing:0.28em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:18px;">Laguna Expeditions</span>
+            <h3 style="font-family:var(--font-heading); font-size:clamp(1.1rem,2vw,1.5rem); letter-spacing:0.1em; text-transform:uppercase; color:var(--parchment); margin-bottom:22px; line-height:1.3;">The Laguna Knows<br/>No Timetable.<br/>Neither Do We.</h3>
+            <div style="width:40px; height:2px; background:var(--aged-gold); margin-bottom:22px;"></div>
+            <p style="font-size:0.94rem; color:rgba(250,240,220,0.82); line-height:1.9; margin-bottom:18px;">
+              Our laguna guides are watermen — they read the tides, the bird movements, and the light. They know when the manatees surface and where the flamingos roost at dusk. Every excursion on the laguna is unique, unhurried, and unforgettable.
+            </p>
+            <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(201,168,76,0.7);">Isla Aguada Glamping Co. · Laguna de Términos Expeditions</span>
+          </div>
+          <div style="overflow:hidden;">
+            <img src="images/staff-laguna-guide.jpg" alt="Isla Aguada laguna guide on a boat at sunset on Laguna de Términos" loading="lazy" style="width:100%; height:100%; object-fit:cover; object-position:center;" />
+          </div>
+        </div>
+
+        <!-- Gold banner -->
+        <div style="margin-top:2px; background:rgba(201,168,76,0.1); border:1px solid rgba(201,168,76,0.35); padding:44px 48px; text-align:center;">
+          <span style="font-family:var(--font-heading); font-size:0.62rem; letter-spacing:0.26em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:12px;">The Peninsula Advantage</span>
+          <p style="font-family:var(--font-body); font-style:italic; font-size:1.05rem; color:rgba(250,240,220,0.88); max-width:740px; margin:0 auto; line-height:1.9;">
+            &ldquo;At dawn, the sky ignites in the south-east — soft coral and amber spilling across 
+            Laguna de T&eacute;rminos as the sun lifts silently above still water and sleeping flamingos. 
+            By evening, the light travels the full length of the peninsula and burns itself out 
+            over the open Gulf to the north-west — a wet sunset, the horizon on fire, the ocean 
+            catching every last colour before dark. 
+            No other resort in Mexico holds you between a sunrise laguna and a sunset sea. 
+            It is not a selling point. It is geography.&rdquo;
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AERIAL SITE PLAN IMAGE -->
+    <section class="plan-image-section" id="aerial-plan">
+      <div style="max-width: var(--max-width); margin: 0 auto;">
+        <span class="section-tag" style="text-align: center; display: block; margin-bottom: 10px;">Aerial Site Plan</span>
+        <h2>The Resort from Above</h2>
+        <div class="gold-divider" style="margin-bottom: 0;"><div class="diamond"></div></div>
+      </div>
+
+      <div class="plan-image-wrap">
+        <img src="images/aerial-site-plan.jpg" alt="Aerial site plan showing beach zone and jungle glamping zone divided by Federal Highway 180 at Isla Aguada, Campeche, Mexico" loading="lazy" />
+        <p class="plan-image-caption">Aerial Site Plan — Isla Aguada Glamping Co. — Campeche, Gulf of Mexico</p>
+      </div>
+
+      <!-- ZONE CARDS -->
+      <div class="plan-zones">
+        <div class="zone-card beach">
+          <span class="zone-icon">🌊</span>
+          <h3>North Shore — Gulf of Mexico</h3>
+          <span class="dimensions">Open Ocean &middot; Wild Beach Frontage</span>
+          <p>
+            The north shore of Palmar Peninsula fronts directly onto the Gulf of Mexico — 
+            pristine wild beaches curated exclusively for Isla Aguada guests. 
+            Mas'Tul Bar &amp; Restaurant, private cabanas, wind sports, swimming, and the full 
+            spectacle of the open Gulf. Zero sargassum. Zero hurricanes in recorded history.
+          </p>
+        </div>
+        <div class="zone-card glamping">
+          <span class="zone-icon">🌿</span>
+          <h3>Jungle Corridor</h3>
+          <span class="dimensions">2km Deep &middot; Glamping Zone</span>
+          <p>
+            The jungle corridor of Palmar Peninsula runs 2km deep — housing 
+            40 luxury safari tents and 10 Ultra VIP tents on elevated mahogany walkways, 
+            with the Grand Reception, guest services huts, and shower pavilions.
+          </p>
+        </div>
+        <div class="zone-card" style="border-top:3px solid #0d4a2a; background:rgba(13,74,42,0.12);">
+          <span class="zone-icon">🛶</span>
+          <h3>South Shore — Laguna de Términos</h3>
+          <span class="dimensions" style="color:#4a9a6a;">Laguna Access &middot; UNESCO Biosphere</span>
+          <p>
+            The south shore of Palmar Peninsula meets the edge of Laguna de Términos — 
+            Mexico's largest coastal lagoon and a UNESCO Biosphere Reserve. 
+            Kayak tours, boat excursions, birdwatching, manatees, dolphins, and crocodiles — 
+            all accessible directly from the resort's laguna landing.
+          </p>
+        </div>
+      </div>
+
+      <!-- HIGHWAY NOTE -->
+      <div class="plan-highway-note">
+        <p>
+          <strong>Federal Highway 180</strong> runs east–west through the peninsula, 
+          dividing the north Gulf beach zone from the south jungle glamping zone. 
+          Safe, signposted pedestrian crossings connect the zones. The glamping jungle corridor 
+          continues south of the highway all the way to the shores of 
+          <strong>Laguna de Términos</strong> — giving the resort water access on both sides of the peninsula.
+        </p>
+      </div>
+    </section>
+
+    <!-- SITE DETAILS -->
+    <section class="section" id="site-details">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Site Analysis</span>
+          <h2>Understanding the Property</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+        </header>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+          <div>
+            <h3 style="font-family: var(--font-heading); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 20px;">Geographical Context</h3>
+            <p style="color: var(--text-mid); line-height: 1.9; font-size: 1rem; margin-bottom: 18px;">
+              Isla Aguada Glamping Co. occupies <strong style="color:var(--jungle-green);">Palmar Peninsula</strong> — 
+              a narrow strip of land on Mexico's Campeche coast that sits between the Gulf of Mexico 
+              to the north and Laguna de Términos to the south. The resort property spans 
+              the full width of the peninsula, with Gulf beach frontage on one side 
+              and direct laguna access on the other.
+            </p>
+            <p style="color: var(--text-mid); line-height: 1.9; font-size: 1rem; margin-bottom: 18px;">
+              Coordinates: <strong style="color: var(--jungle-green);">18°56′16.5″N, 91°18′24.7″W</strong>. 
+              Access via Federal Highway 180, which bisects the peninsula east–west, 
+              naturally dividing the beach and jungle zones.
+            </p>
+            <p style="color: var(--text-mid); line-height: 1.9; font-size: 1rem;">
+              This peninsula geography is unique on the Gulf Coast of Mexico and forms the core 
+              of the Isla Aguada experience — two water worlds, one property, 
+              one thousand metres of jungle between them.
+          </div>
+
+          <div>
+            <h3 style="font-family: var(--font-heading); font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 20px;">Development Zones</h3>
+
+            <div style="border: 1px solid rgba(201, 168, 76, 0.25); margin-bottom: 16px; padding: 24px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 16px;">
+                <strong style="font-family: var(--font-heading); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jungle-green);">Zone A — Beach (North)</strong>
+                <span style="font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; color: var(--aged-gold); white-space: nowrap;">Wild Curated Beaches</span>
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-mid); line-height: 1.75;">
+                Mas'Tul Bar &amp; Restaurant · Private Beach Cabanas · Gulf of Mexico Access · 
+                Beach Events Lawn · Guest Services
+              </p>
+            </div>
+
+            <div style="border: 1px solid rgba(201, 168, 76, 0.25); margin-bottom: 16px; padding: 24px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 16px;">
+                <strong style="font-family: var(--font-heading); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jungle-green);">Federal Highway 180</strong>
+                <span style="font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; color: var(--aged-gold);">Divides Zones</span>
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-mid); line-height: 1.75;">
+                East–west arterial road connecting the Gulf Coast region. Safe pedestrian crossings 
+                link the north beach zone to the south glamping zone.
+              </p>
+            </div>
+
+            <div style="border: 1px solid rgba(201, 168, 76, 0.25); margin-bottom:16px; padding: 24px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 16px;">
+                <strong style="font-family: var(--font-heading); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--jungle-green);">Zone B — Jungle Glamping</strong>
+                <span style="font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; color: var(--aged-gold); white-space: nowrap;">2km Corridor</span>
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-mid); line-height: 1.75;">
+                40 Luxury Safari Tents · 10 Ultra VIP Tents · Grand Reception Pavilion · Guest Services Huts · 
+                Private Shower Pavilions · Elevated Mahogany Walkway Network
+              </p>
+            </div>
+
+            <div style="border: 1px solid rgba(13,74,42,0.6); background:rgba(13,74,42,0.08); padding: 24px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 16px;">
+                <strong style="font-family: var(--font-heading); font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: #4a9a6a;">South Shore — Laguna</strong>
+                <span style="font-family: var(--font-heading); font-size: 0.9rem; font-weight: 700; color: var(--aged-gold); white-space: nowrap;">Direct Access</span>
+              </div>
+              <p style="font-size: 0.88rem; color: var(--text-mid); line-height: 1.75;">
+                Laguna de Términos shoreline · Boat &amp; Kayak Launch · Guided Wildlife Tours · 
+                Manatees, Dolphins, Flamingos · UNESCO Biosphere Reserve boundary
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEASUREMENTS VISUAL -->
+    <section class="section section--mahogany" id="measurements">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Site Dimensions</span>
+          <h2>By the Numbers</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+        </header>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 48px;">
+          <div style="padding: 48px 32px; text-align: center; background-color: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2);">
+            <span style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 900; color: var(--aged-gold); display: block; margin-bottom: 8px;">Gulf Beach</span>
+            <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--parchment); display: block; margin-bottom: 12px;">North Shore · Open Ocean</span>
+            <p style="font-size: 0.82rem; color: rgba(250,240,220,0.65); line-height: 1.7;">Wild Gulf of Mexico beach frontage — turquoise, pristine, and zero sargassum</p>
+          </div>
+          <div style="padding: 48px 32px; text-align: center; background-color: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2);">
+            <span style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 900; color: var(--aged-gold); display: block; margin-bottom: 8px;">Laguna Access</span>
+            <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--parchment); display: block; margin-bottom: 12px;">South Shore · Términos</span>
+            <p style="font-size: 0.82rem; color: rgba(250,240,220,0.65); line-height: 1.7;">Direct resort access to Laguna de Términos — Mexico's largest coastal lagoon</p>
+          </div>
+          <div style="padding: 48px 32px; text-align: center; background-color: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2);">
+            <span style="font-family: var(--font-heading); font-size: 2.6rem; font-weight: 900; color: var(--aged-gold); display: block; margin-bottom: 8px;">2km+</span>
+            <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--parchment); display: block; margin-bottom: 12px;">Peninsula Depth</span>
+            <p style="font-size: 0.82rem; color: rgba(250,240,220,0.65); line-height: 1.7;">From Gulf beach to Laguna de Términos shore — the full width of Palmar Peninsula</p>
+          </div>
+        </div>
+
+        <!-- Total area note -->
+        <div style="text-align: center; margin-top: 48px; padding: 32px; border: 1px solid rgba(201,168,76,0.2);">
+          <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--aged-gold); display: block; margin-bottom: 12px;">Total Site Area</span>
+          <p style="font-size: 0.95rem; color: rgba(250,240,220,0.75); line-height: 1.8; max-width: 640px; margin: 0 auto;">
+            The combined site area encompasses approximately <strong style="color: var(--aged-gold);">120,000 m²</strong> 
+            across both zones — a 2km deep peninsula corridor stretching from the Gulf of Mexico to the shores 
+            of Laguna de Términos, providing an unmatched dual-water luxury resort experience within a single property.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="section" id="location">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+          <div>
+            <span class="section-tag">Location Data</span>
+            <h2 style="font-family: var(--font-heading); font-size: clamp(1.3rem, 2.5vw, 2rem); color: var(--jungle-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 20px; line-height: 1.25;">
+              Coordinates &amp; Access
+            </h2>
+            <div class="gold-divider" style="justify-content: flex-start; margin-bottom: 28px;">
+              <div class="diamond"></div>
+              <div style="flex:1; max-width:180px; height:1px; background: linear-gradient(to right, var(--aged-gold), transparent);"></div>
+            </div>
+            <p style="color: var(--text-mid); line-height: 1.9; font-size: 1rem; margin-bottom: 18px;">
+              The resort is located on the Campeche coast of the Gulf of Mexico, 
+              easily accessible from the regional road network via Federal Highway 180.
+            </p>
+
+            <div style="background-color: var(--jungle-green); padding: 32px;">
+              <ul style="list-style: none; color: var(--parchment);">
+                <li style="padding: 12px 0; border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; gap: 16px;">
+                  <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aged-gold);">Latitude</span>
+                  <span style="font-family: var(--font-body); font-size: 0.92rem;">18°56′16.5″N</span>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; gap: 16px;">
+                  <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aged-gold);">Longitude</span>
+                  <span style="font-family: var(--font-body); font-size: 0.92rem;">91°18′24.7″W</span>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; gap: 16px;">
+                  <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aged-gold);">State</span>
+                  <span style="font-family: var(--font-body); font-size: 0.92rem;">Campeche, Mexico</span>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; gap: 16px;">
+                  <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aged-gold);">Coast</span>
+                  <span style="font-family: var(--font-body); font-size: 0.92rem;">Gulf of Mexico</span>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; gap: 16px;">
+                  <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aged-gold);">Highway Access</span>
+                  <span style="font-family: var(--font-body); font-size: 0.92rem;">Federal Highway 180</span>
+                </li>
+                <li style="padding: 12px 0; border-bottom: 1px solid rgba(201,168,76,0.2); display: flex; justify-content: space-between; gap: 16px;">
+                  <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aged-gold);">Peninsula</span>
+                  <span style="font-family: var(--font-body); font-size: 0.92rem;">Palmar Peninsula</span>
+                </li>
+                <li style="padding: 12px 0; display: flex; justify-content: space-between; gap: 16px;">
+                  <span style="font-family: var(--font-heading); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--aged-gold);">South Shore</span>
+                  <span style="font-family: var(--font-body); font-size: 0.92rem;">Laguna de Términos</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div>
+            <img src="images/aerial-site-plan.jpg" alt="Aerial site plan detail" loading="lazy" style="width: 100%; border: 2px solid var(--aged-gold);" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PULL QUOTE -->
+    <section class="pull-quote" style="background-color: var(--jungle-green);">
+      <blockquote>
+        On Palmar Peninsula, the sea is never far. On one side, the open Gulf of Mexico breaks against a wild beach. 
+        On the other, the mirror-still waters of Laguna de Términos wait in silence, full of life. 
+        Between them: two kilometres of jungle. This is the resort. This is the site. 
+        There is nowhere else on earth quite like it.
+      </blockquote>
+      <cite>— Site Concept Notes, Isla Aguada Glamping Co.</cite>
+    </section>
+
+    <!-- CTA -->
+    <section class="section section--cream" style="text-align: center;">
+      <div class="container">
+        <h2 style="font-family: var(--font-heading); font-size: clamp(1.4rem, 2.8vw, 2rem); color: var(--jungle-green); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px;">
+          Begin Your Journey
+        </h2>
+        <div class="gold-divider" style="margin-bottom: 32px;"><div class="diamond"></div></div>
+        <p style="max-width: 580px; margin: 0 auto 36px; color: var(--text-mid); font-size: 0.98rem; line-height: 1.85;">
+          Now that you've seen the vision from above, explore every detail of what Isla Aguada 
+          has to offer — from private tents to the beach pavilion.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="vision.html" class="btn-gold">The Full Vision</a>
+          <a href="accommodations.html" class="btn-outline">Our Tents</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="vision.html">The Vision</a></li>
+          <li><a href="accommodations.html">Accommodations</a></li>
+          <li><a href="amenities.html">Amenities</a></li>
+          <li><a href="wellness.html">Wellness &amp; Longevity</a></li>
+          <li><a href="dining.html">Dining &amp; Beach</a></li>
+          <li><a href="masterplan.html">Master Plan</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="nature.html">Nature &amp; Conservation</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="arrival.html">Arrival</a></li>
+          <li><a href="contact.html">Contact &amp; Reserve</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Location</h4>
+        <address>
+          Isla Aguada<br />
+          Campeche, Mexico<br /><br />
+          18°56′16.5″N<br />
+          91°18′24.7″W
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Isla Aguada Glamping Co. All rights reserved.</p>
+      <p>Campeche, Gulf of Mexico &nbsp;·&nbsp; 18°56′16.5″N 91°18′24.7″W</p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>

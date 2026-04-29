@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; Reservations — Isla Aguada Glamping Co.</title>
+  <meta name="description" content="Reserve your stay at Isla Aguada Glamping Co. — luxury glamping on the Gulf Coast of Campeche, Mexico. Opening January 2028. Contact us to begin your reservation." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive-patch.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+  <style>
+    /* ── CONTACT PAGE STYLES ── */
+
+    .contact-hero-tag {
+      font-family: var(--font-heading);
+      font-size: clamp(0.6rem, 1.2vw, 0.72rem);
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    /* Form wrapper */
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 2px;
+      margin-top: 56px;
+    }
+    @media (max-width: 960px) {
+      .contact-wrap { grid-template-columns: 1fr; }
+    }
+
+    /* The form panel */
+    .contact-form-panel {
+      background: var(--dark-mahogany);
+      padding: 60px 56px;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    @media (max-width: 600px) {
+      .contact-form-panel { padding: 40px 28px; }
+    }
+
+    /* Sidebar info panel */
+    .contact-info-panel {
+      background: var(--jungle-green);
+      padding: 60px 44px;
+      border: 1px solid rgba(201,168,76,0.2);
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    /* Form field groups */
+    .form-group {
+      margin-bottom: 28px;
+    }
+    .form-group label {
+      font-family: var(--font-heading);
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: rgba(250,240,220,0.06);
+      border: 1px solid rgba(201,168,76,0.3);
+      border-radius: 0;
+      padding: 14px 18px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--parchment);
+      outline: none;
+      transition: border-color 0.25s;
+      box-sizing: border-box;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(250,240,220,0.3);
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--aged-gold);
+      background: rgba(250,240,220,0.1);
+    }
+    .form-group select option {
+      background: var(--dark-mahogany);
+      color: var(--parchment);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    /* Two-column row */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 560px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* Submit button */
+    .btn-reserve {
+      width: 100%;
+      background: var(--aged-gold);
+      color: var(--dark-mahogany);
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      border: none;
+      padding: 20px 32px;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.15s;
+      margin-top: 12px;
+    }
+    .btn-reserve:hover {
+      background: #e0bc5a;
+      transform: translateY(-1px);
+    }
+    .btn-reserve:disabled {
+      background: rgba(201,168,76,0.4);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Loading spinner */
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(44,24,16,0.3);
+      border-top-color: var(--dark-mahogany);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Thank You overlay */
+    .thankyou-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,8,6,0.92);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .thankyou-overlay.active {
+      display: flex;
+    }
+    .thankyou-card {
+      background: var(--dark-mahogany);
+      border: 2px solid var(--aged-gold);
+      max-width: 600px;
+      width: 100%;
+      padding: 64px 56px;
+      text-align: center;
+      position: relative;
+      animation: fadeInUp 0.5s ease;
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform: translateY(30px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+    .thankyou-card .ty-icon {
+      font-size: 3rem;
+      display: block;
+      margin-bottom: 24px;
+    }
+    .thankyou-card h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      margin-bottom: 16px;
+    }
+    .thankyou-card p {
+      font-size: 0.96rem;
+      color: rgba(250,240,220,0.85);
+      line-height: 1.85;
+      margin-bottom: 20px;
+    }
+    .reservation-code-box {
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.5);
+      padding: 20px 28px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .reservation-code-box .rc-label {
+      font-family: var(--font-heading);
+      font-size: 0.58rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,0.7);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .reservation-code-box .rc-code {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      letter-spacing: 0.18em;
+      color: var(--aged-gold);
+      display: block;
+    }
+    .btn-close-ty {
+      background: var(--aged-gold);
+      color: var(--dark-mahogany);
+      font-family: var(--font-heading);
+      font-size: 0.62rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      border: none;
+      padding: 16px 36px;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .btn-close-ty:hover { background: #e0bc5a; }
+
+    /* Error message */
+    .form-error {
+      background: rgba(160,48,32,0.2);
+      border: 1px solid rgba(160,48,32,0.5);
+      color: #f0a090;
+      font-size: 0.85rem;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: none;
+      line-height: 1.6;
+    }
+    .form-error.active { display: block; }
+
+    /* Info panel items */
+    .info-item {
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding-bottom: 28px;
+    }
+    .info-item:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-item .ii-icon {
+      font-size: 1.6rem;
+      display: block;
+      margin-bottom: 12px;
+    }
+    .info-item h4 {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--aged-gold);
+      margin-bottom: 10px;
+    }
+    .info-item p {
+      font-size: 0.88rem;
+      color: rgba(250,240,220,0.78);
+      line-height: 1.8;
+      margin: 0;
+    }
+    .info-item a {
+      color: var(--aged-gold);
+      text-decoration: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-row-1">
+      <a href="index.html" class="nav-logo" aria-label="Isla Aguada Glamping Co. Home">
+        <img src="images/logo.png" alt="Isla Aguada Glamping Co. Logo" />
+        <span class="nav-logo-text">Isla Aguada Glamping Co.</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-row-2">
+      <ul class="nav-links" id="navLinks" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="vision.html">The Vision</a></li>
+        <li><a href="accommodations.html">Accommodations</a></li>
+        <li><a href="amenities.html">Amenities</a></li>
+        <li><a href="wellness.html">Wellness</a></li>
+        <li><a href="dining.html">Dining &amp; Beach</a></li>
+        <li><a href="masterplan.html">Master Plan</a></li>
+        <li><a href="safety.html">Safety</a></li>
+        <li><a href="nature.html">Nature</a></li>
+        <li><a href="sustainability.html">Sustainability</a></li>
+        <li><a href="arrival.html">Arrival</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN ===== -->
+  <main class="page-wrap">
+
+    <!-- HERO -->
+    <section class="page-hero" aria-label="Contact page hero">
+      <div class="page-hero-bg" style="background-image: url('images/hero-jungle.jpg'); filter: brightness(0.35);" role="img" aria-label="Isla Aguada jungle and coast"></div>
+      <div class="page-hero-content">
+        <span class="contact-hero-tag">Reservations Open · January 2028</span>
+        <h1>Contact &amp; Reserve</h1>
+        <p>Begin Your Isla Aguada Journey</p>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section class="section section--dark" id="contact-intro">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Opening January 2028</span>
+          <h2>Reserve Your Place in the Jungle</h2>
+          <div class="gold-divider"><div class="diamond"></div></div>
+          <p>
+            Isla Aguada Glamping Co. opens its doors in January 2028. 
+            With only 50 private luxury tents — 40 standard and 10 Ultra VIP — 
+            availability will be extremely limited. 
+            Submit your reservation enquiry now to secure your preferred dates 
+            and receive your personal Reservation Code.
+          </p>
+        </header>
+      </div>
+    </section>
+
+    <!-- FORM + SIDEBAR -->
+    <section class="section section--dark" id="contact-form-section" style="padding-top:0;">
+      <div class="container">
+
+        <div class="contact-wrap">
+
+          <!-- ── FORM PANEL ── -->
+          <div class="contact-form-panel">
+            <span style="font-family:var(--font-heading); font-size:0.62rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:10px;">Reservation Enquiry</span>
+            <h2 style="font-family:var(--font-heading); font-size:clamp(1.2rem,2.5vw,1.8rem); letter-spacing:0.1em; text-transform:uppercase; color:var(--parchment); margin-bottom:8px; line-height:1.25;">Tell Us About<br/>Your Visit</h2>
+            <div style="width:40px; height:2px; background:var(--aged-gold); margin:18px 0 32px;"></div>
+
+            <!-- Error message -->
+            <div class="form-error" id="formError">
+              <i class="fas fa-exclamation-triangle" style="margin-right:8px;"></i>
+              <span id="formErrorText">Something went wrong. Please try again or email us directly.</span>
+            </div>
+
+            <form id="reservationForm" novalidate>
+
+              <!-- Name row -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name *</label>
+                  <input type="text" id="firstName" name="firstName" placeholder="John" required autocomplete="given-name" />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name *</label>
+                  <input type="text" id="lastName" name="lastName" placeholder="Smith" required autocomplete="family-name" />
+                </div>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email" />
+              </div>
+
+              <!-- Phone -->
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" required autocomplete="tel" />
+              </div>
+
+              <!-- Dates row -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="arrivalDate">Preferred Arrival *</label>
+                  <input type="date" id="arrivalDate" name="arrivalDate" required min="2028-01-01" />
+                </div>
+                <div class="form-group">
+                  <label for="departureDate">Preferred Departure *</label>
+                  <input type="date" id="departureDate" name="departureDate" required min="2028-01-02" />
+                </div>
+              </div>
+
+              <!-- Guests + Tent type row -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="guests">Number of Guests *</label>
+                  <select id="guests" name="guests" required>
+                    <option value="" disabled selected>Select…</option>
+                    <option value="1">1 Guest</option>
+                    <option value="2">2 Guests</option>
+                    <option value="3">3 Guests</option>
+                    <option value="4">4 Guests</option>
+                    <option value="5+">5+ Guests</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="tentType">Tent Preference</label>
+                  <select id="tentType" name="tentType">
+                    <option value="" disabled selected>Select…</option>
+                    <option value="Standard Luxury Tent">Standard Luxury Tent</option>
+                    <option value="Ultra VIP Tent">Ultra VIP Tent</option>
+                    <option value="No Preference">No Preference</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Interests -->
+              <div class="form-group">
+                <label for="interests">Interests &amp; Special Requests</label>
+                <textarea id="interests" name="interests" placeholder="Wellness retreat, laguna tours, private dining, anniversary celebration, dietary requirements…"></textarea>
+              </div>
+
+              <!-- How did you hear -->
+              <div class="form-group">
+                <label for="hearAbout">How Did You Hear About Us?</label>
+                <select id="hearAbout" name="hearAbout">
+                  <option value="" disabled selected>Select…</option>
+                  <option value="Word of Mouth">Word of Mouth</option>
+                  <option value="Social Media">Social Media</option>
+                  <option value="Google Search">Google Search</option>
+                  <option value="Travel Agent">Travel Agent</option>
+                  <option value="Press / Media">Press / Media</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn-reserve" id="submitBtn">
+                <i class="fas fa-paper-plane" style="margin-right:10px;"></i>
+                Submit Reservation Enquiry
+              </button>
+
+              <p style="font-size:0.78rem; color:rgba(250,240,220,0.45); margin-top:16px; line-height:1.7; text-align:center;">
+                By submitting you agree to be contacted regarding your reservation enquiry. 
+                Your information is never shared with third parties.
+              </p>
+
+            </form>
+          </div>
+
+          <!-- ── SIDEBAR ── -->
+          <div class="contact-info-panel">
+
+            <div>
+              <span style="font-family:var(--font-heading); font-size:0.6rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:12px;">Get in Touch</span>
+              <h3 style="font-family:var(--font-heading); font-size:clamp(1rem,2vw,1.4rem); letter-spacing:0.1em; text-transform:uppercase; color:var(--parchment); line-height:1.3;">We Are Here<br/>For You</h3>
+              <div style="width:32px; height:2px; background:var(--aged-gold); margin:16px 0 0;"></div>
+            </div>
+
+            <div class="info-item">
+              <span class="ii-icon">✉️</span>
+              <h4>Email Us Directly</h4>
+              <p><a href="mailto:islaglampingcompany@gmail.com">islaglampingcompany@gmail.com</a></p>
+            </div>
+
+            <div class="info-item">
+              <span class="ii-icon">📍</span>
+              <h4>Location</h4>
+              <p>
+                Palmar Peninsula<br/>
+                Isla Aguada, Campeche<br/>
+                Gulf of Mexico, Mexico<br/><br/>
+                <span style="font-family:var(--font-heading); font-size:0.6rem; letter-spacing:0.12em; color:rgba(201,168,76,0.7);">18°56′16.5″N · 91°18′24.7″W</span>
+              </p>
+            </div>
+
+            <div class="info-item">
+              <span class="ii-icon">🗓️</span>
+              <h4>Opening Date</h4>
+              <p>
+                Isla Aguada Glamping Co. opens<br/>
+                <strong style="color:var(--aged-gold);">January 2028</strong><br/><br/>
+                Reservations are being accepted now for all 2028 dates. Early enquiries receive priority placement.
+              </p>
+            </div>
+
+            <div class="info-item">
+              <span class="ii-icon">⛺</span>
+              <h4>Availability</h4>
+              <p>
+                <strong style="color:var(--aged-gold);">40</strong> Standard Luxury Tents<br/>
+                <strong style="color:var(--aged-gold);">10</strong> Ultra VIP Tents<br/><br/>
+                With only 50 tents total, availability is strictly limited. We recommend enquiring early to secure your preferred dates.
+              </p>
+            </div>
+
+            <div class="info-item">
+              <span class="ii-icon">⚡</span>
+              <h4>Response Time</h4>
+              <p>We respond to all enquiries within <strong style="color:var(--aged-gold);">24 hours</strong>. A member of our reservations team will contact you personally to confirm details and discuss your stay.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Reassurance strip -->
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:2px;">
+          <div style="background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.15); padding:28px 22px; text-align:center;">
+            <span style="font-size:1.6rem; display:block; margin-bottom:10px;">🔒</span>
+            <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:6px;">Secure Enquiry</span>
+            <p style="font-size:0.78rem; color:rgba(250,240,220,0.6); margin:0; line-height:1.6;">Your details are protected and never shared</p>
+          </div>
+          <div style="background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.15); padding:28px 22px; text-align:center;">
+            <span style="font-size:1.6rem; display:block; margin-bottom:10px;">⚡</span>
+            <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:6px;">24hr Response</span>
+            <p style="font-size:0.78rem; color:rgba(250,240,220,0.6); margin:0; line-height:1.6;">Personal reply from our reservations team</p>
+          </div>
+          <div style="background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.15); padding:28px 22px; text-align:center;">
+            <span style="font-size:1.6rem; display:block; margin-bottom:10px;">🎟️</span>
+            <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:6px;">Instant Code</span>
+            <p style="font-size:0.78rem; color:rgba(250,240,220,0.6); margin:0; line-height:1.6;">Receive your unique reservation code immediately</p>
+          </div>
+          <div style="background:rgba(201,168,76,0.07); border:1px solid rgba(201,168,76,0.15); padding:28px 22px; text-align:center;">
+            <span style="font-size:1.6rem; display:block; margin-bottom:10px;">🌿</span>
+            <span style="font-family:var(--font-heading); font-size:0.55rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--aged-gold); display:block; margin-bottom:6px;">No Obligation</span>
+            <p style="font-size:0.78rem; color:rgba(250,240,220,0.6); margin:0; line-height:1.6;">An enquiry holds no payment commitment</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PULL QUOTE -->
+    <section class="pull-quote" style="background:var(--jungle-green);">
+      <blockquote>
+        Fifty tents. Two thousand kilometres of Gulf Coast. One jungle peninsula. 
+        January 2028 — the most anticipated opening on the Mexican Gulf Coast. 
+        Your place is waiting.
+      </blockquote>
+      <cite>— Isla Aguada Glamping Co.</cite>
+    </section>
+
+  </main>
+
+  <!-- ===== THANK YOU OVERLAY ===== -->
+  <div class="thankyou-overlay" id="thankYouOverlay" role="dialog" aria-modal="true" aria-labelledby="tyTitle">
+    <div class="thankyou-card">
+      <span class="ty-icon">🌿</span>
+      <h2 id="tyTitle">Thank You, <span id="tyName"></span></h2>
+      <p>
+        Your reservation enquiry has been received. A member of our team will 
+        contact you personally within 24 hours to discuss your stay at 
+        Isla Aguada Glamping Co.
+      </p>
+      <p>
+        A confirmation has been sent to <strong id="tyEmail" style="color:var(--aged-gold);"></strong>
+      </p>
+
+      <div class="reservation-code-box">
+        <span class="rc-label">Your Reservation Code</span>
+        <span class="rc-code" id="tyCode"></span>
+      </div>
+
+      <p style="font-size:0.82rem; color:rgba(250,240,220,0.55); line-height:1.7;">
+        Please keep this code for reference — our team will use it when contacting you.
+      </p>
+
+      <div style="width:40px; height:1px; background:rgba(201,168,76,0.4); margin:20px auto;"></div>
+      <p style="font-size:0.88rem; color:rgba(250,240,220,0.7); font-style:italic; line-height:1.8;">
+        "Where the Jungle Meets the Sea — January 2028"
+      </p>
+
+      <button class="btn-close-ty" id="closeThankYou">
+        <i class="fas fa-check" style="margin-right:8px;"></i>Close
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="images/logo.png" alt="Isla Aguada Glamping Co." />
+        <p>Where the Jungle Meets the Sea — a world-class luxury glamping resort on the Gulf Coast of Campeche, Mexico.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="vision.html">The Vision</a></li>
+          <li><a href="accommodations.html">Accommodations</a></li>
+          <li><a href="amenities.html">Amenities</a></li>
+          <li><a href="wellness.html">Wellness &amp; Longevity</a></li>
+          <li><a href="dining.html">Dining &amp; Beach</a></li>
+          <li><a href="masterplan.html">Master Plan</a></li>
+          <li><a href="safety.html">Safety</a></li>
+          <li><a href="nature.html">Nature &amp; Conservation</a></li>
+          <li><a href="sustainability.html">Sustainability</a></li>
+          <li><a href="arrival.html">Arrival</a></li>
+          <li><a href="contact.html">Contact &amp; Reserve</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Location</h4>
+        <address>
+          Isla Aguada<br />
+          Campeche, Mexico<br /><br />
+          18°56′16.5″N<br />
+          91°18′24.7″W
+        </address>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Isla Aguada Glamping Co. All rights reserved.</p>
+      <p>Campeche, Gulf of Mexico &nbsp;·&nbsp; 18°56′16.5″N 91°18′24.7″W</p>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ─────────────────────────────────────────────────────────────────
+    // CONFIGURATION — Replace these values after setting up accounts
+    // ─────────────────────────────────────────────────────────────────
+    const CONFIG = {
+      // 1. Formspree: https://formspree.io → Your form ID
+      FORMSPREE_ID: 'YOUR_FORMSPREE_ID',
+
+      // 2. EmailJS: https://emailjs.com
+      EMAILJS_PUBLIC_KEY: 'YOUR_EMAILJS_PUBLIC_KEY',
+      EMAILJS_SERVICE_ID: 'YOUR_SERVICE_ID',
+      EMAILJS_TEMPLATE_ID: 'YOUR_TEMPLATE_ID',
+    };
+    // ─────────────────────────────────────────────────────────────────
+
+    // Initialise EmailJS
+    if (CONFIG.EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
+      emailjs.init(CONFIG.EMAILJS_PUBLIC_KEY);
+    }
+
+    // ── Generate a unique reservation code ──
+    function generateReservationCode() {
+      const prefix = 'IAG';
+      const year   = '28';
+      const chars  = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+      let code = '';
+      for (let i = 0; i < 6; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return `${prefix}-${year}-${code}`;
+    }
+
+    // ── Date validation: min Jan 1 2028 ──
+    const today = new Date().toISOString().split('T')[0];
+    const minDate = '2028-01-01';
+    document.getElementById('arrivalDate').min = minDate;
+    document.getElementById('departureDate').min = '2028-01-02';
+
+    document.getElementById('arrivalDate').addEventListener('change', function() {
+      const arrival = new Date(this.value);
+      arrival.setDate(arrival.getDate() + 1);
+      const minDep = arrival.toISOString().split('T')[0];
+      document.getElementById('departureDate').min = minDep;
+      if (document.getElementById('departureDate').value &&
+          document.getElementById('departureDate').value < minDep) {
+        document.getElementById('departureDate').value = minDep;
+      }
+    });
+
+    // ── Show / hide error ──
+    function showError(msg) {
+      const el = document.getElementById('formError');
+      document.getElementById('formErrorText').textContent = msg;
+      el.classList.add('active');
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    function hideError() {
+      document.getElementById('formError').classList.remove('active');
+    }
+
+    // ── Show Thank You overlay ──
+    function showThankYou(name, email, code) {
+      document.getElementById('tyName').textContent  = name.split(' ')[0];
+      document.getElementById('tyEmail').textContent = email;
+      document.getElementById('tyCode').textContent  = code;
+      document.getElementById('thankYouOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.getElementById('closeThankYou').addEventListener('click', function() {
+      document.getElementById('thankYouOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+      document.getElementById('reservationForm').reset();
+    });
+
+    // Close overlay on backdrop click
+    document.getElementById('thankYouOverlay').addEventListener('click', function(e) {
+      if (e.target === this) {
+        document.getElementById('closeThankYou').click();
+      }
+    });
+
+    // ── Main form submit handler ──
+    document.getElementById('reservationForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      hideError();
+
+      // Gather values
+      const firstName    = document.getElementById('firstName').value.trim();
+      const lastName     = document.getElementById('lastName').value.trim();
+      const email        = document.getElementById('email').value.trim();
+      const phone        = document.getElementById('phone').value.trim();
+      const arrivalDate  = document.getElementById('arrivalDate').value;
+      const departureDate= document.getElementById('departureDate').value;
+      const guests       = document.getElementById('guests').value;
+      const tentType     = document.getElementById('tentType').value || 'No Preference';
+      const interests    = document.getElementById('interests').value.trim();
+      const hearAbout    = document.getElementById('hearAbout').value || 'Not specified';
+
+      // Basic validation
+      if (!firstName || !lastName) { showError('Please enter your full name.'); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showError('Please enter a valid email address.'); return; }
+      if (!phone) { showError('Please enter your phone number.'); return; }
+      if (!arrivalDate) { showError('Please select a preferred arrival date (January 2028 or later).'); return; }
+      if (!departureDate) { showError('Please select a preferred departure date.'); return; }
+      if (arrivalDate < minDate) { showError('Reservations open from January 1st, 2028. Please select a date from January 2028 onwards.'); return; }
+      if (departureDate <= arrivalDate) { showError('Departure date must be after your arrival date.'); return; }
+      if (!guests) { showError('Please select the number of guests.'); return; }
+
+      const fullName = `${firstName} ${lastName}`;
+      const reservationCode = generateReservationCode();
+
+      // Format dates nicely
+      const fmt = (d) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+      const arrivalFormatted   = fmt(arrivalDate);
+      const departureFormatted = fmt(departureDate);
+
+      // Disable button + show spinner
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span>Sending…';
+
+      try {
+
+        // ── STEP 1: Submit to Formspree (→ your Gmail) ──
+        if (CONFIG.FORMSPREE_ID !== 'YOUR_FORMSPREE_ID') {
+          const formData = {
+            name:             fullName,
+            email:            email,
+            phone:            phone,
+            arrival:          arrivalFormatted,
+            departure:        departureFormatted,
+            guests:           guests,
+            tent_type:        tentType,
+            interests:        interests || 'None specified',
+            hear_about:       hearAbout,
+            reservation_code: reservationCode,
+            _subject:         `🌿 New Reservation Enquiry — ${fullName} — Code: ${reservationCode}`,
+            _replyto:         email,
+          };
+
+          const fsResponse = await fetch(`https://formspree.io/f/${CONFIG.FORMSPREE_ID}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(formData),
+          });
+
+          if (!fsResponse.ok) {
+            const fsData = await fsResponse.json();
+            throw new Error(fsData.error || 'Formspree submission failed.');
+          }
+        }
+
+        // ── STEP 2: Send guest confirmation via EmailJS ──
+        if (CONFIG.EMAILJS_PUBLIC_KEY !== 'YOUR_EMAILJS_PUBLIC_KEY') {
+          await emailjs.send(CONFIG.EMAILJS_SERVICE_ID, CONFIG.EMAILJS_TEMPLATE_ID, {
+            guest_name:       fullName,
+            guest_first_name: firstName,
+            guest_email:      email,
+            guest_phone:      phone,
+            arrival_date:     arrivalFormatted,
+            departure_date:   departureFormatted,
+            guests:           guests,
+            tent_type:        tentType,
+            interests:        interests || 'None specified',
+            reservation_code: reservationCode,
+            to_email:         email,
+          });
+        }
+
+        // ── STEP 3: Show Thank You ──
+        showThankYou(fullName, email, reservationCode);
+
+      } catch (err) {
+        console.error('Form submission error:', err);
+
+        // If services not yet configured, still show Thank You (demo mode)
+        if (CONFIG.FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+          showThankYou(fullName, email, reservationCode);
+        } else {
+          showError(`There was an issue submitting your enquiry: ${err.message}. Please email us directly at islaglampingcompany@gmail.com`);
+        }
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:10px;"></i>Submit Reservation Enquiry';
+      }
+    });
+
+    // ── Mobile nav ──
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>

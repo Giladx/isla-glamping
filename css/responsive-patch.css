@@ -1,0 +1,251 @@
+/* =====================================================
+   ISLA AGUADA — RESPONSIVE PATCH
+   Overrides all inline grid-template-columns at
+   tablet (≤ 900px) and mobile (≤ 600px) breakpoints.
+   Applied via <link> in every page <head>.
+   ===================================================== */
+
+/* ── Prevent any horizontal scroll at root level ── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* ── Tablet: 901px – 900px ── */
+@media (max-width: 900px) {
+
+  /* 2-column section panels (staff splits, etc.) */
+  section[style*="grid-template-columns:1fr 1fr"],
+  section[style*="grid-template-columns: 1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: auto !important;
+  }
+
+  /* 2-column divs */
+  div[style*="grid-template-columns: 1fr 1fr"],
+  div[style*="grid-template-columns:1fr 1fr"],
+  div[style*="grid-template-columns: 1.2fr 1fr"],
+  div[style*="grid-template-columns: 1.1fr 1fr"],
+  div[style*="grid-template-columns: 1fr 420px"] {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 24px !important;
+  }
+
+  /* 3-column divs → 2 columns on tablet */
+  div[style*="grid-template-columns: repeat(3, 1fr)"],
+  div[style*="grid-template-columns:repeat(3,1fr)"],
+  div[style*="grid-template-columns: 1fr 1fr 1fr"] {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* 4-column divs → 2 columns on tablet */
+  div[style*="grid-template-columns: repeat(4, 1fr)"],
+  div[style*="grid-template-columns:repeat(4,1fr)"] {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px !important;
+  }
+
+  /* Peninsula cross-section diagram */
+  div[style*="grid-template-columns: 1fr 60px 1fr"] {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* Large gap reduction on tablet */
+  div[style*="gap: 80px"] { gap: 36px !important; }
+  div[style*="gap: 60px"] { gap: 28px !important; }
+
+  /* Contact sidebar fixed width */
+  .contact-wrap {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Mobile: ≤ 600px ── */
+@media (max-width: 600px) {
+
+  /* Collapse ALL inline multi-column grids */
+  div[style*="grid-template-columns"],
+  section[style*="grid-template-columns"] {
+    display: flex !important;
+    flex-direction: column !important;
+    min-height: auto !important;
+  }
+
+  /* Small breathing room between stacked items */
+  div[style*="grid-template-columns"] > *,
+  section[style*="grid-template-columns"] > * {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 2px;
+  }
+
+  /* Contact reassurance strip — keep 2×2 even on small phones */
+  div[style*="grid-template-columns:repeat(4,1fr)"],
+  div[style*="grid-template-columns: repeat(4, 1fr)"] {
+    display: grid !important;
+    flex-direction: unset !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2px !important;
+  }
+
+  div[style*="grid-template-columns:repeat(4,1fr)"] > *,
+  div[style*="grid-template-columns: repeat(4, 1fr)"] > * {
+    margin-bottom: 0 !important;
+  }
+
+  /* Remove fixed min-widths on pills/cards */
+  div[style*="min-width: 160px"],
+  div[style*="min-width: 150px"] {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  /* Page section padding */
+  .section { padding: 48px 0; }
+  .container { padding: 0 16px; }
+  .pull-quote { padding: 48px 16px; }
+  .site-footer { padding: 40px 16px 28px; }
+
+  /* Hero */
+  .page-hero { height: 240px; }
+  .page-hero-content h1 { font-size: clamp(1.3rem, 6vw, 2rem); }
+
+  /* Dining hero */
+  .dining-hero { min-height: 400px; }
+
+  /* Reception */
+  .reception-info { padding: 32px 16px; }
+  .expedition-border { padding: 32px 16px; }
+
+  /* Footer */
+  .footer-bottom { flex-direction: column; text-align: center; }
+
+  /* Nav row 1 — tighter on very small screens */
+  .nav-row-1 { padding: 8px 14px 6px 14px; }
+  .nav-logo img { height: 36px; }
+  .nav-logo-text { font-size: 0.55rem; letter-spacing: 0.12em; }
+
+  /* Pueblo Mágico callout: icon above text, full-width copy */
+  .pueblo-magico-callout {
+    padding: 34px 18px !important;
+  }
+
+  .pueblo-magico-callout__inner {
+    max-width: none !important;
+    width: 100% !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 16px !important;
+    text-align: center !important;
+  }
+
+  .pueblo-magico-callout__icon {
+    margin-top: 0 !important;
+    font-size: 2.2rem !important;
+  }
+
+  .pueblo-magico-callout__copy {
+    width: 100% !important;
+  }
+
+  .pueblo-magico-callout__copy p {
+    max-width: none !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Mas'Tul midweek panel: remove side padding on mobile only */
+  .mas-tul-midweek-panel {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Home feature pillars: 2 rows on mobile, no horizontal overflow */
+  .home-pillars {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+    padding: 20px 0 18px !important;
+    margin-top: 28px !important;
+    overflow: hidden !important;
+  }
+
+  .home-pillars__item {
+    padding: 0 10px !important;
+    border-right: none !important;
+    min-width: 0 !important;
+  }
+
+  .home-pillars__item > div {
+    width: 44px !important;
+    height: 44px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .home-pillars__item i {
+    font-size: 1rem !important;
+  }
+
+  .home-pillars__item p:first-of-type {
+    font-size: 0.5rem !important;
+    letter-spacing: 0.18em !important;
+  }
+
+  .home-pillars__item p:last-of-type {
+    font-size: 0.7rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Mas'Tul name reveal: remove side padding on mobile only */
+  .mastul-name-reveal {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Mas'Tul act cards: icon on top, no side padding on mobile */
+  .show-card {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .show-card__icon {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    display: block !important;
+    text-align: center !important;
+    margin: 0 auto 14px !important;
+    font-size: 2.3rem !important;
+    filter: drop-shadow(0 0 6px rgba(201,168,76,0.45)) !important;
+  }
+}
+
+/* ── Very small (≤ 380px) ── */
+@media (max-width: 380px) {
+  .nav-logo-text { display: none; }
+  .nav-logo img { height: 32px; }
+}
+
+/* =====================================================
+   AMENITY CARD IMAGES
+   Keep object-position left so embedded caption text
+   in the lower-left of each photo is never cropped.
+   ===================================================== */
+.amenity-card img {
+  object-position: left center;
+}
+
+/* Amenities page hero — same fix via class override */
+@media (max-width: 900px) {
+  .amenity-card img {
+    height: 280px;           /* shorter on mobile so image doesn't dominate */
+    object-position: left bottom;  /* nudge slightly lower to show captions */
+  }
+}
