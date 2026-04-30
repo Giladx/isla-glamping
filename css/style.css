@@ -179,7 +179,7 @@ a {
 
   .nav-row-1 {
     position: relative;
-    height: 70px;
+    height: 90px;
     padding: 0 16px;
     justify-content: flex-start;
   }
@@ -191,7 +191,7 @@ a {
   .nav-row-2.open {
     display: block;
     position: absolute;
-    top: 70px;
+    top: 90px;
     left: 0;
     right: 0;
     background-color: var(--jungle-green);
@@ -210,13 +210,13 @@ a {
   }
 
   .nav-logo img  {
-    height: 36px;
-    width: 36px;
+    height: 70px;
+    width: 70px;
     object-fit: cover;
     border-radius: 50%;
   }
   .nav-logo-text {
-    font-size: 0.66rem;
+    font-size: 0.72rem;
     letter-spacing: 0.12em;
     white-space: normal;
     line-height: 1.1;
@@ -251,7 +251,7 @@ a {
 
 /* ── Very small screens ── */
 @media (max-width: 380px) {
-  .nav-logo img  { height: 32px; width: 32px; }
+  .nav-logo img  { height: 70px; width: 70px; }
   .nav-logo-text { font-size: 0.58rem; letter-spacing: 0.1em; }
 }
 
