@@ -203,7 +203,7 @@ a {
     pointer-events: none;
   }
 
-  .nav-toggle[aria-expanded="true"] ~ .nav-row-2 {
+  .nav-row-2.open {
     transform: translateX(0);
     pointer-events: auto;
   }
