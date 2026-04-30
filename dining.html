@@ -1104,13 +1104,16 @@
   <script>
     const toggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
+    const navRow2 = document.querySelector('.nav-row-2');
     toggle.addEventListener('click', () => {
       const isOpen = navLinks.classList.toggle('open');
+      if (navRow2) navRow2.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen);
     });
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         navLinks.classList.remove('open');
+        if (navRow2) navRow2.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       });
     });

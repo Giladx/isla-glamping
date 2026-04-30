@@ -188,6 +188,19 @@ a {
     display: none;
   }
 
+  .nav-row-2.open {
+    display: block;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: var(--jungle-green);
+    border-top: 1px solid rgba(201, 168, 76, 0.3);
+    border-bottom: 2px solid var(--aged-gold);
+    z-index: 999;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+
   .nav-logo {
     position: absolute;
     left: 16px;
