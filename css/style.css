@@ -184,6 +184,10 @@ a {
     justify-content: flex-end;
   }
 
+  .nav-row-2 {
+    display: none;
+  }
+
   .nav-logo {
     position: absolute;
     left: 50%;
@@ -208,47 +212,6 @@ a {
     top: 50%;
     transform: translateY(-50%);
   }
-
-  /* Hide the links list — becomes a dropdown below the bar */
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 70px;
-    left: 0; right: 0;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    height: auto;
-    overflow: visible;
-    background-color: var(--jungle-green);
-    border-top: 1px solid rgba(201, 168, 76, 0.3);
-    border-bottom: 2px solid var(--aged-gold);
-    padding: 8px 0;
-    z-index: 999;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  }
-
-  /* Open state */
-  .nav-links.open { display: flex; }
-
-  /* Dot separators: hide on mobile */
-  /* dot separators removed */
-
-  /* Full-width list items */
-  .nav-links li { width: 100%; height: auto; flex-shrink: 0; }
-
-  /* Full-width link rows */
-  .nav-links li a {
-    height: auto;
-    padding: 13px 24px;
-    font-size: 0.72rem;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid rgba(201, 168, 76, 0.12);
-    display: block;
-  }
-
-  /* No underline animation on mobile */
-  .nav-links li a::after { display: none; }
 
   /* Animate burger into X when menu is open */
   .nav-toggle span {
