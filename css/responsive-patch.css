@@ -114,6 +114,23 @@ img, video, embed, object {
   #hurricanes div[style*="grid-template-columns: 1fr 1fr"] {
     gap: 32px !important;
   }
+
+  /* ── Homepage icon pillars: reduce to 2x2 on tablet ── */
+  .icon-pillars-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0 !important;
+    padding: 40px 0 36px !important;
+  }
+
+  .icon-pillars-item {
+    padding: 0 24px 32px !important;
+  }
+
+  .icon-pillars-item:nth-child(2),
+  .icon-pillars-item:nth-child(4) {
+    border-right: none !important;
+  }
 }
 
 
@@ -191,6 +208,24 @@ img, video, embed, object {
   .amenity-card img {
     height: 240px;
     object-position: left bottom;
+  }
+
+  /* ── Homepage icon pillars: stack on mobile ── */
+  .icon-pillars-row {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 28px 0 24px !important;
+  }
+
+  .icon-pillars-item {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(201,168,76,0.3) !important;
+    padding: 0 18px 24px !important;
+  }
+
+  .icon-pillars-item:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0 !important;
   }
 }
 

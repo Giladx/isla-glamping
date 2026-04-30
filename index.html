@@ -83,81 +83,52 @@
         romance meets the finest comforts of the modern world.
       </p>
 
-      <!-- ICON PILLARS — Mayan stone background -->
-      <div style="
-        margin-top: 52px;
-        position: relative;
-        border-radius: 8px;
-        overflow: hidden;
-      ">
-        <!-- Mayan stone background image -->
-        <div style="
-          position: absolute;
-          inset: 0;
-          background-image: url('images/mayan-banner.png');
-          background-size: cover;
-          background-position: center;
-          opacity: 0.22;
-          z-index: 0;
-        "></div>
-        <!-- Gold border overlay -->
-        <div style="
-          position: absolute;
-          inset: 0;
-          border: 1px solid rgba(201,168,76,0.4);
-          border-radius: 8px;
-          z-index: 1;
-          pointer-events: none;
-        "></div>
+    </section>
 
-        <!-- Cards row -->
-        <div style="
-          position: relative;
-          z-index: 2;
-          display: flex;
-          justify-content: center;
-          align-items: stretch;
-          gap: 0;
-          padding: 48px 0 44px;
-        ">
+    <!-- ICON PILLARS — full bleed -->
+    <section class="icon-pillars-strip" style="position: relative; overflow: hidden; width: 100%; background-color: var(--jungle-green);">
+      <!-- Mayan stone background -->
+      <div style="position: absolute; inset: 0; background-image: url('images/mayan-banner.png'); background-size: cover; background-position: center; opacity: 0.22; z-index: 0;"></div>
 
-          <!-- ECO -->
-          <div style="flex: 1; text-align: center; padding: 0 32px; border-right: 1px solid rgba(201,168,76,0.3);">
-            <div style="width: 64px; height: 64px; margin: 0 auto 20px; border: 2px solid var(--aged-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(26,58,42,0.7); box-shadow: 0 0 18px rgba(201,168,76,0.25);">
-              <i class="fa-solid fa-leaf" style="font-size: 1.5rem; color: var(--aged-gold);"></i>
-            </div>
-            <p style="font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 10px; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">Eco</p>
-            <p style="font-family: var(--font-body); font-size: 0.85rem; color: rgba(250,240,220,0.85); line-height: 1.7; font-style: italic; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">In harmony<br/>with nature</p>
+      <!-- Cards row -->
+      <div class="icon-pillars-row" style="position: relative; z-index: 2; display: flex; align-items: stretch; width: 100%; padding: 48px 0 44px;">
+
+        <!-- ECO -->
+        <div class="icon-pillars-item" style="flex: 1; text-align: center; padding: 0 32px; border-right: 1px solid rgba(201,168,76,0.3);">
+          <div style="width: 64px; height: 64px; margin: 0 auto 20px; border: 2px solid var(--aged-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(26,58,42,0.7); box-shadow: 0 0 18px rgba(201,168,76,0.25);">
+            <i class="fa-solid fa-leaf" style="font-size: 1.5rem; color: var(--aged-gold);"></i>
           </div>
-
-          <!-- SUSTAINABILITY -->
-          <div style="flex: 1; text-align: center; padding: 0 32px; border-right: 1px solid rgba(201,168,76,0.3);">
-            <div style="width: 64px; height: 64px; margin: 0 auto 20px; border: 2px solid var(--aged-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(26,58,42,0.7); box-shadow: 0 0 18px rgba(201,168,76,0.25);">
-              <i class="fa-solid fa-sun" style="font-size: 1.5rem; color: var(--aged-gold);"></i>
-            </div>
-            <p style="font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 10px; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">Sustainability</p>
-            <p style="font-family: var(--font-body); font-size: 0.85rem; color: rgba(250,240,220,0.85); line-height: 1.7; font-style: italic; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">Solar powered<br/>&amp; self-sufficient</p>
-          </div>
-
-          <!-- GLAMPING -->
-          <div style="flex: 1; text-align: center; padding: 0 32px; border-right: 1px solid rgba(201,168,76,0.3);">
-            <div style="width: 64px; height: 64px; margin: 0 auto 20px; border: 2px solid var(--aged-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(26,58,42,0.7); box-shadow: 0 0 18px rgba(201,168,76,0.25);">
-              <i class="fa-solid fa-campground" style="font-size: 1.5rem; color: var(--aged-gold);"></i>
-            </div>
-            <p style="font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 10px; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">Glamping</p>
-            <p style="font-family: var(--font-body); font-size: 0.85rem; color: rgba(250,240,220,0.85); line-height: 1.7; font-style: italic; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">Luxury safari tents<br/>in the wild</p>
-          </div>
-
-          <!-- PUEBLO MAGICO -->
-          <div style="flex: 1; text-align: center; padding: 0 32px;">
-            <div style="width: 64px; height: 64px; margin: 0 auto 20px; border: 2px solid var(--aged-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(26,58,42,0.7); box-shadow: 0 0 18px rgba(201,168,76,0.25);">
-              <i class="fa-solid fa-star" style="font-size: 1.5rem; color: var(--aged-gold);"></i>
-            </div>
-            <p style="font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 10px; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">Pueblo M&aacute;gico</p>
-            <p style="font-family: var(--font-body); font-size: 0.85rem; color: rgba(250,240,220,0.85); line-height: 1.7; font-style: italic; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">Designated<br/>Magic Town</p>
-          </div>
-
+          <p style="font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 10px; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">Eco</p>
+          <p style="font-family: var(--font-body); font-size: 0.85rem; color: rgba(250,240,220,0.85); line-height: 1.7; font-style: italic; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">In harmony<br/>with nature</p>
         </div>
+
+        <!-- SUSTAINABILITY -->
+        <div class="icon-pillars-item" style="flex: 1; text-align: center; padding: 0 32px; border-right: 1px solid rgba(201,168,76,0.3);">
+          <div style="width: 64px; height: 64px; margin: 0 auto 20px; border: 2px solid var(--aged-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(26,58,42,0.7); box-shadow: 0 0 18px rgba(201,168,76,0.25);">
+            <i class="fa-solid fa-sun" style="font-size: 1.5rem; color: var(--aged-gold);"></i>
+          </div>
+          <p style="font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 10px; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">Sustainability</p>
+          <p style="font-family: var(--font-body); font-size: 0.85rem; color: rgba(250,240,220,0.85); line-height: 1.7; font-style: italic; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">Solar powered<br/>&amp; self-sufficient</p>
+        </div>
+
+        <!-- GLAMPING -->
+        <div class="icon-pillars-item" style="flex: 1; text-align: center; padding: 0 32px; border-right: 1px solid rgba(201,168,76,0.3);">
+          <div style="width: 64px; height: 64px; margin: 0 auto 20px; border: 2px solid var(--aged-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(26,58,42,0.7); box-shadow: 0 0 18px rgba(201,168,76,0.25);">
+            <i class="fa-solid fa-campground" style="font-size: 1.5rem; color: var(--aged-gold);"></i>
+          </div>
+          <p style="font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 10px; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">Glamping</p>
+          <p style="font-family: var(--font-body); font-size: 0.85rem; color: rgba(250,240,220,0.85); line-height: 1.7; font-style: italic; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">Luxury safari tents<br/>in the wild</p>
+        </div>
+
+        <!-- PUEBLO MAGICO -->
+        <div class="icon-pillars-item" style="flex: 1; text-align: center; padding: 0 32px;">
+          <div style="width: 64px; height: 64px; margin: 0 auto 20px; border: 2px solid var(--aged-gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(26,58,42,0.7); box-shadow: 0 0 18px rgba(201,168,76,0.25);">
+            <i class="fa-solid fa-star" style="font-size: 1.5rem; color: var(--aged-gold);"></i>
+          </div>
+          <p style="font-family: var(--font-heading); font-size: 0.65rem; letter-spacing: 0.28em; text-transform: uppercase; color: var(--aged-gold); margin-bottom: 10px; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">Pueblo M&aacute;gico</p>
+          <p style="font-family: var(--font-body); font-size: 0.85rem; color: rgba(250,240,220,0.85); line-height: 1.7; font-style: italic; text-shadow: 0 1px 4px rgba(0,0,0,0.7);">Designated<br/>Magic Town</p>
+        </div>
+
       </div>
     </section>
 
