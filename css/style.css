@@ -178,17 +178,35 @@ a {
   .site-nav { overflow: visible; }
 
   .nav-row-1 {
+    position: relative;
     height: 70px;
     padding: 0 16px;
+    justify-content: flex-end;
   }
 
-  .nav-logo img  { height: 52px; width: 52px; }
+  .nav-logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    gap: 0;
+  }
+
+  .nav-logo img  {
+    height: 52px;
+    width: 52px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
   .nav-logo-text { font-size: 0.82rem; letter-spacing: 0.14em; }
 
   /* Show hamburger */
   .nav-toggle {
     display: flex;
-    margin-left: auto;
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 
   /* Hide the links list — becomes a dropdown below the bar */
@@ -231,12 +249,29 @@ a {
 
   /* No underline animation on mobile */
   .nav-links li a::after { display: none; }
+
+  /* Animate burger into X when menu is open */
+  .nav-toggle span {
+    transform-origin: center;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
 }
 
 /* ── Very small screens ── */
 @media (max-width: 380px) {
   .nav-logo-text { display: none; }
-  .nav-logo img  { height: 32px; }
+  .nav-logo img  { height: 44px; width: 44px; }
 }
 
 /* =====================================================
