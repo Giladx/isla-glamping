@@ -23,7 +23,7 @@ img, video, embed, object {
 
 /* NAV LOGO — hard override, nothing touches this */
 .nav-logo img {
-  height: 80px !important;
+  height: 70px !important;
   width: auto !important;
   max-width: none !important;
 }
