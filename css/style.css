@@ -188,14 +188,14 @@ a {
     display: block;
     position: fixed;
     top: 90px;
+    left: 0;
     right: 0;
-    width: min(82vw, 320px);
+    width: 100%;
     height: calc(100vh - 90px);
     background-color: var(--jungle-green);
-    border-left: 1px solid rgba(201, 168, 76, 0.3);
     border-top: 1px solid rgba(201, 168, 76, 0.3);
-    box-shadow: -12px 0 32px rgba(0,0,0,0.45);
-    transform: translateX(100%);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+    transform: translateY(-16px);
     transition: transform 0.32s ease;
     z-index: 999;
     overflow-y: auto;
@@ -204,7 +204,7 @@ a {
   }
 
   .nav-row-2.open {
-    transform: translateX(0);
+    transform: translateY(0);
     pointer-events: auto;
   }
 
